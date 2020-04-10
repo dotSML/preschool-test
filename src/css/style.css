@@ -1,0 +1,131 @@
+html {
+    font-size: 62.5%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.game-layout {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    width: 100vw;
+}
+
+.game-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.game-main-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.game-buttons {
+    display: flex;
+
+}
+
+.game-heading {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+.game-description {
+    font-size: 1.8rem;
+
+}
+
+
+
+/*AUDIO TO TEXT GAME*/
+
+.audio-to-text-options {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.audio-to-text-option {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.audio-to-text-option input {
+    margin-right: 1rem;
+}
+
+.audio-to-text-option:not(:last-child){
+    margin-right: 1rem;
+}
+
+.audio-to-text-question {
+    font-size: 1.6rem;
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.audio-to-text-question:not(:last-child){
+    margin-bottom: 1rem;
+}
+
+
+.audio-to-text-question-text {
+    font-size: 2rem;
+}
+
+
+
+.audio-to-text-questions {
+    display: flex;
+    flex-direction: column;
+}
+
+/*.audio-to-text-questions>div {*/
+/*  flex: 0 50%;*/
+/*}*/
+
+/*DRAG WORD TO PICTURE GAME */
+
+.drag-word-to-picture-game-options {
+    display: flex;
+    width: 100%;
+    margin-top: 5rem;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.drag-word-to-picture-game-option {
+    height: 15rem;
+    width: auto;
+}
+
+.drag-word-to-picture-game-word {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 5rem;
+    text-transform: uppercase;
+    justify-content: center;
+    border: 3px dotted black;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.drag-word-to-picture-game-wordbox-wrapper {
+    display: flex;
+    margin: 5rem auto;
+    justify-content: center;
+}
