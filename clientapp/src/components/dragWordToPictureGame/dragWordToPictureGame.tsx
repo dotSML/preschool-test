@@ -11,9 +11,14 @@ import DragWordToPictureGameQuestion from "./dragWordToPictureGameQuestion";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import {
+  SET_DRAG_WORD_TO_PICTURE_GAME_CURRENT_ASSIGNMENT,
   SET_DRAG_WORD_TO_PICTURE_GAME_CURRENT_QUESTION,
   SET_DRAG_WORD_TO_PICTURE_GAME_SET_GAME_COMPLETED
 } from "./actions/dragWordToQuestionGameActions";
+import MatchWordWithPictureGame from "./matchWordWithPictureGame/matchWordWithPictureGame";
+import DragWordToPictureGameCompleted from "./dragWordToPictureGameCompleted";
+import { HTML5toTouch } from "../common/dnd";
+import MatchOppositeWordGame from "./matchOppositeWordGame/matchOppositeWordGame";
 
 export type DragWordToPictureGameQuestionType = {
   answer: string;
@@ -24,9 +29,17 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
   gameConfig
 }) => {
   const dispatch = useDispatch();
-  const currentQuestion = useSelector<AppState, number>(
-    state => state.dragWordToPictureGame.currentQuestion
-  );
+
+  const gameFlow = [
+    { gameComponent: <MatchWordWithPictureGame questions={gameConfig[0]} /> },
+    {
+      gameComponent: <MatchOppositeWordGame />
+    },
+    {
+      gameComponent: <DragWordToPictureGameCompleted />
+    }
+  ];
+
   const currentAssignment = useSelector<AppState, number>(
     state => state.dragWordToPictureGame.currentAssignment
   );
@@ -35,35 +48,10 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
   );
   const [gameStarted, setGameStarted] = useState<boolean>(false);
 
-  const nextQuestion = () => {
-    if (currentQuestion + 1 < gameConfig.length) {
-      dispatch(
-        SET_DRAG_WORD_TO_PICTURE_GAME_CURRENT_QUESTION(currentQuestion + 1)
-      );
-    } else {
-      setGameStarted(false);
-      dispatch(SET_DRAG_WORD_TO_PICTURE_GAME_SET_GAME_COMPLETED(true));
-    }
-  };
-
   const handleGameStart = () => {
     dispatch(SET_DRAG_WORD_TO_PICTURE_GAME_SET_GAME_COMPLETED(false));
     dispatch(SET_DRAG_WORD_TO_PICTURE_GAME_CURRENT_QUESTION(0));
     setGameStarted(c => !c);
-  };
-
-  const HTML5toTouch = {
-    backends: [
-      {
-        backend: HTML5Backend
-      },
-      {
-        backend: TouchBackend,
-        options: { enableMouseEvents: true },
-        preview: true,
-        transition: TouchTransition
-      }
-    ]
   };
 
   return (
@@ -74,12 +62,7 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
       </GameDescription>
       <GameContent>
         {gameStarted ? (
-          <DragWordToPictureGameQuestion
-            questionNo={currentQuestion}
-            question={gameConfig[currentQuestion]}
-            getNextQuestion={nextQuestion}
-            key={currentQuestion}
-          />
+          gameFlow[currentAssignment].gameComponent
         ) : (
           <div className="drag-word-to-picture-game-start-btn-wrapper">
             {gameCompleted ? (

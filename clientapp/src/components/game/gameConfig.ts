@@ -23,73 +23,177 @@ export const gameConfig = {
     }
   ],
   dragWordToPictureGame: [
-    {
-      answer: "Karu",
-      options: [
-        {
-          word: "Karu",
-          image: "/images/bearDrawing.png"
-        },
-        {
-          word: "Auto",
-          image: "/images/carDrawing.png"
-        },
-        {
-          word: "Orav",
-          image: "/images/squirrelDrawing.png"
-        }
-      ]
-    },
-    {
-      answer: "Hobune",
-      options: [
-        {
-          word: "Auto",
-          image: "/images/carDrawing.png"
-        },
-        {
-          word: "Rebane",
-          image: "/images/foxDrawing.png"
-        },
-        {
-          word: "Hobune",
-          image: "/images/horseDrawing.png"
-        }
-      ]
-    },
-    {
-      answer: "Kõrvits",
-      options: [
-        {
-          word: "Nukk",
-          image: "/images/dollDrawing.png"
-        },
-        {
-          word: "Cabbage",
-          image: "/images/cabbageDrawing.png"
-        },
-        {
-          word: "Kõrvits",
-          image: "/images/pumpkinDrawing.png"
-        }
-      ]
-    },
-    {
-      answer: "Aken",
-      options: [
-        {
-          word: "Kapsas",
-          image: "/images/cabbageDrawing.png"
-        },
-        {
-          word: "Aken",
-          image: "/images/windowDrawing.png"
-        },
-        {
-          word: "Nukk",
-          image: "/images/dollDrawing.png"
-        }
-      ]
-    }
+    [
+      {
+        answer: "Karu",
+        options: [
+          {
+            word: "Karu",
+            image: "/images/matchWordWithPictureGame/bearDrawing.png"
+          },
+          {
+            word: "Auto",
+            image: "/images/matchWordWithPictureGame/carDrawing.png"
+          },
+          {
+            word: "Orav",
+            image: "/images/matchWordWithPictureGame/squirrelDrawing.png"
+          }
+        ]
+      },
+      {
+        answer: "Hobune",
+        options: [
+          {
+            word: "Auto",
+            image: "/images/matchWordWithPictureGame/carDrawing.png"
+          },
+          {
+            word: "Rebane",
+            image: "/images/matchWordWithPictureGame/foxDrawing.png"
+          },
+          {
+            word: "Hobune",
+            image: "/images/matchWordWithPictureGame/horseDrawing.png"
+          }
+        ]
+      },
+      {
+        answer: "Kõrvits",
+        options: [
+          {
+            word: "Nukk",
+            image: "/images/matchWordWithPictureGame/dollDrawing.png"
+          },
+          {
+            word: "Cabbage",
+            image: "/images/matchWordWithPictureGame/cabbageDrawing.png"
+          },
+          {
+            word: "Kõrvits",
+            image: "/images/matchWordWithPictureGame/pumpkinDrawing.png"
+          }
+        ]
+      },
+      {
+        answer: "Aken",
+        options: [
+          {
+            word: "Kapsas",
+            image: "/images/matchWordWithPictureGame/cabbageDrawing.png"
+          },
+          {
+            word: "Aken",
+            image: "/images/matchWordWithPictureGame/windowDrawing.png"
+          },
+          {
+            word: "Nukk",
+            image: "/images/matchWordWithPictureGame/dollDrawing.png"
+          }
+        ]
+      },
+      {
+        answer: "Orav",
+        options: [
+          {
+            word: "Rebane",
+            image: "/images/matchWordWithPictureGame/foxDrawing.png"
+          },
+          {
+            word: "Karu",
+            image: "/images/matchWordWithPictureGame/bearDrawing.png"
+          },
+          {
+            word: "Orav",
+            image: "/images/matchWordWithPictureGame/squirrelDrawing.png"
+          }
+        ]
+      },
+      {
+        answer: "Auto",
+        options: [
+          {
+            word: "Lill",
+            image: "/images/matchWordWithPictureGame/flowerDrawing.png"
+          },
+          {
+            word: "Auto",
+            image: "/images/matchWordWithPictureGame/carDrawing.png"
+          },
+          {
+            word: "Kõrvits",
+            image: "/images/matchWordWithPictureGame/pumpkinDrawing.png"
+          }
+        ]
+      },
+      {
+        answer: "Nukk",
+        options: [
+          {
+            word: "Kapsas",
+            image: "/images/matchWordWithPictureGame/cabbageDrawing.png"
+          },
+          {
+            word: "Lill",
+            image: "/images/matchWordWithPictureGame/flowerDrawing.png"
+          },
+          {
+            word: "Nukk",
+            image: "/images/matchWordWithPictureGame/dollDrawing.png"
+          }
+        ]
+      },
+      {
+        answer: "Kapsas",
+        options: [
+          {
+            word: "Auto",
+            image: "/images/matchWordWithPictureGame/carDrawing.png"
+          },
+          {
+            word: "Kapsas",
+            image: "/images/matchWordWithPictureGame/cabbageDrawing.png"
+          },
+          {
+            word: "Kõrvits",
+            image: "/images/matchWordWithPictureGame/pumpkinDrawing.png"
+          }
+        ]
+      },
+      {
+        answer: "Rebane",
+        options: [
+          {
+            word: "Karu",
+            image: "/images/matchWordWithPictureGame/bearDrawing.png"
+          },
+          {
+            word: "Rebane",
+            image: "/images/matchWordWithPictureGame/foxDrawing.png"
+          },
+          {
+            word: "Hobune",
+            image: "/images/matchWordWithPictureGame/horseDrawing.png"
+          }
+        ]
+      },
+      {
+        answer: "Lill",
+        options: [
+          {
+            word: "Kapsas",
+            image: "/images/matchWordWithPictureGame/cabbageDrawing.png"
+          },
+          {
+            word: "Kõrvits",
+            image: "/images/matchWordWithPictureGame/pumpkinDrawing.png"
+          },
+          {
+            word: "Lill",
+            image: "/images/matchWordWithPictureGame/flowerDrawing.png"
+          }
+        ]
+      }
+    ]
   ]
 };
