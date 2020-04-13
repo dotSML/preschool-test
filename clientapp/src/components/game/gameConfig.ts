@@ -39,6 +39,57 @@ export const gameConfig = {
           image: "/images/squirrelDrawing.png"
         }
       ]
+    },
+    {
+      answer: "Hobune",
+      options: [
+        {
+          word: "Auto",
+          image: "/images/carDrawing.png"
+        },
+        {
+          word: "Rebane",
+          image: "/images/foxDrawing.png"
+        },
+        {
+          word: "Hobune",
+          image: "/images/horseDrawing.png"
+        }
+      ]
+    },
+    {
+      answer: "Kõrvits",
+      options: [
+        {
+          word: "Nukk",
+          image: "/images/dollDrawing.png"
+        },
+        {
+          word: "Cabbage",
+          image: "/images/cabbageDrawing.png"
+        },
+        {
+          word: "Kõrvits",
+          image: "/images/pumpkinDrawing.png"
+        }
+      ]
+    },
+    {
+      answer: "Aken",
+      options: [
+        {
+          word: "Kapsas",
+          image: "/images/cabbageDrawing.png"
+        },
+        {
+          word: "Aken",
+          image: "/images/windowDrawing.png"
+        },
+        {
+          word: "Nukk",
+          image: "/images/dollDrawing.png"
+        }
+      ]
     }
   ]
 };

@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useDrag } from "react-dnd";
+// @ts-ignore
+import Preview from "react-dnd-preview";
 
 export const DraggableWordType = {
   WORD: "word"
@@ -7,32 +9,38 @@ export const DraggableWordType = {
 
 const DraggableWord: React.FC<{ word: string }> = ({ word }) => {
   const [dragProps, drag] = useDrag({
-    item: { type: DraggableWordType.WORD },
+    item: { type: DraggableWordType.WORD, word: word },
     collect: monitor => ({
       isDragging: !!monitor.isDragging(),
       position: monitor.getDifferenceFromInitialOffset()
     })
   });
 
-  useEffect(() => {
-    // console.log(dragProps.position);
-  });
+  const GeneratePreview = ({ itemType, item, style }: any, word: string) => {
+    return (
+      <div className="drag-word-to-picture-game-word" style={style}>
+        {word}
+      </div>
+    );
+  };
 
   return (
-    <div
-      ref={drag}
-      style={{
-        opacity: dragProps.isDragging ? 0.5 : 1
-
-        // transform: dragProps.isDragging
-        //   ? `translate(${dragProps?.position?.x}px, ${dragProps?.position?.y}px)`
-        //   : ""
-        // transition: !dragProps.isDragging ? "all .2s ease-out" : ""
-      }}
-      className="drag-word-to-picture-game-word"
-    >
-      {word}
-    </div>
+    <React.Fragment>
+      <div
+        ref={drag}
+        style={{
+          opacity: dragProps.isDragging ? 0 : 1
+          // transform: dragProps.isDragging
+          //   ? `translate(${dragProps?.position?.x}px, ${dragProps?.position?.y}px)`
+          //   : ""
+          // transition: !dragProps.isDragging ? "all .2s ease-out" : ""
+        }}
+        className="drag-word-to-picture-game-word"
+      >
+        {word}
+      </div>
+      <Preview generator={(props: any) => GeneratePreview(props, word)} />
+    </React.Fragment>
   );
 };
 

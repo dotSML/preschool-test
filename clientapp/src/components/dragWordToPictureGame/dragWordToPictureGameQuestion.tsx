@@ -1,0 +1,35 @@
+import React from "react";
+import DropTargetImage from "./dropTargetImage";
+import DraggableWord from "./draggableWord";
+import { DragWordToPictureGameQuestionType } from "./dragWordToPictureGame";
+
+const DragWordToPictureGameQuestion: React.FC<{
+  question: DragWordToPictureGameQuestionType;
+  getNextQuestion: Function;
+  questionNo: number;
+}> = ({ question, getNextQuestion, questionNo }) => {
+  return (
+    <div className="drag-word-to-picture-game-question">
+      <div style={{ fontSize: "2rem", fontWeight: "bold" }}>
+        {" "}
+        {`${questionNo + 1}. KÜSIMUS`}
+      </div>
+      <div className="drag-word-to-picture-game-options">
+        {question.options.map((option, idx) => {
+          return (
+            <DropTargetImage
+              key={option.word}
+              imgProp={option}
+              getNextQuestion={getNextQuestion}
+            />
+          );
+        })}
+      </div>
+      <div className="drag-word-to-picture-game-wordbox-wrapper">
+        <DraggableWord key={question.answer + 69} word={question.answer} />
+      </div>
+    </div>
+  );
+};
+
+export default DragWordToPictureGameQuestion;

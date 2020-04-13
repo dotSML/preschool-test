@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { gameReducer } from "../components/game/reducers/gameReducer";
 import { audioToTextGameReducer } from "../components/audioToTextGame/reducers/audioToTextGameReducer";
+import { dragWordToPictureGameReducer } from "../components/dragWordToPictureGame/reducers/dragWordToPictureGameReducer";
 
 const rootReducer = combineReducers({
   game: gameReducer,
-  audioToTextGame: audioToTextGameReducer
+  audioToTextGame: audioToTextGameReducer,
+  dragWordToPictureGame: dragWordToPictureGameReducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

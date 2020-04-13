@@ -7,10 +7,24 @@ type ImagePropType = {
   image: string;
 };
 
-const DropTargetImage: React.FC<{ imgProp: ImagePropType }> = ({ imgProp }) => {
+const DropTargetImage: React.FC<{
+  imgProp: ImagePropType;
+  getNextQuestion: any;
+}> = ({ imgProp, getNextQuestion }) => {
   const [isHovering, setHovering] = useState<boolean>(false);
   const [dropProps, drop] = useDrop({
     accept: DraggableWordType.WORD,
+    drop: (item, monitor) => {
+      console.log(item);
+      getNextQuestion();
+      const droppedItem: any = { ...item };
+      if (imgProp.word === droppedItem.word) {
+        console.log("CORRECT");
+      } else {
+        console.log("INCORRECT");
+      }
+    },
+    options: { word: imgProp.word },
     hover: item => handleHover(item),
     collect: monitor => ({
       isOver: !!monitor.isOver()
@@ -39,8 +53,12 @@ const DropTargetImage: React.FC<{ imgProp: ImagePropType }> = ({ imgProp }) => {
         height: "100%",
         padding: "1rem",
         display: "flex",
-        justifyContent: "center",
-        backgroundColor: isHovering ? "red" : "white"
+        opacity: dropProps.isOver ? 0.5 : 1,
+        border: dropProps.isOver
+          ? "2px dotted black"
+          : "2px dotted transparent",
+        transition: "all .2s",
+        justifyContent: "center"
       }}
     >
       <img
