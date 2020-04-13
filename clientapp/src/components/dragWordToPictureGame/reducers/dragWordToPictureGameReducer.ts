@@ -9,6 +9,9 @@ type GameReducerStateType = {
     gameCompleted: boolean;
     currentQuestion: number;
   };
+  matchOppositeWordsGame: {
+    options: Array<any>;
+  };
 };
 
 const initialState: GameReducerStateType = {
@@ -19,6 +22,9 @@ const initialState: GameReducerStateType = {
   matchWordWithPictureGame: {
     gameCompleted: false,
     currentQuestion: 0
+  },
+  matchOppositeWordsGame: {
+    options: []
   }
 };
 
@@ -27,6 +33,10 @@ export const dragWordToPictureGameReducer = (
   action: Action
 ) => {
   switch (action.type) {
+    case "RESET_DRAG_WORD_TO_PICTURE_GAME_STATE": {
+      return initialState;
+    }
+
     case "SET_DRAG_WORD_TO_PICTURE_GAME_START_STATE": {
       return {
         ...state,
@@ -68,6 +78,16 @@ export const dragWordToPictureGameReducer = (
         matchWordWithPictureGame: {
           ...state.matchWordWithPictureGame,
           gameCompleted: action.payload
+        }
+      };
+    }
+
+    case "SET_MATCH_OPPOSITE_WORDS_OPTIONS": {
+      return {
+        ...state,
+        matchOppositeWordsGame: {
+          ...state.matchOppositeWordsGame,
+          options: action.payload
         }
       };
     }

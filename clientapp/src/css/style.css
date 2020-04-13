@@ -146,3 +146,40 @@ html {
     height: 100%;
     margin: 10rem auto;
 }
+
+.match-opposite-words-game-wrapper {
+    padding: 5rem 2rem;
+}
+
+.match-opposite-words-game-options {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.match-opposite-words-drop-zone {
+    display: flex;
+    flex-direction: column;
+    border: 2px dotted black;
+
+}
+
+.match-opposite-words-drop-zone-img {
+    display: flex;
+    height: 15rem;
+    width: 15rem;
+    background-color: red;
+}
+
+.match-opposite-words-drop-zone-box {
+    height: 15rem;
+    width: 15rem;
+}
+
+.match-opposite-words-draggable-word {
+    display: flex;
+    height: 15rem;
+    width: 15rem;
+    background-color: green;
+    border: 2px dotted black;
+}

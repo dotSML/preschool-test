@@ -11,6 +11,7 @@ import DragWordToPictureGameQuestion from "./dragWordToPictureGameQuestion";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import {
+  RESET_DRAG_WORD_TO_PICTURE_GAME_STATE,
   SET_DRAG_WORD_TO_PICTURE_GAME_CURRENT_ASSIGNMENT,
   SET_DRAG_WORD_TO_PICTURE_GAME_CURRENT_QUESTION,
   SET_DRAG_WORD_TO_PICTURE_GAME_SET_GAME_COMPLETED
@@ -33,7 +34,7 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
   const gameFlow = [
     { gameComponent: <MatchWordWithPictureGame questions={gameConfig[0]} /> },
     {
-      gameComponent: <MatchOppositeWordGame />
+      gameComponent: <MatchOppositeWordGame questions={gameConfig[1]} />
     },
     {
       gameComponent: <DragWordToPictureGameCompleted />
@@ -49,6 +50,7 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
   const [gameStarted, setGameStarted] = useState<boolean>(false);
 
   const handleGameStart = () => {
+    dispatch(RESET_DRAG_WORD_TO_PICTURE_GAME_STATE());
     dispatch(SET_DRAG_WORD_TO_PICTURE_GAME_SET_GAME_COMPLETED(false));
     dispatch(SET_DRAG_WORD_TO_PICTURE_GAME_CURRENT_QUESTION(0));
     setGameStarted(c => !c);

@@ -194,6 +194,20 @@ export const gameConfig = {
           }
         ]
       }
+    ],
+    [
+      [
+        { word: "Kiire", image: "KIIRE", match: "Aeglane" },
+        { word: "Poiss", image: "POISS", match: "Tüdruk" },
+        { word: "Külm", image: "KÜLM", match: "Soe" },
+        { word: "Öö", image: "NIGHT", match: "Päev" }
+      ],
+      [
+        { word: "Kurb", image: "KURB", match: "Rõõmus" },
+        { word: "Väike", image: "VÄIKE", match: "Suur" },
+        { word: "Noor", image: "NOOR", match: "Vana" },
+        { word: "Kerge", image: "KERGE", match: "Raske" }
+      ]
     ]
   ]
 };

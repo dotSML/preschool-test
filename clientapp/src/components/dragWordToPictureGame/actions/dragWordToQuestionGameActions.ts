@@ -19,6 +19,10 @@ export const SET_DRAG_WORD_TO_PICTURE_GAME_CURRENT_QUESTION = (
   payload: payload
 });
 
+export const RESET_DRAG_WORD_TO_PICTURE_GAME_STATE = () => ({
+  type: "RESET_DRAG_WORD_TO_PICTURE_GAME_STATE"
+});
+
 export const SET_DRAG_WORD_TO_PICTURE_GAME_CURRENT_ASSIGNMENT = (
   payload: number
 ) => ({
