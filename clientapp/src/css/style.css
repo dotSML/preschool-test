@@ -100,6 +100,14 @@ html {
 
 /*DRAG WORD TO PICTURE GAME */
 
+.drag-word-to-picture-game-completed {
+    display: flex;
+    font-size: 4rem;
+    text-transform: uppercase;
+    margin: 10rem auto 0 auto;
+
+}
+
 .drag-word-to-picture-game-options {
     display: flex;
     width: 100%;
@@ -181,5 +189,58 @@ html {
     height: 15rem;
     width: 15rem;
     background-color: green;
+    border: 2px dotted black;
+}
+
+/*PICK THE RIGHT WORD GAME*/
+
+.pick-the-right-word-game-wrapper {
+    display: flex;
+    margin: 15rem auto 0 auto;
+}
+
+.pick-the-right-word-game-question {
+    display: flex;
+    flex-direction: column;
+}
+
+.pick-the-right-word-game-question-image {
+    display: flex;
+    height: 15rem;
+    width: 15rem;
+    background-color: yellow;
+}
+
+.pick-the-right-word-game-question-options {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: space-around;
+    font-size: 3rem;
+}
+
+/*IMAGE SEQUENCE GAME*/
+
+.image-sequence-game-wrapper {
+    display: flex;
+    margin: 10rem 0;
+}
+
+.image-sequence-game-images-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.image-sequence-game-image {
+    display: flex;
+    height: 15rem;
+    width: 15rem;
+    background-color: red;
+}
+
+.image-sequence-game-image-drop-zone {
+    display: flex;
+    height: 15rem;
+    width: 15rem;
     border: 2px dotted black;
 }

@@ -4,7 +4,8 @@ import { useDrag } from "react-dnd";
 import Preview from "react-dnd-preview";
 
 export const DraggableWordType = {
-  WORD: "word"
+  WORD: "word",
+  ORDER: "order"
 };
 
 const DraggableWord: React.FC<{ word: string }> = ({ word }) => {

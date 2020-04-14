@@ -1,19 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDrop } from "react-dnd";
 import { DraggableWordType } from "../draggableWord";
+import { MatchOppositeWordsGameQuestionType } from "./matchOppositeWordsGameTypes";
 
 const MatchOppositeWordDropZone: React.FC<{
-  img: string;
-}> = ({ img }) => {
+  question: MatchOppositeWordsGameQuestionType;
+  handleDrop: (droppedItem: string, expected: string) => void;
+}> = ({ question, handleDrop }) => {
   const [droppedItem, setDroppedItem] = useState<string | null>(null);
+
+  useEffect(() => {
+    setDroppedItem(null);
+  }, [question]);
 
   const [dropProps, drop] = useDrop({
     accept: DraggableWordType.WORD,
     drop: (item: any, monitor) => {
       console.log(item);
       setDroppedItem(item.word.word);
-
-      const droppedItem: any = { ...item };
+      handleDrop(item.word.word, question.match);
+    },
+    canDrop: (item: any) => {
+      return droppedItem === null;
     },
     collect: monitor => ({
       isOver: !!monitor.isOver()
@@ -25,9 +33,14 @@ const MatchOppositeWordDropZone: React.FC<{
         className="match-opposite-words-drop-zone-img"
         style={{ fontSize: "3rem" }}
       >
-        {img}
+        {question.word}
       </div>
-      <div className="match-opposite-words-drop-zone-box">{droppedItem}</div>
+      <div
+        className="match-opposite-words-drop-zone-box"
+        style={{ fontSize: "3rem" }}
+      >
+        {droppedItem}
+      </div>
     </div>
   );
 };

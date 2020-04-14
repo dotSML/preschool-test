@@ -20,6 +20,7 @@ import MatchWordWithPictureGame from "./matchWordWithPictureGame/matchWordWithPi
 import DragWordToPictureGameCompleted from "./dragWordToPictureGameCompleted";
 import { HTML5toTouch } from "../common/dnd";
 import MatchOppositeWordGame from "./matchOppositeWordGame/matchOppositeWordGame";
+import PickTheRightWordGame from "./pickTheRightWordGame/pickTheRightWordGame";
 
 export type DragWordToPictureGameQuestionType = {
   answer: string;
@@ -32,10 +33,13 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
   const dispatch = useDispatch();
 
   const gameFlow = [
-    { gameComponent: <MatchWordWithPictureGame questions={gameConfig[0]} /> },
-    {
-      gameComponent: <MatchOppositeWordGame questions={gameConfig[1]} />
-    },
+    // { gameComponent: <MatchWordWithPictureGame questions={gameConfig[0]} /> },
+    // {
+    //   gameComponent: <MatchOppositeWordGame questions={gameConfig[1]} />
+    // },
+    // {
+    //   gameComponent: <PickTheRightWordGame questions={gameConfig[2]} />
+    // },
     {
       gameComponent: <DragWordToPictureGameCompleted />
     }

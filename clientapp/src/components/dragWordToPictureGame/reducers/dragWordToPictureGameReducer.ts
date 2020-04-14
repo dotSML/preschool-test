@@ -10,7 +10,10 @@ type GameReducerStateType = {
     currentQuestion: number;
   };
   matchOppositeWordsGame: {
-    options: Array<any>;
+    questions: Array<any>;
+    currentQuestion: number;
+    optionSlots: Array<string>;
+    results: Array<any>;
   };
 };
 
@@ -24,7 +27,10 @@ const initialState: GameReducerStateType = {
     currentQuestion: 0
   },
   matchOppositeWordsGame: {
-    options: []
+    questions: [],
+    optionSlots: [],
+    currentQuestion: 0,
+    results: []
   }
 };
 
@@ -82,12 +88,58 @@ export const dragWordToPictureGameReducer = (
       };
     }
 
-    case "SET_MATCH_OPPOSITE_WORDS_OPTIONS": {
+    case "SET_MATCH_OPPOSITE_WORDS_GAME_QUESTIONS": {
       return {
         ...state,
         matchOppositeWordsGame: {
           ...state.matchOppositeWordsGame,
-          options: action.payload
+          questions: action.payload
+        }
+      };
+    }
+
+    case "SET_MATCH_OPPOSITE_WORDS_OPTIONS": {
+      let newOptions = action.payload;
+      return {
+        ...state,
+        matchOppositeWordsGame: {
+          ...state.matchOppositeWordsGame,
+          questions: [
+            ...state.matchOppositeWordsGame.questions,
+            (state.matchOppositeWordsGame.questions[
+              state.matchOppositeWordsGame.currentQuestion
+            ].options = newOptions)
+          ]
+        }
+      };
+    }
+
+    case "SET_MATCH_OPPOSITE_WORDS_OPTION_SLOTS": {
+      return {
+        ...state,
+        matchOppositeWordsGame: {
+          ...state.matchOppositeWordsGame,
+          optionSlots: action.payload
+        }
+      };
+    }
+
+    case "SET_MATCH_OPPOSITE_WORDS_GAME_CURRENT_QUESTION": {
+      return {
+        ...state,
+        matchOppositeWordsGame: {
+          ...state.matchOppositeWordsGame,
+          currentQuestion: action.payload
+        }
+      };
+    }
+
+    case "SET_MATCH_OPPOSITE_WORDS_GAME_RESULTS": {
+      return {
+        ...state,
+        matchOppositeWordsGame: {
+          ...state.matchOppositeWordsGame,
+          results: action.payload
         }
       };
     }

@@ -197,10 +197,28 @@ export const gameConfig = {
     ],
     [
       [
-        { word: "Kiire", image: "KIIRE", match: "Aeglane" },
-        { word: "Poiss", image: "POISS", match: "Tüdruk" },
-        { word: "Külm", image: "KÜLM", match: "Soe" },
-        { word: "Öö", image: "NIGHT", match: "Päev" }
+        {
+          word: "Kiire",
+          image: "KIIRE",
+          match: "Aeglane",
+          answer: "",
+          answerImg: ""
+        },
+        {
+          word: "Poiss",
+          image: "POISS",
+          match: "Tüdruk",
+          answer: "",
+          answerImg: ""
+        },
+        {
+          word: "Külm",
+          image: "KÜLM",
+          match: "Soe",
+          answer: "",
+          answerImg: ""
+        },
+        { word: "Öö", image: "NIGHT", match: "Päev", answer: "", answerImg: "" }
       ],
       [
         { word: "Kurb", image: "KURB", match: "Rõõmus" },
@@ -208,6 +226,28 @@ export const gameConfig = {
         { word: "Noor", image: "NOOR", match: "Vana" },
         { word: "Kerge", image: "KERGE", match: "Raske" }
       ]
+    ],
+    [
+      { word: "Pall", options: ["Pall", "Sall"] },
+      { word: "Kuul", options: ["Kuul", "Kull"] },
+      { word: "Loss", options: ["Loss", "Loos"] },
+      { word: "Koll", options: ["Kool", "Koll"] },
+      { word: "Nukk", options: ["Sukk", "Nukk"] },
+      { word: "Nari", options: ["Kali", "Nari"] }
+    ]
+  ],
+  imageSequence: [
+    [
+      { order: 0, image: "imagePath" },
+      { order: 1, image: "imagePath" },
+      { order: 2, image: "imagePath" },
+      { order: 3, image: "imagePath" }
+    ],
+    [
+      { order: 0, image: "imagePath" },
+      { order: 1, image: "imagePath" },
+      { order: 2, image: "imagePath" },
+      { order: 3, image: "imagePath" }
     ]
   ]
 };

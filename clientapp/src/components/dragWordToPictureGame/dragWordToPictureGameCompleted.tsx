@@ -1,7 +1,7 @@
 import React from "react";
 
 const DragWordToPictureGameCompleted = () => {
-  return <div style={{ fontSize: "3rem" }}>GAME COMPLETED</div>;
+  return <div className="drag-word-to-picture-game-completed">Mäng läbi</div>;
 };
 
 export default DragWordToPictureGameCompleted;

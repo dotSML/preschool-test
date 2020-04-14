@@ -19,7 +19,10 @@ const Game: React.FC = () => {
         <DragWordToPictureGame gameConfig={gameConfig.dragWordToPictureGame} />
       )
     },
-    { name: "Image sequence", component: <ImageSequenceGame /> }
+    {
+      name: "Image sequence",
+      component: <ImageSequenceGame questions={gameConfig.imageSequence} />
+    }
   ];
 
   const handleNextGameClick = () => {
