@@ -5,6 +5,19 @@ html {
     box-sizing: border-box;
 }
 
+.game-init-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-init-welcome-heading {
+    font-size: 4rem;
+}
+
+.game-init-secondary-heading {
+    font-size: 3rem;
+}
+
 .game-layout {
     display: flex;
     height: 100vh;
@@ -249,4 +262,53 @@ html {
     height: 15rem;
     width: 15rem;
     border: 2px dotted black;
+}
+
+/*MONTHS GAME*/
+
+.months-game-drop-image {
+    height: 45rem;
+    width: auto;
+}
+
+.months-game-drop-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    justify-content: center;
+}
+
+.months-game-seasons-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.months-game-season-drop-container {
+    display: flex;
+    flex-direction: column;
+    border: 2px dotted black;
+    height: 30rem;
+    width: 15rem;
+    margin: 0 2rem;
+}
+
+.months-game-draggable-month {
+    display: inline-block;
+    font-size: 3rem;
+    padding: 1rem;
+    border: 2px dotted black;
+}
+
+.months-game-draggable-month-container {
+    display: flex;
+    margin-top: 10rem;
+    justify-content: center;
+}
+
+.months-game-season-drop-container-dropped-months {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
 }

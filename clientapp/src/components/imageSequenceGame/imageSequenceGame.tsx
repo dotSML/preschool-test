@@ -7,7 +7,6 @@ import { HTML5toTouch } from "../common/dnd";
 import { DndProvider } from "react-dnd";
 import ImageSequenceGameDraggableImage from "./imageSequenceGameDraggableImage";
 import ImageSequenceGameDropZone from "./imageSequenceGameDropZone";
-import { shuffleArray } from "../common/helpers/arrayHelpers";
 import { Button } from "reactstrap";
 
 export type ImageSequenceGameQuestionType = { order: number; image: string };
@@ -27,12 +26,12 @@ const ImageSequenceGame: React.FC<{
 
   useEffect(() => {
     if (!imageSlots.length) {
-      setImageSlots([...shuffleArray(questions[currentQuestion])]);
+      setImageSlots([...questions[currentQuestion]]);
     }
   }, [questions, currentQuestion]);
 
   useEffect(() => {
-    setImageSlots([...shuffleArray(questions[currentQuestion])]);
+    setImageSlots([...questions[currentQuestion]]);
   }, [currentQuestion]);
 
   const reArrangeSlots = (dragItemIdx: number, switchWithIdx: number) => {

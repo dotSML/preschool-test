@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/style.css";
-import Navigation from "./components/layout/navigation/navigation";
 import Layout from "./components/layout/layout";
-import AudioToTextGame from "./components/audioToTextGame/audioToTextGame";
 import Game from "./components/game/game";
+import GameInitLanding from "./components/game/gameInitLanding";
 
 function App() {
+  const [gameStarted, setGameStarted] = useState<boolean>(false);
   return (
     <div>
       <Layout>

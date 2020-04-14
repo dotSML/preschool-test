@@ -238,16 +238,30 @@ export const gameConfig = {
   ],
   imageSequence: [
     [
+      { order: 3, image: "imagePath" },
       { order: 0, image: "imagePath" },
       { order: 1, image: "imagePath" },
-      { order: 2, image: "imagePath" },
-      { order: 3, image: "imagePath" }
+      { order: 2, image: "imagePath" }
     ],
     [
-      { order: 0, image: "imagePath" },
       { order: 1, image: "imagePath" },
-      { order: 2, image: "imagePath" },
-      { order: 3, image: "imagePath" }
+      { order: 0, image: "imagePath" },
+      { order: 3, image: "imagePath" },
+      { order: 2, image: "imagePath" }
     ]
+  ],
+  monthsGame: [
+    "jaanuar",
+    "veebruar",
+    "märts",
+    "aprill",
+    "mai",
+    "juuni",
+    "juuli",
+    "august",
+    "september",
+    "oktoober",
+    "november",
+    "detsember"
   ]
 };

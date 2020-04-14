@@ -37,7 +37,7 @@ const MatchOppositeWordDropZone: React.FC<{
       </div>
       <div
         className="match-opposite-words-drop-zone-box"
-        style={{ fontSize: "3rem" }}
+        style={{ fontSize: "3rem", backgroundColor: "green" }}
       >
         {droppedItem}
       </div>

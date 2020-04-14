@@ -5,6 +5,7 @@ import GameBox from "../common/gameBox";
 import DragWordToPictureGame from "../dragWordToPictureGame/dragWordToPictureGame";
 import ImageSequenceGame from "../imageSequenceGame/imageSequenceGame";
 import { gameConfig } from "./gameConfig";
+import MonthsGame from "../monthsGame/monthsGame";
 
 const Game: React.FC = () => {
   const [currentGame, setCurrentGame] = useState(0);
@@ -22,8 +23,16 @@ const Game: React.FC = () => {
     {
       name: "Image sequence",
       component: <ImageSequenceGame questions={gameConfig.imageSequence} />
+    },
+    {
+      name: "Months",
+      component: <MonthsGame questions={gameConfig.monthsGame} />
     }
   ];
+
+  const noNextGame = () => {
+    return currentGame === games.length - 1;
+  };
 
   const handleNextGameClick = () => {
     if (currentGame + 1 < games.length) {
@@ -53,10 +62,11 @@ const Game: React.FC = () => {
         <Button
           size="lg"
           color="primary"
-          onClick={handleNextGameClick}
-          disabled={currentGame === games.length - 1}
+          onClick={
+            noNextGame() ? () => alert("GAME OVER") : handleNextGameClick
+          }
         >
-          Järgmine mäng
+          {noNextGame() ? "Lõpeta test" : "Järgmine mäng"}
         </Button>
       </div>
     </GameBox>
