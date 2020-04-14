@@ -33,13 +33,13 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
   const dispatch = useDispatch();
 
   const gameFlow = [
-    // { gameComponent: <MatchWordWithPictureGame questions={gameConfig[0]} /> },
-    // {
-    //   gameComponent: <MatchOppositeWordGame questions={gameConfig[1]} />
-    // },
-    // {
-    //   gameComponent: <PickTheRightWordGame questions={gameConfig[2]} />
-    // },
+    { gameComponent: <MatchWordWithPictureGame questions={gameConfig[0]} /> },
+    {
+      gameComponent: <MatchOppositeWordGame questions={gameConfig[1]} />
+    },
+    {
+      gameComponent: <PickTheRightWordGame questions={gameConfig[2]} />
+    },
     {
       gameComponent: <DragWordToPictureGameCompleted />
     }

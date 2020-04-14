@@ -8,6 +8,7 @@ import { DndProvider } from "react-dnd";
 import ImageSequenceGameDraggableImage from "./imageSequenceGameDraggableImage";
 import ImageSequenceGameDropZone from "./imageSequenceGameDropZone";
 import { shuffleArray } from "../common/helpers/arrayHelpers";
+import { Button } from "reactstrap";
 
 export type ImageSequenceGameQuestionType = { order: number; image: string };
 
@@ -19,6 +20,7 @@ const ImageSequenceGame: React.FC<{
   questions: ImageSequenceGameQuestionsType;
 }> = ({ questions }) => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+  const [gameCompleted, setGameCompleted] = useState<boolean>(false);
   const [imageSlots, setImageSlots] = useState<
     Array<ImageSequenceGameQuestionType>
   >([]);
@@ -29,16 +31,27 @@ const ImageSequenceGame: React.FC<{
     }
   }, [questions, currentQuestion]);
 
+  useEffect(() => {
+    setImageSlots([...shuffleArray(questions[currentQuestion])]);
+  }, [currentQuestion]);
+
   const reArrangeSlots = (dragItemIdx: number, switchWithIdx: number) => {
     //a, b
     let slotArr = [...imageSlots];
-    console.log(slotArr);
     slotArr[dragItemIdx] = slotArr.splice(
       switchWithIdx,
       1,
       slotArr[dragItemIdx]
     )[0];
     setImageSlots(slotArr);
+  };
+
+  const nextQuestion = () => {
+    if (questions.length > currentQuestion + 1) {
+      setCurrentQuestion(c => c + 1);
+    } else {
+      setGameCompleted(true);
+    }
   };
 
   return (
@@ -50,10 +63,11 @@ const ImageSequenceGame: React.FC<{
       <GameContent>
         <div className="image-sequence-game-wrapper">
           <div className="image-sequence-game-images-container">
-            {imageSlots.length
+            {imageSlots.length && !gameCompleted
               ? imageSlots.map((question, idx) => {
                   return (
                     <ImageSequenceGameDropZone
+                      key={idx}
                       sequenceIdx={idx}
                       reArrangeSlots={reArrangeSlots}
                       droppedImage={
@@ -67,6 +81,15 @@ const ImageSequenceGame: React.FC<{
                 })
               : ""}
           </div>
+        </div>
+        <div className="image-sequence-game-buttons">
+          {!gameCompleted ? (
+            <Button size="lg" color="success" onClick={nextQuestion}>
+              Olen oma vastuses kindel!
+            </Button>
+          ) : (
+            <span style={{ fontSize: "5rem" }}>Mäng Läbi!</span>
+          )}
         </div>
       </GameContent>
     </DndProvider>

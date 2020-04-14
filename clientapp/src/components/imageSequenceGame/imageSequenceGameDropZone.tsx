@@ -11,7 +11,6 @@ const ImageSequenceGameDropZone: React.FC<{
   const [dropProps, drop] = useDrop({
     accept: DraggableWordType.ORDER,
     drop: (item: any, monitor) => {
-      console.log(item);
       console.log(`Dropped ${item.idx}, required - ${sequenceIdx}`);
       reArrangeSlots(item.ogIdx, sequenceIdx);
     },
