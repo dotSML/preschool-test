@@ -263,5 +263,14 @@ export const gameConfig = {
     "oktoober",
     "november",
     "detsember"
+  ],
+  weekdayGame: [
+    { label: "esmaspäev", audioPath: "", order: 0 },
+    { label: "teisipäev", audioPath: "", order: 1 },
+    { label: "kolmapäev", audioPath: "", order: 2 },
+    { label: "neljapäev", audioPath: "", order: 3 },
+    { label: "reede", audioPath: "", order: 4 },
+    { label: "laupäev", audioPath: "", order: 5 },
+    { label: "pühapäev", audioPath: "", order: 6 }
   ]
 };

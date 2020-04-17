@@ -6,6 +6,7 @@ import DragWordToPictureGame from "../dragWordToPictureGame/dragWordToPictureGam
 import ImageSequenceGame from "../imageSequenceGame/imageSequenceGame";
 import { gameConfig } from "./gameConfig";
 import MonthsGame from "../monthsGame/monthsGame";
+import WeekdaysGame from "../weekdaysGame/weekdaysGame";
 
 const Game: React.FC = () => {
   const [currentGame, setCurrentGame] = useState(0);
@@ -27,6 +28,10 @@ const Game: React.FC = () => {
     {
       name: "Months",
       component: <MonthsGame questions={gameConfig.monthsGame} />
+    },
+    {
+      name: "Weekdays Game",
+      component: <WeekdaysGame questions={gameConfig.weekdayGame} />
     }
   ];
 

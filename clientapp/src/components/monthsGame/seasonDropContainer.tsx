@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDrop } from "react-dnd";
-import { DraggableWordType } from "../dragWordToPictureGame/draggableWord";
+import { DraggableWordType } from "../common/types/dndTypes";
 
 type SeasonType = {
   name: string;

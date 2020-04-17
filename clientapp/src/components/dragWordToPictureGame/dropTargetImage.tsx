@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDrop } from "react-dnd";
-import { DraggableWordType } from "./draggableWord";
+import { DraggableWordType } from "../common/types/dndTypes";
 
 type ImagePropType = {
   word: string;

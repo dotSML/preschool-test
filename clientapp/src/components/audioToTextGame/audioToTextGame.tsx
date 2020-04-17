@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import GameHeading from "../common/gameHeading";
 import GameContent from "../common/gameContent";
 import GameDescription from "../common/gameDescription";
@@ -6,6 +6,8 @@ import AudioToTextGameQuestion from "./audioToTextGameQuestion";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_AUDIO_TO_TEXT_GAME_STATE } from "./actions/audioToTextGameActions";
 import { AppState } from "../../store/store";
+import { Button } from "reactstrap";
+import StartGameBtn from "../common/startGameBtn";
 
 export type AudioToTextGameProps = Array<{
   question: string;
@@ -19,6 +21,8 @@ export type AudioToTextGameProps = Array<{
 const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
   questions
 }) => {
+  const [gameStarted, setGameStarted] = useState<boolean>(false);
+  const [gameCompleted, setGameCompleted] = useState<boolean>(false);
   const gameState = useSelector<AppState, Array<any>>(
     state => state.audioToTextGame.gameState
   );
@@ -28,6 +32,10 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
       dispatch(SET_AUDIO_TO_TEXT_GAME_STATE(questions));
     }
   }, [dispatch, questions]);
+
+  const handleSetGameStart = () => {
+    setGameStarted(true);
+  };
 
   const handleQuestionAnswer = (answer: any, question: any) => {
     let newArr = gameState.map(questionEl => {
@@ -48,19 +56,31 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
         Selles mängus pead kuulama teksti ja vastama allolevatele küsimustele
       </GameDescription>
       <GameContent>
-        <h3 style={{ margin: "0.5rem 0 1rem 0" }}>TEKST KUULAMISEKS</h3>
-        <div className="audio-to-text-questions">
-          {gameState?.map((question, idx) => {
-            return (
-              <AudioToTextGameQuestion
-                key={idx}
-                questionProp={question}
-                selectedAnswer={question.answer}
-                handleQuestionAnswer={handleQuestionAnswer}
-              />
-            );
-          })}
-        </div>
+        {gameStarted ? (
+          <React.Fragment>
+            <h3 style={{ margin: "0.5rem 0 1rem 0" }}>TEKST KUULAMISEKS</h3>
+            <div className="audio-to-text-questions">
+              {gameState?.map((question, idx) => {
+                return (
+                  <AudioToTextGameQuestion
+                    key={idx}
+                    questionProp={question}
+                    selectedAnswer={question.answer}
+                    handleQuestionAnswer={handleQuestionAnswer}
+                  />
+                );
+              })}
+            </div>
+            <div className="audio-to-text-complete-game">
+              <Button color="primary">Lõpeta mäng</Button>
+            </div>
+          </React.Fragment>
+        ) : (
+          <StartGameBtn
+            handleGameStart={handleSetGameStart}
+            gameCompleted={gameCompleted}
+          />
+        )}
       </GameContent>
     </React.Fragment>
   );

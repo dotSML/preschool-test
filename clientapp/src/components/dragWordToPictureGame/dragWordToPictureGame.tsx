@@ -21,6 +21,7 @@ import DragWordToPictureGameCompleted from "./dragWordToPictureGameCompleted";
 import { HTML5toTouch } from "../common/dnd";
 import MatchOppositeWordGame from "./matchOppositeWordGame/matchOppositeWordGame";
 import PickTheRightWordGame from "./pickTheRightWordGame/pickTheRightWordGame";
+import StartGameBtn from "../common/startGameBtn";
 
 export type DragWordToPictureGameQuestionType = {
   answer: string;
@@ -85,15 +86,10 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
               ""
             )}
 
-            <Button
-              block
-              color="success"
-              size="lg"
-              style={{ fontSize: "2rem", textTransform: "uppercase" }}
-              onClick={() => handleGameStart()}
-            >
-              {!gameCompleted ? "Alusta mängu" : "Mängi uuesti"}
-            </Button>
+            <StartGameBtn
+              handleGameStart={handleGameStart}
+              gameCompleted={gameCompleted}
+            />
           </div>
         )}
       </GameContent>

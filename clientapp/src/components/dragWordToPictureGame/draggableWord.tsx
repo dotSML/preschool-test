@@ -1,13 +1,8 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { useDrag } from "react-dnd";
 // @ts-ignore
 import Preview from "react-dnd-preview";
-
-export const DraggableWordType = {
-  WORD: "word",
-  ORDER: "order",
-  MONTH: "month"
-};
+import { DraggableWordType } from "../common/types/dndTypes";
 
 const DraggableWord: React.FC<{ word: string }> = ({ word }) => {
   const [dragProps, drag] = useDrag({

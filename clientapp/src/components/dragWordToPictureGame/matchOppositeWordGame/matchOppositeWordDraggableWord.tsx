@@ -2,7 +2,7 @@ import React from "react";
 import { useDrag } from "react-dnd";
 // @ts-ignore
 import Preview from "react-dnd-preview";
-import { DraggableWordType } from "../draggableWord";
+import { DraggableWordType } from "../../common/types/dndTypes";
 
 const MatchOppositeWordDraggableWord: React.FC<{ word: any }> = ({ word }) => {
   const [dragProps, drag] = useDrag({

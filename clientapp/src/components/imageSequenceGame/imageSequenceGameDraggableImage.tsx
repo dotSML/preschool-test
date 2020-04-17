@@ -1,8 +1,8 @@
 import React from "react";
 import { useDrag } from "react-dnd";
-import { DraggableWordType } from "../dragWordToPictureGame/draggableWord";
 import { Preview } from "react-dnd-multi-backend";
 import { ImageSequenceGameQuestionType } from "./imageSequenceGame";
+import { DraggableWordType } from "../common/types/dndTypes";
 
 const ImageSequenceGameDraggableImage: React.FC<{
   question: ImageSequenceGameQuestionType;

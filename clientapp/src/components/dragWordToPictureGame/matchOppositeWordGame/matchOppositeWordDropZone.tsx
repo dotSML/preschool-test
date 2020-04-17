@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDrop } from "react-dnd";
-import { DraggableWordType } from "../draggableWord";
 import { MatchOppositeWordsGameQuestionType } from "./matchOppositeWordsGameTypes";
+import { DraggableWordType } from "../../common/types/dndTypes";
 
 const MatchOppositeWordDropZone: React.FC<{
   question: MatchOppositeWordsGameQuestionType;

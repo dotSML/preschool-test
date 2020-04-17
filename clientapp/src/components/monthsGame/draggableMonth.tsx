@@ -1,8 +1,8 @@
 import React from "react";
 import { useDrag } from "react-dnd";
-import { DraggableWordType } from "../dragWordToPictureGame/draggableWord";
 // @ts-ignore
 import Preview from "react-dnd-preview";
+import { DraggableWordType } from "../common/types/dndTypes";
 
 const DraggableMonth: React.FC<{ month: string }> = ({ month }) => {
   const [dragProps, drag] = useDrag({

@@ -60,6 +60,12 @@ html {
 
 /*AUDIO TO TEXT GAME*/
 
+.audio-to-text-start-game {
+    display: flex;
+    padding: 10rem;
+    justify-content: center;
+}
+
 .audio-to-text-options {
     display: flex;
     width: 100%;
@@ -311,4 +317,37 @@ html {
     display: flex;
     flex-direction: column;
     font-size: 2rem;
+}
+
+/*WEEKDAYS GAME*/
+
+.weekday-game-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem 10rem;
+}
+
+.weekday-game-dropzones-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weekday-game-draggable-weekday {
+    display: flex;
+    padding: 1rem;
+    font-size: 1.5rem;
+    border: 1px solid black;
+}
+
+.weekday-game-weekday-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.weekday-game-dropzone {
+    display: flex;
+    width: 10rem;
+    padding: 2rem;
+    background-color: lightgreen;
 }
