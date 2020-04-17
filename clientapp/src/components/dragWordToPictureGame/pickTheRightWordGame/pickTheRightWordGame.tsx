@@ -8,7 +8,8 @@ type PickTheRightWordGameQuestionArrayType = Array<{
 
 const PickTheRightWordGame: React.FC<{
   questions: PickTheRightWordGameQuestionArrayType;
-}> = ({ questions }) => {
+  handleGameEnd: Function;
+}> = ({ questions, handleGameEnd }) => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [gameCompleted, setGameCompleted] = useState<boolean>(false);
   const handleQuestionAnswer = (answer: string, expected: string) => {
@@ -20,7 +21,7 @@ const PickTheRightWordGame: React.FC<{
     if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion(c => c + 1);
     } else {
-      setGameCompleted(true);
+      handleGameEnd();
     }
   };
 

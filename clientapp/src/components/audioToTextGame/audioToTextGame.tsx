@@ -8,6 +8,7 @@ import { SET_AUDIO_TO_TEXT_GAME_STATE } from "./actions/audioToTextGameActions";
 import { AppState } from "../../store/store";
 import { Button } from "reactstrap";
 import StartGameBtn from "../common/startGameBtn";
+import GameCompleted from "../common/gameCompleted";
 
 export type AudioToTextGameProps = Array<{
   question: string;
@@ -34,7 +35,13 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
   }, [dispatch, questions]);
 
   const handleSetGameStart = () => {
+    setGameCompleted(false);
     setGameStarted(true);
+  };
+
+  const handleGameEnd = () => {
+    setGameStarted(false);
+    setGameCompleted(true);
   };
 
   const handleQuestionAnswer = (answer: any, question: any) => {
@@ -72,7 +79,18 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
               })}
             </div>
             <div className="audio-to-text-complete-game">
-              <Button color="primary">Lõpeta mäng</Button>
+              <Button
+                color="primary"
+                size="lg"
+                style={{
+                  fontSize: "2rem",
+                  marginTop: "2rem",
+                  fontWeight: "bold"
+                }}
+                onClick={handleGameEnd}
+              >
+                LÕPETA MÄNG
+              </Button>
             </div>
           </React.Fragment>
         ) : (

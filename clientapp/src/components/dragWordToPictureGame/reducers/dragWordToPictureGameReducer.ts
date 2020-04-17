@@ -15,6 +15,9 @@ type GameReducerStateType = {
     optionSlots: Array<string>;
     results: Array<any>;
   };
+  pickTheRightWordGame: {
+    gameCompleted: boolean;
+  };
 };
 
 const initialState: GameReducerStateType = {
@@ -31,6 +34,9 @@ const initialState: GameReducerStateType = {
     optionSlots: [],
     currentQuestion: 0,
     results: []
+  },
+  pickTheRightWordGame: {
+    gameCompleted: false
   }
 };
 

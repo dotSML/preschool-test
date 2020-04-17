@@ -33,19 +33,6 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
 }) => {
   const dispatch = useDispatch();
 
-  const gameFlow = [
-    { gameComponent: <MatchWordWithPictureGame questions={gameConfig[0]} /> },
-    {
-      gameComponent: <MatchOppositeWordGame questions={gameConfig[1]} />
-    },
-    {
-      gameComponent: <PickTheRightWordGame questions={gameConfig[2]} />
-    },
-    {
-      gameComponent: <DragWordToPictureGameCompleted />
-    }
-  ];
-
   const currentAssignment = useSelector<AppState, number>(
     state => state.dragWordToPictureGame.currentAssignment
   );
@@ -61,6 +48,26 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
     setGameStarted(c => !c);
   };
 
+  const handleGameEnd = () => {
+    dispatch(SET_DRAG_WORD_TO_PICTURE_GAME_SET_GAME_COMPLETED(true));
+    setGameStarted(false);
+  };
+
+  const gameFlow = [
+    { gameComponent: <MatchWordWithPictureGame questions={gameConfig[0]} /> },
+    {
+      gameComponent: <MatchOppositeWordGame questions={gameConfig[1]} />
+    },
+    {
+      gameComponent: (
+        <PickTheRightWordGame
+          questions={gameConfig[2]}
+          handleGameEnd={handleGameEnd}
+        />
+      )
+    }
+  ];
+
   return (
     <DndProvider backend={MultiBackend} options={HTML5toTouch}>
       <GameHeading heading={"2. Sõnad"} />
@@ -68,29 +75,13 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
         Selles mängus pead lohistama sõna õige pildi peale.
       </GameDescription>
       <GameContent>
-        {gameStarted ? (
+        {gameStarted && !gameCompleted ? (
           gameFlow[currentAssignment].gameComponent
         ) : (
-          <div className="drag-word-to-picture-game-start-btn-wrapper">
-            {gameCompleted ? (
-              <div
-                style={{
-                  fontSize: "4rem",
-                  textTransform: "uppercase",
-                  fontWeight: "bold"
-                }}
-              >
-                Mäng läbi
-              </div>
-            ) : (
-              ""
-            )}
-
-            <StartGameBtn
-              handleGameStart={handleGameStart}
-              gameCompleted={gameCompleted}
-            />
-          </div>
+          <StartGameBtn
+            handleGameStart={handleGameStart}
+            gameCompleted={gameCompleted}
+          />
         )}
       </GameContent>
     </DndProvider>

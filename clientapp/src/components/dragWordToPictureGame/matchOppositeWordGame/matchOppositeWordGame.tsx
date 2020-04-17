@@ -12,6 +12,7 @@ import {
 import { Button } from "reactstrap";
 import { MatchOppositeWordsGameQuestionType } from "./matchOppositeWordsGameTypes";
 import { shuffleArray } from "../../common/helpers/arrayHelpers";
+import { NextAssignmentBtn, NextQuestionBtn } from "../../common/gameButtons";
 
 const MatchOppositeWordGame: React.FC<{
   questions: Array<Array<{ word: string; image: string; match: string }>>;
@@ -104,15 +105,11 @@ const MatchOppositeWordGame: React.FC<{
             return <MatchOppositeWordDraggableWord word={{ word: option }} />;
           })
         ) : allQuestions.length > currentQuestion + 1 ? (
-          <Button color="success" onClick={handleNextQuestion}>
-            Järgmine küsimus
-          </Button>
+          <NextQuestionBtn handleClick={handleNextQuestion} />
         ) : (
-          <div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             Mäng läbi!
-            <Button color="success" onClick={handleNextAssignment}>
-              Järgmine ülesanne
-            </Button>
+            <NextAssignmentBtn handleClick={handleNextAssignment} />
           </div>
         )}
       </div>

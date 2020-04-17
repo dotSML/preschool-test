@@ -8,6 +8,7 @@ import { DndProvider } from "react-dnd";
 import ImageSequenceGameDraggableImage from "./imageSequenceGameDraggableImage";
 import ImageSequenceGameDropZone from "./imageSequenceGameDropZone";
 import { Button } from "reactstrap";
+import StartGameBtn from "../common/startGameBtn";
 
 export type ImageSequenceGameQuestionType = { order: number; image: string };
 
@@ -20,6 +21,7 @@ const ImageSequenceGame: React.FC<{
 }> = ({ questions }) => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [gameCompleted, setGameCompleted] = useState<boolean>(false);
+  const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [imageSlots, setImageSlots] = useState<
     Array<ImageSequenceGameQuestionType>
   >([]);
@@ -33,6 +35,12 @@ const ImageSequenceGame: React.FC<{
   useEffect(() => {
     setImageSlots([...questions[currentQuestion]]);
   }, [currentQuestion]);
+
+  const handleGameStart = () => {
+    setCurrentQuestion(0);
+    setGameCompleted(false);
+    setGameStarted(true);
+  };
 
   const reArrangeSlots = (dragItemIdx: number, switchWithIdx: number) => {
     //a, b
@@ -50,6 +58,7 @@ const ImageSequenceGame: React.FC<{
       setCurrentQuestion(c => c + 1);
     } else {
       setGameCompleted(true);
+      setGameStarted(false);
     }
   };
 
@@ -60,36 +69,48 @@ const ImageSequenceGame: React.FC<{
         Selles mängus pead lohistama pildid õigesse järjekorda
       </GameDescription>
       <GameContent>
-        <div className="image-sequence-game-wrapper">
-          <div className="image-sequence-game-images-container">
-            {imageSlots.length && !gameCompleted
-              ? imageSlots.map((question, idx) => {
-                  return (
-                    <ImageSequenceGameDropZone
-                      key={idx}
-                      sequenceIdx={idx}
-                      reArrangeSlots={reArrangeSlots}
-                      droppedImage={
-                        <ImageSequenceGameDraggableImage
-                          sequenceIdx={idx}
-                          question={question}
-                        />
-                      }
-                    />
-                  );
-                })
-              : ""}
+        {gameStarted ? (
+          <div className="image-sequence-game-wrapper">
+            <div className="image-sequence-game-images-container">
+              {imageSlots.length && !gameCompleted
+                ? imageSlots.map((question, idx) => {
+                    return (
+                      <ImageSequenceGameDropZone
+                        key={idx}
+                        sequenceIdx={idx}
+                        reArrangeSlots={reArrangeSlots}
+                        droppedImage={
+                          <ImageSequenceGameDraggableImage
+                            sequenceIdx={idx}
+                            question={question}
+                          />
+                        }
+                      />
+                    );
+                  })
+                : ""}
+            </div>
+            <div className="image-sequence-game-buttons">
+              {!gameCompleted ? (
+                <Button
+                  size="lg"
+                  color="success"
+                  style={{ fontSize: "2rem" }}
+                  onClick={nextQuestion}
+                >
+                  Olen oma vastuses kindel!
+                </Button>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
-        </div>
-        <div className="image-sequence-game-buttons">
-          {!gameCompleted ? (
-            <Button size="lg" color="success" onClick={nextQuestion}>
-              Olen oma vastuses kindel!
-            </Button>
-          ) : (
-            <span style={{ fontSize: "5rem" }}>Mäng Läbi!</span>
-          )}
-        </div>
+        ) : (
+          <StartGameBtn
+            handleGameStart={handleGameStart}
+            gameCompleted={gameCompleted}
+          />
+        )}
       </GameContent>
     </DndProvider>
   );

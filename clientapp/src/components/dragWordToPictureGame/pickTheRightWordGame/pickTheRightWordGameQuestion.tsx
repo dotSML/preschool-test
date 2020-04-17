@@ -20,6 +20,7 @@ const PickTheRightWordGameQuestion: React.FC<{
           return (
             <Button
               size="lg"
+              style={{ fontSize: "2rem" }}
               color="success"
               onClick={() => handleAnswer(option, question.word)}
             >
