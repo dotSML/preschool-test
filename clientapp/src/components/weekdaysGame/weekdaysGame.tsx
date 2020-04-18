@@ -30,20 +30,43 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
   const [questionsArr, setQuestionsArr] = useState<WeekdaysGameQuestionsType>(
     []
   );
+  const [dropSlots, setDropSlots] = useState<Array<any>>([]);
   const [dropzones, setDropzones] = useState<Array<any>>([]);
 
   useEffect(() => {
     console.log("EFF");
     if (questions.length !== 0) {
       let questionsTempArr = [...questions];
+      let dropArrTemp: any[] = [];
       setQuestionsArr(shuffleArray(questionsTempArr));
       if (dropzones.length === 0) {
-        setDropzones(questions);
+        questions.forEach(item => {
+          dropArrTemp.push({ ...item, droppedItem: {} });
+        });
+        setDropSlots(dropArrTemp);
       }
     }
   }, [questions]);
 
-  const handleDrop = (item: any) => {};
+  const handleDrop = (item: any) => {
+    console.log(item);
+    let newQuestionArr = questionsArr.filter(question => {
+      return question.label !== item.weekday.label;
+    });
+
+    setQuestionsArr(newQuestionArr);
+  };
+
+  const handleSlotArrChange = (value: Array<any>, droppedItem: any) => {
+    setDropSlots(value);
+    let newQuestionsArrTemp = [...questionsArr];
+    if (droppedItem) {
+      newQuestionsArrTemp = newQuestionsArrTemp.filter(q => {
+        return q.label !== droppedItem.weekday.label;
+      });
+    }
+    setQuestionsArr(newQuestionsArrTemp);
+  };
 
   return (
     <DndProvider backend={MultiBackend} options={HTML5toTouch}>
@@ -52,29 +75,31 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
         Selles mängus pead lohistama päevade nimetused õigesse järjekorda
       </GameDescription>
       <GameContent>
-        <div className="weekday-game-wrapper">
-          <div className="weekday-game-dropzones-container">
-            {dropzones.map(dropzone => {
-              return (
-                <WeekdayDropZone
-                  key={`${dropzone.label}${dropzone.order}`}
-                  dropzone={dropzone}
-                />
-              );
-            })}
-          </div>
-          <div className="weekday-game-weekday-container">
-            {questionsArr.length
-              ? questionsArr.map(weekday => {
-                  return (
-                    <DraggableWeekday
-                      key={weekday.label + weekday.order}
-                      weekday={weekday}
-                    />
-                  );
-                })
-              : ""}
-          </div>
+        <div className="weekday-game-dropzones-container">
+          {dropSlots.map((dropzone, idx) => {
+            return (
+              <WeekdayDropZone
+                slotIdx={idx}
+                handleSlotChange={handleSlotArrChange}
+                slotArr={dropSlots}
+                key={`${dropzone.label}${dropzone.order}`}
+                handleDrop={handleDrop}
+                dropzone={dropzone}
+              />
+            );
+          })}
+        </div>
+        <div className="weekday-game-weekday-container">
+          {questionsArr.length
+            ? questionsArr.map(weekday => {
+                return (
+                  <DraggableWeekday
+                    key={weekday.label + weekday.order}
+                    weekday={weekday}
+                  />
+                );
+              })
+            : ""}
         </div>
       </GameContent>
     </DndProvider>

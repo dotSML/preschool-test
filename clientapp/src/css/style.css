@@ -366,6 +366,7 @@ html {
 
 .weekday-game-weekday-container {
     display: flex;
+    margin-top: 5rem;
     justify-content: space-between;
     width: 100%;
 }

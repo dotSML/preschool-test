@@ -5,6 +5,7 @@ type GameReducerStateType = {
   currentQuestion: number;
   currentAssignment: number;
   gameCompleted: boolean;
+  results: Array<any>;
   matchWordWithPictureGame: {
     gameCompleted: boolean;
     currentQuestion: number;
@@ -25,6 +26,7 @@ const initialState: GameReducerStateType = {
   currentQuestion: 0,
   currentAssignment: 0,
   gameCompleted: false,
+  results: [],
   matchWordWithPictureGame: {
     gameCompleted: false,
     currentQuestion: 0

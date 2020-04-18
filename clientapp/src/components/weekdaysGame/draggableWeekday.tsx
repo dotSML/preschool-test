@@ -7,9 +7,10 @@ import Preview from "react-dnd-preview";
 
 const DraggableWeekday: React.FC<{
   weekday: WeekdaysGameWeekdayType;
-}> = ({ weekday }) => {
+  style?: any;
+}> = ({ weekday, style }) => {
   const [dragProps, drag] = useDrag({
-    item: { type: DraggableWordType.WEEKDAY, label: weekday.label },
+    item: { type: DraggableWordType.WEEKDAY, weekday: weekday },
     collect: monitor => ({
       isDragging: !!monitor.isDragging(),
       position: monitor.getDifferenceFromInitialOffset()
@@ -23,7 +24,7 @@ const DraggableWeekday: React.FC<{
   const GeneratePreview = ({ itemType, item, style }: any) => {
     return (
       <div className="weekday-game-draggable-weekday" style={style}>
-        {item.label}
+        {item.weekday.label}
       </div>
     );
   };
@@ -31,7 +32,7 @@ const DraggableWeekday: React.FC<{
   return (
     <React.Fragment>
       <div
-        style={{ opacity: dragProps.isDragging ? 0.5 : 1 }}
+        style={{ ...style, opacity: dragProps.isDragging ? 0.5 : 1 }}
         className="weekday-game-draggable-weekday"
         ref={drag}
       >
