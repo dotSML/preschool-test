@@ -13,9 +13,26 @@ const WeekdayDropZone: React.FC<{
 }> = ({ dropzone, handleDrop, slotArr, slotIdx, handleSlotChange }) => {
   const [dropProps, drop] = useDrop({
     accept: DraggableWordType.WEEKDAY,
+    canDrop: (item: any) => {
+      if (_.isEmpty(slotArr[slotIdx].droppedItem)) {
+        return true;
+      } else {
+        let alreadyDropped = false;
+        slotArr.forEach(slot => {
+          if (!_.isEmpty(slot.droppedItem)) {
+            if (slot.droppedItem?.weekday?.label === item?.weekday?.label) {
+              alreadyDropped = true;
+            }
+          }
+        });
+        if (alreadyDropped) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
     drop: (item: any, monitor) => {
-      console.log(slotArr);
-      console.log(item);
       let alreadyDropped = false;
       let currentItem: any = {};
       slotArr.forEach(slot => {
@@ -40,9 +57,13 @@ const WeekdayDropZone: React.FC<{
         if (!_.isEmpty(ogSlotItem.droppedItem)) {
           let dragItemClone = { ...dragItem };
           let slotItemClone = { ...ogSlotItem };
-          slotArrTemp[slotIdx].droppedItem = dragItem.droppedItem;
-          slotArrTemp[dragItemClone.droppedItem.slotIdx].droppedItem =
-            slotItemClone.droppedItem;
+          let cloneDragIdx = dragItemClone.droppedItem.slotIdx;
+          let cloneSlotIdx = slotItemClone.droppedItem.slotIdx;
+          dragItemClone.droppedItem.slotIdx = cloneSlotIdx;
+          slotItemClone.droppedItem.slotIdx = cloneDragIdx;
+          slotArrTemp[cloneSlotIdx].droppedItem = dragItemClone.droppedItem;
+          slotArrTemp[cloneDragIdx].droppedItem = slotItemClone.droppedItem;
+
           handleSlotChange(slotArrTemp, null);
         } else {
           let dragItemClone = { ...dragItem };

@@ -17,10 +17,6 @@ const DraggableWeekday: React.FC<{
     })
   });
 
-  useEffect(() => {
-    console.log(weekday, "WEEKDAY CHANGE");
-  }, [weekday]);
-
   const GeneratePreview = ({ itemType, item, style }: any) => {
     return (
       <div className="weekday-game-draggable-weekday" style={style}>

@@ -34,7 +34,6 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
   const [dropzones, setDropzones] = useState<Array<any>>([]);
 
   useEffect(() => {
-    console.log("EFF");
     if (questions.length !== 0) {
       let questionsTempArr = [...questions];
       let dropArrTemp: any[] = [];
@@ -49,7 +48,6 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
   }, [questions]);
 
   const handleDrop = (item: any) => {
-    console.log(item);
     let newQuestionArr = questionsArr.filter(question => {
       return question.label !== item.weekday.label;
     });
