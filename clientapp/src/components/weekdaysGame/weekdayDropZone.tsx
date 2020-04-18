@@ -37,12 +37,23 @@ const WeekdayDropZone: React.FC<{
         let ogSlotItem = slotArrTemp[slotIdx];
         let dragItem = slotArrTemp[currentItem.droppedItem.slotIdx];
 
-        slotArrTemp[slotIdx] = dragItem;
-        slotArrTemp[currentItem.droppedItem.slotIdx] = ogSlotItem;
-        ogSlotItem.droppedItem.slotIdx = currentItem.droppedItem.slotIdx;
-        dragItem.droppedItem.slotIdx = slotIdx;
+        if (!_.isEmpty(ogSlotItem.droppedItem)) {
+          let dragItemClone = { ...dragItem };
+          let slotItemClone = { ...ogSlotItem };
+          slotArrTemp[slotIdx].droppedItem = dragItem.droppedItem;
+          slotArrTemp[dragItemClone.droppedItem.slotIdx].droppedItem =
+            slotItemClone.droppedItem;
+          handleSlotChange(slotArrTemp, null);
+        } else {
+          let dragItemClone = { ...dragItem };
+          let slotItemClone = { ...ogSlotItem };
+          slotArrTemp[dragItemClone.droppedItem.slotIdx].droppedItem =
+            slotItemClone.droppedItem;
 
-        handleSlotChange(slotArrTemp, item);
+          slotArrTemp[slotIdx].droppedItem = dragItemClone.droppedItem;
+          slotArrTemp[slotIdx].droppedItem.slotIdx = slotIdx;
+          handleSlotChange(slotArrTemp, null);
+        }
       }
     },
 
@@ -53,10 +64,25 @@ const WeekdayDropZone: React.FC<{
 
   return (
     <div ref={drop} className="weekday-game-dropzone">
-      {dropzone.order}
+      <span
+        style={{
+          fontWeight: "bold",
+          marginRight: "0.5rem",
+          fontSize: "1.2rem"
+        }}
+      >
+        {dropzone.order + 1}
+      </span>
       {!_.isEmpty(dropzone.droppedItem) ? (
         <DraggableWeekday
-          style={{ border: "none" }}
+          style={{
+            border: "none",
+            borderRadius: "8px",
+            padding: "0.5rem",
+            backgroundColor: "#0275d8",
+            fontSize: "1.2rem",
+            color: "white"
+          }}
           weekday={dropzone.droppedItem.weekday}
         />
       ) : (
