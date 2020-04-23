@@ -24,21 +24,16 @@ export type WeekdaysGameWeekdayType = {
 const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
   questions
 }) => {
-  const [droppedWeekdays, setDroppedWeekdays] = useState<
-    Array<WeekdaysGameWeekdayType>
-  >([]);
   const [questionsArr, setQuestionsArr] = useState<WeekdaysGameQuestionsType>(
     []
   );
   const [dropSlots, setDropSlots] = useState<Array<any>>([]);
-  const [dropzones, setDropzones] = useState<Array<any>>([]);
-
   useEffect(() => {
     if (questions.length !== 0) {
       let questionsTempArr = [...questions];
       let dropArrTemp: any[] = [];
       setQuestionsArr(shuffleArray(questionsTempArr));
-      if (dropzones.length === 0) {
+      if (dropSlots.length === 0) {
         questions.forEach(item => {
           dropArrTemp.push({ ...item, droppedItem: {} });
         });

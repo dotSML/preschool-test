@@ -2,5 +2,6 @@ export const DraggableWordType = {
   WORD: "word",
   ORDER: "order",
   MONTH: "month",
-  WEEKDAY: "weekday"
+  WEEKDAY: "weekday",
+  NUMBER: "number"
 };

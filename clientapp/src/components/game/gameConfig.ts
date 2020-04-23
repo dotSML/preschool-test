@@ -272,5 +272,25 @@ export const gameConfig = {
     { label: "reede", audioPath: "", order: 4 },
     { label: "laupäev", audioPath: "", order: 5 },
     { label: "pühapäev", audioPath: "", order: 6 }
+  ],
+  numberSequencingGame: [
+    [
+      {
+        originalSequence: [2, 3, 4, 5, 6, 7, 8],
+        availableNumbers: [3, 6]
+      },
+      {
+        originalSequence: [9, 8, 7, 6, 5, 4, 3],
+        availableNumbers: [7, 4]
+      },
+      {
+        originalSequence: [4, 5, 6, 7, 8, 9, 10],
+        availableNumbers: [5, 7]
+      },
+      {
+        originalSequence: [7, 6, 5, 4, 3, 2, 1],
+        availableNumbers: [4, 2]
+      }
+    ]
   ]
 };
