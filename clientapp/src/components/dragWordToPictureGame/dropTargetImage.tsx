@@ -10,7 +10,8 @@ type ImagePropType = {
 const DropTargetImage: React.FC<{
   imgProp: ImagePropType;
   getNextQuestion: any;
-}> = ({ imgProp, getNextQuestion }) => {
+  handleAnswer: Function;
+}> = ({ imgProp, getNextQuestion, handleAnswer }) => {
   const [isHovering, setHovering] = useState<boolean>(false);
   const [dropProps, drop] = useDrop({
     accept: DraggableWordType.WORD,
@@ -18,10 +19,11 @@ const DropTargetImage: React.FC<{
       console.log(item);
       getNextQuestion();
       const droppedItem: any = { ...item };
+
       if (imgProp.word === droppedItem.word) {
-        console.log("CORRECT");
+        handleAnswer(true);
       } else {
-        console.log("INCORRECT");
+        handleAnswer(false);
       }
     },
     options: { word: imgProp.word },

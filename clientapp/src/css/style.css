@@ -53,9 +53,11 @@ html {
     width: 100vw;
 }
 
+
 .game-question-counter {
     display: flex;
     font-size: 1.8rem;
+    margin-bottom: 1rem;
     font-weight: bold;
 }
 
@@ -121,6 +123,7 @@ html {
     display: flex;
     align-items: center;
     width: 100%;
+    font-weight: bold;
 }
 
 .audio-to-text-option input {
@@ -483,4 +486,60 @@ html {
 
 .number-sequencing-game-static-number {
     background-color: rgba(0,0,0,.2);
+}
+
+/* Calculation Game */
+
+.calculation-game-option {
+    display: flex;
+    flex-direction: column;
+    height: 15rem;
+    width: 12rem;
+    margin: 0 2rem 1rem 2rem;
+    border: 1px solid black;
+    font-size: 4rem;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculation-game-option-image {
+    display: flex;
+    background-color: green;
+    font-size: 2rem;
+    height: 100%;
+    width: 100%;
+}
+
+.calculation-game-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.calculation-game-task {
+    display: flex;
+    font-size: 5rem;
+    font-weight: bold;
+    border: 2px solid black;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+
+/*Compare Quantities Game*/
+.compare-quantities-game {
+
+}
+
+.compare-quantities-game-items {
+    display: flex;
+}
+
+.compare-quantities-game-item {
+    display: flex;
+    height: 10rem;
+    width: 10rem;
+    border: 1px solid black;
 }

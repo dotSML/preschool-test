@@ -2,12 +2,26 @@ import { Action } from "../../common/types/actionType";
 
 type GameReducerStateType = {
   currentGame: string;
-  results: {};
+  results: {
+    audioToTextGame: Array<any>;
+    matchWordsWithPictureGame: Array<any>;
+    matchOppositeWordGame: Array<any>;
+    pickTheRightWordGame: Array<any>;
+    imageSequenceGame: Array<any>;
+    monthsGame: Array<any>;
+  };
 };
 
 const initialState: GameReducerStateType = {
   currentGame: "",
-  results: {}
+  results: {
+    audioToTextGame: [],
+    matchWordsWithPictureGame: [],
+    matchOppositeWordGame: [],
+    pickTheRightWordGame: [],
+    imageSequenceGame: [],
+    monthsGame: []
+  }
 };
 
 export const gameReducer = (state = initialState, action: Action) => {
@@ -15,7 +29,7 @@ export const gameReducer = (state = initialState, action: Action) => {
     case "POST_GAME_RESULTS": {
       return {
         ...state,
-        name: action.payload
+        results: action.payload
       };
     }
 

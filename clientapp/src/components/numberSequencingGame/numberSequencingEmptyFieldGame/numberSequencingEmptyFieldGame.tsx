@@ -67,7 +67,10 @@ const NumberSequencingEmptyFieldGame: React.FC<{
                 );
               } else {
                 return (
-                  <div className="number-sequencing-game-number-field number-sequencing-game-static-number">
+                  <div
+                    key={"drop" + idx}
+                    className="number-sequencing-game-number-field number-sequencing-game-static-number"
+                  >
                     {dropSlot}
                   </div>
                 );
@@ -79,7 +82,7 @@ const NumberSequencingEmptyFieldGame: React.FC<{
         {numberOptions.map(option => {
           return (
             <DraggableSequenceNumber
-              key={Math.random() + option}
+              key={Math.floor(Math.random() * 100) + option + Math.random()}
               value={option}
             />
           );

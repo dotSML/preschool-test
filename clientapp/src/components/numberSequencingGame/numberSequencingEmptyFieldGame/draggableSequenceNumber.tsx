@@ -12,7 +12,7 @@ const DraggableSequenceNumber: React.FC<{
     item: {
       type: DraggableWordType.NUMBER,
       value: value,
-      dropIdx: droppedIdx ? droppedIdx : ""
+      dropIdx: droppedIdx ? droppedIdx : 0
     },
     collect: monitor => ({
       isDragging: !!monitor.isDragging(),

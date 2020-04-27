@@ -7,17 +7,15 @@ const DragWordToPictureGameQuestion: React.FC<{
   question: DragWordToPictureGameQuestionType;
   getNextQuestion: Function;
   questionNo: number;
-}> = ({ question, getNextQuestion, questionNo }) => {
+  handleAnswer: Function;
+}> = ({ question, getNextQuestion, questionNo, handleAnswer }) => {
   return (
     <div className="drag-word-to-picture-game-question">
-      <div style={{ fontSize: "2rem", fontWeight: "bold" }}>
-        {" "}
-        {`${questionNo + 1}. KÜSIMUS`}
-      </div>
       <div className="drag-word-to-picture-game-options">
         {question.options.map((option, idx) => {
           return (
             <DropTargetImage
+              handleAnswer={handleAnswer}
               key={option.word}
               imgProp={option}
               getNextQuestion={getNextQuestion}

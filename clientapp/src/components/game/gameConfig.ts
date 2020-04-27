@@ -292,5 +292,77 @@ export const gameConfig = {
         availableNumbers: [4, 2]
       }
     ]
+  ],
+  calculationGame: [
+    {
+      task: "2 + 8",
+      answer: 2 + 8
+    },
+    {
+      task: "10 - 3",
+      answer: 10 - 3
+    },
+    {
+      task: "4 + 7",
+      answer: 4 + 7
+    },
+    {
+      task: "6 + 6",
+      answer: 6 + 6
+    },
+    {
+      task: "8 - 4",
+      answer: 8 - 4
+    },
+    {
+      task: "6 - 2",
+      answer: 6 - 2
+    },
+    {
+      task: "5 + 4",
+      answer: 5 + 4
+    },
+    {
+      task: "9 - 7",
+      answer: 9 - 7
+    },
+    {
+      task: "3 + 5",
+      answer: 3 + 5
+    },
+    {
+      task: "5 - 3",
+      answer: 5 - 3
+    }
+  ],
+  compareQuantitiesGame: [
+    {
+      questionType: "more",
+      options: [
+        { imgPath: "calculator.png", amount: 6 },
+        { imgPath: "pencil.png", amount: 8 }
+      ]
+    },
+    {
+      questionType: "less",
+      options: [
+        { imgPath: "calculator.png", amount: 3 },
+        { imgPath: "scarf.png", amount: 7 }
+      ]
+    },
+    {
+      questionType: "more",
+      options: [
+        { imgPath: "pencil.png", amount: 5 },
+        { imgPath: "shoes.png", amount: 3 }
+      ]
+    },
+    {
+      questionType: "less",
+      options: [
+        { imgPath: "shoes.png", amount: 4 },
+        { imgPath: "scarf.png", amount: 3 }
+      ]
+    }
   ]
 };

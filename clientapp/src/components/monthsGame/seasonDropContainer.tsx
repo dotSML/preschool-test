@@ -11,7 +11,8 @@ type SeasonType = {
 const SeasonDropContainer: React.FC<{
   season: SeasonType;
   getNextMonth: Function;
-}> = ({ season, getNextMonth }) => {
+  handleDrop: Function;
+}> = ({ season, getNextMonth, handleDrop }) => {
   const [droppedMonths, setDroppedMonths] = useState<Array<string>>([]);
   const [dropProps, drop] = useDrop({
     accept: DraggableWordType.MONTH,
@@ -19,6 +20,7 @@ const SeasonDropContainer: React.FC<{
       let dropArr = [...droppedMonths];
       dropArr.push(item.name);
       setDroppedMonths(dropArr);
+      handleDrop(season, item.name);
       getNextMonth();
     },
     collect: monitor => ({

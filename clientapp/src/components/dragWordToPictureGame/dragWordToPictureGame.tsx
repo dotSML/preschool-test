@@ -54,7 +54,9 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
   };
 
   const gameFlow = [
-    { gameComponent: <MatchWordWithPictureGame questions={gameConfig[0]} /> },
+    {
+      gameComponent: <MatchWordWithPictureGame questions={gameConfig[0]} />
+    },
     {
       gameComponent: <MatchOppositeWordGame questions={gameConfig[1]} />
     },

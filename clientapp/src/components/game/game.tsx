@@ -8,6 +8,8 @@ import { gameConfig } from "./gameConfig";
 import MonthsGame from "../monthsGame/monthsGame";
 import WeekdaysGame from "../weekdaysGame/weekdaysGame";
 import NumberSequencingGame from "../numberSequencingGame/numberSequencingGame";
+import CalculationGame from "../calculationGame/calculationGame";
+import CompareQuantitiesGame from "../compareQuantitiesGame/compareQuantititiesGame";
 
 const Game: React.FC = () => {
   const [currentGame, setCurrentGame] = useState(0);
@@ -38,6 +40,16 @@ const Game: React.FC = () => {
       name: "Number Sequencing Game",
       component: (
         <NumberSequencingGame questions={gameConfig.numberSequencingGame} />
+      )
+    },
+    {
+      name: "Calculation Game",
+      component: <CalculationGame questions={gameConfig.calculationGame} />
+    },
+    {
+      name: "Quantities Comparison",
+      component: (
+        <CompareQuantitiesGame questions={gameConfig.compareQuantitiesGame} />
       )
     }
   ];

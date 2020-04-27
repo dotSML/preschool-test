@@ -33,6 +33,7 @@ const NumberSequencingGameDropzone: React.FC<{
         if (optionArr.includes(item.value)) {
           optionArr = optionArr.filter(x => x !== item.value);
         } else {
+          console.log(item, "DROP IDX");
           dropArr[sequenceIdx] = item.value;
           dropArr[item.dropIdx] = 0;
           console.log(dropArr);

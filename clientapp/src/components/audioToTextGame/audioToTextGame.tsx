@@ -9,6 +9,7 @@ import { AppState } from "../../store/store";
 import { Button } from "reactstrap";
 import StartGameBtn from "../common/startGameBtn";
 import GameCompleted from "../common/gameCompleted";
+import { POST_GAME_RESULTS } from "../game/actions/gameActions";
 
 export type AudioToTextGameProps = Array<{
   question: string;
@@ -22,11 +23,13 @@ export type AudioToTextGameProps = Array<{
 const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
   questions
 }) => {
+  const [audioToTextGameResults, setAudioToTextGameResults] = useState<any>();
   const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [gameCompleted, setGameCompleted] = useState<boolean>(false);
   const gameState = useSelector<AppState, Array<any>>(
     state => state.audioToTextGame.gameState
   );
+  const gameResults = useSelector<AppState>(state => state.game.results);
   const dispatch = useDispatch();
   useEffect(() => {
     if (!gameState.length) {
@@ -40,6 +43,18 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
   };
 
   const handleGameEnd = () => {
+    let results: any = gameResults;
+    results.audioToTextGame = [];
+    gameState.forEach(question => {
+      let result: any = {};
+      result.question = question.question;
+      result.answer = question.answer;
+      let correctOption = question.options.filter((x: any) => x.correct);
+      result.correctAns = correctOption[0].label;
+      result.correct = result.answer === result.correctAns;
+      results.audioToTextGame.push(result);
+    });
+    dispatch(POST_GAME_RESULTS(results));
     setGameStarted(false);
     setGameCompleted(true);
   };

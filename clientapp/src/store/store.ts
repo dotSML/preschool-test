@@ -3,11 +3,17 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { gameReducer } from "../components/game/reducers/gameReducer";
 import { audioToTextGameReducer } from "../components/audioToTextGame/reducers/audioToTextGameReducer";
 import { dragWordToPictureGameReducer } from "../components/dragWordToPictureGame/reducers/dragWordToPictureGameReducer";
+import { imageSequenceGameReducer } from "../components/imageSequenceGame/reducers/imageSequenceGameReducer";
+import { monthsGameReducer } from "../components/monthsGame/reducers/monthsGameReducer";
+import { weekdaysGameReducer } from "../components/weekdaysGame/reducers/weekdaysGameReducer";
 
 const rootReducer = combineReducers({
   game: gameReducer,
   audioToTextGame: audioToTextGameReducer,
-  dragWordToPictureGame: dragWordToPictureGameReducer
+  dragWordToPictureGame: dragWordToPictureGameReducer,
+  imageSequenceGame: imageSequenceGameReducer,
+  monthsGame: monthsGameReducer,
+  weekdaysGame: weekdaysGameReducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

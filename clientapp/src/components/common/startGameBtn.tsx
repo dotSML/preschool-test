@@ -12,8 +12,11 @@ const StartGameBtn: React.FC<{
       <Button
         block
         color="success"
-        size="lg"
-        style={{ fontSize: "2rem", textTransform: "uppercase" }}
+        size={gameCompleted ? "xs" : "lg"}
+        style={{
+          fontSize: gameCompleted ? "1.2rem" : "2rem",
+          textTransform: "uppercase"
+        }}
         onClick={() => handleGameStart()}
       >
         {!gameCompleted ? "Alusta mängu" : "Mängi uuesti"}
