@@ -18,6 +18,7 @@ import {
   SET_IMAGE_SEQUENCE_GAME_STARTED
 } from "./actions/imageSequenceGameActions";
 import { POST_GAME_RESULTS } from "../game/actions/gameActions";
+import { ImageSequenceGameReducerStateType } from "./reducers/imageSequenceGameReducer";
 
 export type ImageSequenceGameQuestionType = { order: number; image: string };
 
@@ -33,9 +34,10 @@ const ImageSequenceGame: React.FC<{
     state => state.game.results
   );
   const [results, setResults] = useState<Array<any>>([]);
-  const imageSequenceGameState = useSelector<AppState, any>(
-    state => state.imageSequenceGame
-  );
+  const imageSequenceGameState = useSelector<
+    AppState,
+    ImageSequenceGameReducerStateType
+  >(state => state.imageSequenceGame);
   const [imageSlots, setImageSlots] = useState<
     Array<ImageSequenceGameQuestionType>
   >([]);

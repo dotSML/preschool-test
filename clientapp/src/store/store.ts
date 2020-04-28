@@ -7,6 +7,7 @@ import { imageSequenceGameReducer } from "../components/imageSequenceGame/reduce
 import { monthsGameReducer } from "../components/monthsGame/reducers/monthsGameReducer";
 import { weekdaysGameReducer } from "../components/weekdaysGame/reducers/weekdaysGameReducer";
 import { numberSequencingGameReducer } from "../components/numberSequencingGame/reducers/numberSequencingGameReducer";
+import { calculationGameReducer } from "../components/calculationGame/reducers/calculationGameReducer";
 
 const rootReducer = combineReducers({
   game: gameReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   imageSequenceGame: imageSequenceGameReducer,
   monthsGame: monthsGameReducer,
   weekdaysGame: weekdaysGameReducer,
-  numberSequencingGame: numberSequencingGameReducer
+  numberSequencingGame: numberSequencingGameReducer,
+  calculationGame: calculationGameReducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

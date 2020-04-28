@@ -10,6 +10,7 @@ import { Button } from "reactstrap";
 import StartGameBtn from "../common/startGameBtn";
 import GameCompleted from "../common/gameCompleted";
 import { POST_GAME_RESULTS } from "../game/actions/gameActions";
+import { AudioToTextGameReducerStateType } from "./reducers/audioToTextGameReducer";
 
 export type AudioToTextGameProps = Array<{
   question: string;

@@ -1,6 +1,6 @@
 import { Action } from "../../common/types/actionType";
 
-type GameReducerStateType = {
+export type DragWordToPictureGameReducerStateType = {
   gameStarted: boolean;
   currentQuestion: number;
   currentAssignment: number;
@@ -21,7 +21,7 @@ type GameReducerStateType = {
   };
 };
 
-const initialState: GameReducerStateType = {
+const initialState: DragWordToPictureGameReducerStateType = {
   gameStarted: false,
   currentQuestion: 0,
   currentAssignment: 0,

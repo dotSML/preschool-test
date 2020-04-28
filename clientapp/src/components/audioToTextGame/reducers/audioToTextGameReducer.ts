@@ -1,10 +1,10 @@
 import { Action } from "../../common/types/actionType";
 
-type GameReducerStateType = {
+export type AudioToTextGameReducerStateType = {
   gameState: Array<any>;
 };
 
-const initialState: GameReducerStateType = {
+const initialState: AudioToTextGameReducerStateType = {
   gameState: []
 };
 

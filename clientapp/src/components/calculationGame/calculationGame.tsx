@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { DndProvider } from "react-dnd";
-import MultiBackend from "react-dnd-multi-backend";
-import { HTML5toTouch } from "../common/dnd";
 import GameHeading from "../common/gameHeading";
 import GameDescription from "../common/gameDescription";
 import GameContent from "../common/gameContent";
@@ -9,14 +6,27 @@ import { shuffleArray } from "../common/helpers/arrayHelpers";
 import StartGameBtn from "../common/startGameBtn";
 import { NextQuestionBtn } from "../common/gameButtons";
 import GameQuestionCounter from "../common/gameQuestionCounter";
+import { AppState } from "../../store/store";
+import { CalculationGameReducerStateType } from "./reducers/calculationGameReducer";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  SET_CALCULATION_GAME_CHOSEN_ANSWER,
+  SET_CALCULATION_GAME_COMPLETED,
+  SET_CALCULATION_GAME_CURRENT_QUESTION,
+  SET_CALCULATION_GAME_STARTED
+} from "./actions/calculationGameActions";
+import { Button } from "reactstrap";
+import { POST_GAME_RESULTS } from "../game/actions/gameActions";
 
 const CalculationGame: React.FC<{
   questions: Array<{ task: string; answer: number }>;
 }> = ({ questions }) => {
+  const gameState = useSelector<AppState, CalculationGameReducerStateType>(
+    state => state.calculationGame
+  );
+  const gameResults = useSelector<AppState, any>(state => state.game.results);
+  const dispatch = useDispatch();
   const [questionOptions, setOptions] = useState<Array<number>>([]);
-  const [currentQuestion, setCurrentQuestion] = useState<number>(0);
-  const [gameStarted, setGameStarted] = useState<boolean>(false);
-  const [chosenAnswer, setChosenAnswer] = useState<number>(0);
 
   const getRandomOptionsWithCorrect = (
     correctAns: number,
@@ -32,9 +42,33 @@ const CalculationGame: React.FC<{
     return shuffleArray(optionsArr);
   };
 
+  const postResults = (selectedOption: number, expected: number) => {
+    let resultsArr = [...gameResults.calculationGame];
+    resultsArr.push({
+      correct: expected === selectedOption,
+      expected: expected,
+      selected: selectedOption
+    });
+    dispatch(
+      POST_GAME_RESULTS(
+        Object.assign({ ...gameResults }, { calculationGame: resultsArr })
+      )
+    );
+  };
+
   const nextQuestion = () => {
-    setChosenAnswer(0);
-    setCurrentQuestion(cq => cq + 1);
+    postResults(
+      gameState.chosenAnswer,
+      questions[gameState.currentQuestion].answer
+    );
+    if (gameState.currentQuestion + 1 < questions.length) {
+      dispatch(SET_CALCULATION_GAME_CHOSEN_ANSWER(0));
+      dispatch(
+        SET_CALCULATION_GAME_CURRENT_QUESTION(gameState.currentQuestion + 1)
+      );
+    } else {
+      dispatch(SET_CALCULATION_GAME_COMPLETED());
+    }
   };
 
   // @ts-ignore
@@ -47,25 +81,22 @@ const CalculationGame: React.FC<{
   };
 
   const handleOptionClick = (optionVal: number) => {
-    setChosenAnswer(optionVal);
+    dispatch(SET_CALCULATION_GAME_CHOSEN_ANSWER(optionVal));
   };
 
   const handleStartGame = () => {
-    setCurrentQuestion(0);
-    setGameStarted(true);
+    dispatch(SET_CALCULATION_GAME_CURRENT_QUESTION(0));
+    dispatch(SET_CALCULATION_GAME_STARTED());
   };
-
-  // useEffect(() => {
-  //   setOptions(
-  //     getRandomOptionsWithCorrect(questions[currentQuestion].answer, 9)
-  //   );
-  // }, []);
 
   useEffect(() => {
     setOptions(
-      getRandomOptionsWithCorrect(questions[currentQuestion].answer, 9)
+      getRandomOptionsWithCorrect(
+        questions[gameState.currentQuestion].answer,
+        9
+      )
     );
-  }, [currentQuestion]);
+  }, [gameState.currentQuestion]);
 
   return (
     <React.Fragment>
@@ -74,16 +105,17 @@ const CalculationGame: React.FC<{
         Selles mängus tuleb sul leida õige vastus ja vajutada selle peale
       </GameDescription>
       <GameContent>
-        {gameStarted ? (
+        {gameState.gameStarted ? (
           <React.Fragment>
             <GameQuestionCounter
               totalAmountOfQuestions={questions.length}
-              currentQuestion={currentQuestion + 1}
+              currentQuestion={gameState.currentQuestion + 1}
             />
             <div className="calculation-game-options">
               {questionOptions.map(opt => {
                 return (
                   <div
+                    key={opt + Math.random()}
                     className="calculation-game-option"
                     onClick={() => handleOptionClick(opt)}
                   >
@@ -94,11 +126,12 @@ const CalculationGame: React.FC<{
               })}
             </div>
             <div className="calculation-game-task">
-              {questions[currentQuestion].task +
+              {questions[gameState.currentQuestion].task +
                 " = " +
-                (chosenAnswer !== 0 ? chosenAnswer : "?")}
+                (gameState.chosenAnswer !== 0 ? gameState.chosenAnswer : "?")}
             </div>
-            {chosenAnswer !== 0 ? (
+            {gameState.chosenAnswer !== 0 &&
+            gameState.currentQuestion + 1 < questions.length ? (
               <div
                 style={{
                   display: "flex",
@@ -111,9 +144,25 @@ const CalculationGame: React.FC<{
             ) : (
               ""
             )}
+            {gameState.currentQuestion + 1 === questions.length &&
+            gameState.chosenAnswer !== 0 ? (
+              <Button
+                color="success"
+                size="lg"
+                style={{ fontSize: "2rem" }}
+                onClick={nextQuestion}
+              >
+                LÕPETA ÜLESANNE
+              </Button>
+            ) : (
+              ""
+            )}
           </React.Fragment>
         ) : (
-          <StartGameBtn handleGameStart={handleStartGame} />
+          <StartGameBtn
+            handleGameStart={handleStartGame}
+            gameCompleted={gameState.gameCompleted}
+          />
         )}
       </GameContent>
     </React.Fragment>
