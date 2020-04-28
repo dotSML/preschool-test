@@ -6,6 +6,7 @@ import { dragWordToPictureGameReducer } from "../components/dragWordToPictureGam
 import { imageSequenceGameReducer } from "../components/imageSequenceGame/reducers/imageSequenceGameReducer";
 import { monthsGameReducer } from "../components/monthsGame/reducers/monthsGameReducer";
 import { weekdaysGameReducer } from "../components/weekdaysGame/reducers/weekdaysGameReducer";
+import { numberSequencingGameReducer } from "../components/numberSequencingGame/reducers/numberSequencingGameReducer";
 
 const rootReducer = combineReducers({
   game: gameReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   dragWordToPictureGame: dragWordToPictureGameReducer,
   imageSequenceGame: imageSequenceGameReducer,
   monthsGame: monthsGameReducer,
-  weekdaysGame: weekdaysGameReducer
+  weekdaysGame: weekdaysGameReducer,
+  numberSequencingGame: numberSequencingGameReducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

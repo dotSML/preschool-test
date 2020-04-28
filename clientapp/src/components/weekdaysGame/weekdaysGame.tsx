@@ -12,9 +12,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import StartGameBtn from "../common/startGameBtn";
 import {
+  SET_WEEKDAYS_GAME_COMPLETED,
   SET_WEEKDAYS_GAME_CURRENT_QUESTION,
   SET_WEEKDAYS_GAME_STARTED
 } from "./actions/weekdaysGameActions";
+import { Button } from "reactstrap";
 
 type WeekdaysGameQuestionsType = Array<{
   label: string;
@@ -52,9 +54,15 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
   }, [questions]);
 
   const handleDrop = (item: any) => {
+    console.log("DROP");
     let newQuestionArr = questionsArr.filter(question => {
       return question.label !== item.weekday.label;
     });
+
+    console.log(newQuestionArr);
+    if (newQuestionArr.length === 0) {
+      console.log("OVER");
+    }
 
     setQuestionsArr(newQuestionArr);
   };
@@ -72,7 +80,12 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
         return q.label !== droppedItem.weekday.label;
       });
     }
+
     setQuestionsArr(newQuestionsArrTemp);
+  };
+
+  const handleGameCompletion = () => {
+    dispatch(SET_WEEKDAYS_GAME_COMPLETED());
   };
 
   return (
@@ -99,16 +112,25 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
               })}
             </div>
             <div className="weekday-game-weekday-container">
-              {questionsArr.length
-                ? questionsArr.map(weekday => {
-                    return (
-                      <DraggableWeekday
-                        key={weekday.label + weekday.order}
-                        weekday={weekday}
-                      />
-                    );
-                  })
-                : ""}
+              {questionsArr.length ? (
+                questionsArr.map(weekday => {
+                  return (
+                    <DraggableWeekday
+                      key={weekday.label + weekday.order}
+                      weekday={weekday}
+                    />
+                  );
+                })
+              ) : (
+                <Button
+                  color="success"
+                  size="lg"
+                  style={{ fontSize: "2rem" }}
+                  onClick={handleGameCompletion}
+                >
+                  Olen oma vastuses kindel!
+                </Button>
+              )}
             </div>
           </React.Fragment>
         ) : (

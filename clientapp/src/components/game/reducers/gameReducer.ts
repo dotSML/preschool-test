@@ -9,6 +9,7 @@ type GameReducerStateType = {
     pickTheRightWordGame: Array<any>;
     imageSequenceGame: Array<any>;
     monthsGame: Array<any>;
+    numberSequencingGame: Array<any>;
   };
 };
 
@@ -20,7 +21,8 @@ const initialState: GameReducerStateType = {
     matchOppositeWordGame: [],
     pickTheRightWordGame: [],
     imageSequenceGame: [],
-    monthsGame: []
+    monthsGame: [],
+    numberSequencingGame: []
   }
 };
 

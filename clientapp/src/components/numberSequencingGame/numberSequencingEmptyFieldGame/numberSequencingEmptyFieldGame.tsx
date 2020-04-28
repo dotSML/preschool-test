@@ -3,17 +3,23 @@ import { NextQuestionBtn } from "../../common/gameButtons";
 import DraggableSequenceNumber from "./draggableSequenceNumber";
 import NumberSequencingGameDropzone from "./numberSequencingGameDropzone";
 import GameQuestionCounter from "../../common/gameQuestionCounter";
+import { Button } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../../store/store";
+import { POST_GAME_RESULTS } from "../../game/actions/gameActions";
 
 const NumberSequencingEmptyFieldGame: React.FC<{
   questions: Array<{ availableNumbers: number[]; originalSequence: number[] }>;
-}> = ({ questions }) => {
+  handleNextAssignment: any;
+}> = ({ questions, handleNextAssignment }) => {
+  const dispatch = useDispatch();
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [assignmentCompleted, setAssignmentCompleted] = useState<boolean>(
     false
   );
   const [dropSlots, setDropSlots] = useState<Array<any>>([]);
   const [numberOptions, setNumberOptions] = useState<Array<number>>([]);
-
+  const gameResults = useSelector<AppState, any>(state => state.game.results);
   useEffect(() => {
     let options: Array<number> = [];
     let dropArr: Array<number | null> = [];
@@ -36,10 +42,38 @@ const NumberSequencingEmptyFieldGame: React.FC<{
   };
 
   const handleNextQuestion = () => {
+    let resultsArr: Array<any> = [];
+    dropSlots.forEach((dropSlot: number, idx: number) => {
+      if (dropSlot === questions[currentQuestion].originalSequence[idx]) {
+        resultsArr.push({
+          correct: true,
+          expected: questions[currentQuestion].originalSequence[idx],
+          answer: dropSlot
+        });
+      } else {
+        resultsArr.push({
+          correct: false,
+          expected: questions[currentQuestion].originalSequence[idx],
+          answer: dropSlot
+        });
+      }
+    });
+    let numberSequencingGameResults = [...gameResults.numberSequencingGame];
+    numberSequencingGameResults.push(resultsArr);
+    dispatch(
+      POST_GAME_RESULTS(
+        Object.assign(
+          { ...gameResults },
+          {
+            numberSequencingGame: numberSequencingGameResults
+          }
+        )
+      )
+    );
     if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion(c => c + 1);
     } else {
-      setAssignmentCompleted(true);
+      handleNextAssignment();
     }
   };
   return (
@@ -88,10 +122,27 @@ const NumberSequencingEmptyFieldGame: React.FC<{
           );
         })}
       </div>
-      {!assignmentCompleted ? (
+      {!assignmentCompleted &&
+      numberOptions.length === 0 &&
+      currentQuestion + 1 !== questions.length ? (
         <NextQuestionBtn handleClick={handleNextQuestion} />
       ) : (
-        "ASSIGNMENT OVER"
+        ""
+      )}
+      {currentQuestion + 1 === questions.length &&
+      numberOptions.length === 0 ? (
+        <Button color="success" onClick={handleNextQuestion}>
+          LÕPETA ÜLESANNE
+        </Button>
+      ) : (
+        ""
+      )}
+      {assignmentCompleted && currentQuestion + 1 === questions.length ? (
+        <Button color="success" size="lg" onClick={handleNextAssignment}>
+          Järgmine ülesanne
+        </Button>
+      ) : (
+        ""
       )}
     </div>
   );

@@ -8,23 +8,47 @@ import GameStatus from "../common/gameStatus";
 import MultiBackend from "react-dnd-multi-backend";
 import { HTML5toTouch } from "../common/dnd";
 import { DndProvider } from "react-dnd";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../store/store";
+import {
+  SET_NUMBER_SEQUENCING_GAME_COMPLETED,
+  SET_NUMBER_SEQUENCING_GAME_CURRENT_ASSIGNMENT,
+  SET_NUMBER_SEQUENCING_GAME_STARTED
+} from "./actions/numberSequencingGameActions";
 
 const NumberSequencingGame: React.FC<{ questions: Array<any> }> = ({
   questions
 }) => {
-  const [gameStarted, setGameStarted] = useState<boolean>(false);
-  const [gameCompleted, setGameCompleted] = useState<boolean>(false);
-
-  const [currentAssignment, setCurrentAssignment] = useState<number>(0);
+  const dispatch = useDispatch();
+  const gameState = useSelector<AppState, any>(
+    state => state.numberSequencingGame
+  );
 
   const handleGameStart = () => {
-    setGameStarted(true);
+    dispatch(SET_NUMBER_SEQUENCING_GAME_STARTED());
+  };
+
+  const handleNextAssignment = () => {
+    if (gameState.currentAssignment + 1 < gameAssignments.length) {
+      dispatch(
+        SET_NUMBER_SEQUENCING_GAME_CURRENT_ASSIGNMENT(
+          gameState.currentAssignment + 1
+        )
+      );
+    } else {
+      dispatch(SET_NUMBER_SEQUENCING_GAME_COMPLETED());
+    }
   };
 
   const gameAssignments = [
     {
       name: "emptyField",
-      component: <NumberSequencingEmptyFieldGame questions={questions[0]} />
+      component: (
+        <NumberSequencingEmptyFieldGame
+          questions={questions[0]}
+          handleNextAssignment={handleNextAssignment}
+        />
+      )
     }
   ];
 
@@ -40,18 +64,18 @@ const NumberSequencingGame: React.FC<{ questions: Array<any> }> = ({
         kasvav või kahanev jada.
       </GameDescription>
       <GameContent>
-        {gameStarted && !gameCompleted ? (
+        {gameState.gameStarted ? (
           <div>
-            <GameStatus
-              assignmentNo={currentAssignment + 1}
-              totalNumberOfAssignments={gameAssignments.length}
-            />
-            {gameAssignments[currentAssignment].component}
+            {/*<GameStatus*/}
+            {/*  assignmentNo={gameState.currentAssignment + 1}*/}
+            {/*  totalNumberOfAssignments={gameAssignments.length}*/}
+            {/*/>*/}
+            {gameAssignments[gameState.currentAssignment].component}
           </div>
         ) : (
           <StartGameBtn
             handleGameStart={handleGameStart}
-            gameCompleted={gameCompleted}
+            gameCompleted={gameState.gameCompleted}
           />
         )}
       </GameContent>

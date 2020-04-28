@@ -1,0 +1,14 @@
+export const SET_NUMBER_SEQUENCING_GAME_CURRENT_ASSIGNMENT = (
+  payload: number
+) => ({
+  type: "SET_NUMBER_SEQUENCING_GAME_CURRENT_ASSIGNMENT",
+  payload: payload
+});
+
+export const SET_NUMBER_SEQUENCING_GAME_COMPLETED = () => ({
+  type: "SET_NUMBER_SEQUENCING_GAME_COMPLETED"
+});
+
+export const SET_NUMBER_SEQUENCING_GAME_STARTED = () => ({
+  type: "SET_NUMBER_SEQUENCING_GAME_STARTED"
+});
