@@ -581,3 +581,34 @@ body {
     height: 10rem;
     width: 10rem;
 }
+
+/*ANALOGUE CLOCK GAME */
+
+.analogue-clock-game-items {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.analogue-clock-game-item {
+    display: flex;
+    height: 22rem;
+    margin: 0 3rem;
+    width: auto;
+}
+
+.analogue-clock-game-question {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.analogue-clock-game-question-text {
+    display: flex;
+    border: 2px solid rgba(0,0,0,.2);
+    border-radius: 8px;
+    padding: 1rem;
+}

@@ -364,5 +364,55 @@ export const gameConfig = {
         { imgPath: "scarf.png", amount: 3 }
       ]
     }
+  ],
+  analogueClockGame: [
+    {
+      question: "KELL ON 4",
+      options: [
+        { imgPath: "random-1.png", correct: false },
+        { imgPath: "neli.png", correct: true },
+        { imgPath: "random-2.png", correct: false }
+      ]
+    },
+    {
+      question: "KELL ON POOL 7",
+      options: [
+        { imgPath: "pool7.png", correct: true },
+        { imgPath: "random-5.png", correct: false },
+        { imgPath: "random-7.png", correct: false }
+      ]
+    },
+    {
+      question: "KELL ON 6",
+      options: [
+        { imgPath: "random-8.png", correct: false },
+        { imgPath: "random-3.png", correct: false },
+        { imgPath: "kuus.png", correct: true }
+      ]
+    },
+    {
+      question: "KELL ON POOL 9",
+      options: [
+        { imgPath: "random-7.png", correct: false },
+        { imgPath: "pool9.png", correct: true },
+        { imgPath: "random-6.png", correct: false }
+      ]
+    },
+    {
+      question: "KELL ON 11",
+      options: [
+        { imgPath: "11.png", correct: true },
+        { imgPath: "random-1.png", correct: false },
+        { imgPath: "random-5.png", correct: false }
+      ]
+    },
+    {
+      question: "KELL ON POOL 12",
+      options: [
+        { imgPath: "random-6.png", correct: false },
+        { imgPath: "random-8.png", correct: false },
+        { imgPath: "pool12.png", correct: true }
+      ]
+    }
   ]
 };

@@ -10,6 +10,7 @@ import WeekdaysGame from "../weekdaysGame/weekdaysGame";
 import NumberSequencingGame from "../numberSequencingGame/numberSequencingGame";
 import CalculationGame from "../calculationGame/calculationGame";
 import CompareQuantitiesGame from "../compareQuantitiesGame/compareQuantititiesGame";
+import AnalogueClockGame from "../analogueClockGame/analogueClockGame";
 
 const Game: React.FC = () => {
   const [currentGame, setCurrentGame] = useState(0);
@@ -51,6 +52,10 @@ const Game: React.FC = () => {
       component: (
         <CompareQuantitiesGame questions={gameConfig.compareQuantitiesGame} />
       )
+    },
+    {
+      name: "analogueClockGame",
+      component: <AnalogueClockGame questions={gameConfig.analogueClockGame} />
     }
   ];
 

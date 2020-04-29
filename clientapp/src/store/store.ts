@@ -9,6 +9,7 @@ import { weekdaysGameReducer } from "../components/weekdaysGame/reducers/weekday
 import { numberSequencingGameReducer } from "../components/numberSequencingGame/reducers/numberSequencingGameReducer";
 import { calculationGameReducer } from "../components/calculationGame/reducers/calculationGameReducer";
 import { compareQuantitiesGameReducer } from "../components/compareQuantitiesGame/reducers/compareQuantitiesGameReducer";
+import { analogueClockGameReducer } from "../components/analogueClockGame/reducers/analogueClockGameReducer";
 
 const rootReducer = combineReducers({
   game: gameReducer,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   weekdaysGame: weekdaysGameReducer,
   numberSequencingGame: numberSequencingGameReducer,
   calculationGame: calculationGameReducer,
-  compareQuantitiesGame: compareQuantitiesGameReducer
+  compareQuantitiesGame: compareQuantitiesGameReducer,
+  analogueClockGame: analogueClockGameReducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
