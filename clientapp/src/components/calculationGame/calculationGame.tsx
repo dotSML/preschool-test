@@ -125,10 +125,12 @@ const CalculationGame: React.FC<{
                 );
               })}
             </div>
-            <div className="calculation-game-task">
-              {questions[gameState.currentQuestion].task +
-                " = " +
-                (gameState.chosenAnswer !== 0 ? gameState.chosenAnswer : "?")}
+            <div className="calculation-game-task-wrapper">
+              <div className="calculation-game-task">
+                {questions[gameState.currentQuestion].task +
+                  " = " +
+                  (gameState.chosenAnswer !== 0 ? gameState.chosenAnswer : "?")}
+              </div>
             </div>
             {gameState.chosenAnswer !== 0 &&
             gameState.currentQuestion + 1 < questions.length ? (

@@ -15,7 +15,9 @@ const StartGameBtn: React.FC<{
         size={gameCompleted ? "xs" : "lg"}
         style={{
           fontSize: gameCompleted ? "1.2rem" : "2rem",
-          textTransform: "uppercase"
+          textTransform: "uppercase",
+          fontWeight: "bold",
+          width: gameCompleted ? "50%" : "100%"
         }}
         onClick={() => handleGameStart()}
       >

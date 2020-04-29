@@ -77,7 +77,7 @@ const Game: React.FC = () => {
         <Button
           size="lg"
           color="danger"
-          style={{ marginRight: "1rem" }}
+          style={{ marginRight: "1rem", fontWeight: 600 }}
           disabled={currentGame === 0}
           onClick={handlePreviousGameClick}
         >
@@ -86,6 +86,7 @@ const Game: React.FC = () => {
         <Button
           size="lg"
           color="primary"
+          style={{ fontWeight: 600 }}
           onClick={
             noNextGame() ? () => alert("GAME OVER") : handleNextGameClick
           }

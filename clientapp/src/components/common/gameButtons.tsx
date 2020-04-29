@@ -22,11 +22,22 @@ export const NextQuestionBtn: React.FC<{
   handleClick: Function;
 }> = ({ label = "JÄRGMINE KÜSIMUS", handleClick }) => {
   return (
+    <Button color="success" size="lg" onClick={() => handleClick()}>
+      <span style={{ fontSize: "2rem", fontWeight: "bold" }}>{label}</span>
+    </Button>
+  );
+};
+
+export const EndGameBtn: React.FC<{
+  label?: string;
+  handleClick: Function;
+}> = ({ label = "LÕPETA MÄNG", handleClick }) => {
+  return (
     <Button
-      color="success"
+      color="primary"
       size="lg"
+      style={{ fontSize: "2rem", fontWeight: "bold" }}
       onClick={() => handleClick()}
-      style={{ fontSize: "2rem" }}
     >
       {label}
     </Button>

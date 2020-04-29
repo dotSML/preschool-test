@@ -1,6 +1,6 @@
 import { Action } from "../../common/types/actionType";
 
-type GameReducerStateType = {
+export type GameReducerStateType = {
   currentGame: string;
   results: {
     audioToTextGame: Array<any>;
@@ -11,6 +11,7 @@ type GameReducerStateType = {
     monthsGame: Array<any>;
     numberSequencingGame: Array<any>;
     calculationGame: Array<any>;
+    compareQuantitiesGame: Array<any>;
   };
 };
 
@@ -24,7 +25,8 @@ const initialState: GameReducerStateType = {
     imageSequenceGame: [],
     monthsGame: [],
     numberSequencingGame: [],
-    calculationGame: []
+    calculationGame: [],
+    compareQuantitiesGame: []
   }
 };
 

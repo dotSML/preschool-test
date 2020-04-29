@@ -29,10 +29,28 @@ const SeasonDropContainer: React.FC<{
   });
   return (
     <div ref={drop} className="months-game-season-drop-container">
-      {season.label}
+      <span
+        style={{
+          display: "flex",
+          width: "100%",
+          padding: "0.5rem",
+          justifyContent: "center",
+          textTransform: "uppercase",
+          fontWeight: "bold"
+        }}
+      >
+        {season.label}
+      </span>
       <div className="months-game-season-drop-container-dropped-months">
         {droppedMonths?.map(month => {
-          return <div key={month}>{month}</div>;
+          return (
+            <div
+              style={{ display: "flex", justifyContent: "center" }}
+              key={month}
+            >
+              {month}
+            </div>
+          );
         })}
       </div>
     </div>

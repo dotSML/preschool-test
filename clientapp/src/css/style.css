@@ -5,6 +5,10 @@ html {
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
 .game-init-layout {
     display: flex;
     flex-direction: column;
@@ -15,6 +19,9 @@ html {
     font-size: 3rem;
     white-space: nowrap;
     font-weight: bold;
+    border-radius: 8px;
+    border: 2px solid rgba(0,0,0,.15);
+    padding: 1rem;
     margin-bottom: 5rem;
 }
 
@@ -84,12 +91,13 @@ html {
 
 .game-heading {
     font-size: 2.5rem;
+    font-weight: bold;
     text-transform: uppercase;
 }
 
 .game-description {
     font-size: 1.8rem;
-
+    font-weight: 600;
 }
 
 .game-start-btn-wrapper {
@@ -370,6 +378,7 @@ html {
     display: flex;
     flex-direction: column;
     font-size: 2rem;
+    justify-content: center;
 }
 
 /*WEEKDAYS GAME*/
@@ -496,7 +505,8 @@ html {
     height: 15rem;
     width: 12rem;
     margin: 0 2rem 1rem 2rem;
-    border: 1px solid black;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,.15);
     font-size: 4rem;
     font-weight: bold;
     justify-content: center;
@@ -506,6 +516,7 @@ html {
 .calculation-game-option-image {
     display: flex;
     background-color: green;
+    border-radius: 8px 8px 0px 0px;
     font-size: 2rem;
     height: 100%;
     width: 100%;
@@ -518,13 +529,20 @@ html {
     flex-wrap: wrap;
 }
 
+.calculation-game-task-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 .calculation-game-task {
     display: flex;
     font-size: 5rem;
     font-weight: bold;
-    border: 2px solid black;
+    border: 2px solid rgba(0,0,0,.15);
+    border-radius: 8px;
     justify-content: center;
     margin-top: 2rem;
+    padding: 1rem;
 }
 
 
@@ -533,13 +551,33 @@ html {
 
 }
 
+
+.compare-quantities-game-question {
+    display: flex;
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
 .compare-quantities-game-items {
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.compare-quantities-game-item-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    border: 2px solid rgba(0,0,0,.2);
+    border-radius: 8px;
+    width: 100%;
 }
 
 .compare-quantities-game-item {
     display: flex;
     height: 10rem;
     width: 10rem;
-    border: 1px solid black;
 }
