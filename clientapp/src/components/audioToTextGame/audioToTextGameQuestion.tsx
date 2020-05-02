@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AudioToTextOption from "./audioToTextOption";
+import AudioBtn from "../common/audioBtn";
 
 type AudioToTextGameQuestionType = {
   question: string;
@@ -10,10 +11,14 @@ const AudioToTextGameQuestion: React.FC<{
   questionProp: AudioToTextGameQuestionType;
   handleQuestionAnswer: any;
   selectedAnswer: string;
-}> = ({ questionProp, handleQuestionAnswer, selectedAnswer }) => {
+  questionNo: number;
+}> = ({ questionProp, handleQuestionAnswer, selectedAnswer, questionNo }) => {
   return (
     <div className="audio-to-text-question">
-      <div className="audio-to-text-question-text">{questionProp.question}</div>
+      <div className="audio-to-text-question-text">
+        <span style={{ marginRight: "1rem" }}> {questionProp.question}</span>
+        <AudioBtn audioFile={`/task1/task1-question${questionNo + 1}.m4a`} />
+      </div>
       <div className="audio-to-text-options">
         {questionProp?.options.map((option, idx) => {
           return (

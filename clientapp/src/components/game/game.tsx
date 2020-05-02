@@ -11,6 +11,7 @@ import NumberSequencingGame from "../numberSequencingGame/numberSequencingGame";
 import CalculationGame from "../calculationGame/calculationGame";
 import CompareQuantitiesGame from "../compareQuantitiesGame/compareQuantititiesGame";
 import AnalogueClockGame from "../analogueClockGame/analogueClockGame";
+import DogCanvasGame from "../dogCanvasGame/dogCanvasGame";
 
 const Game: React.FC = () => {
   const [currentGame, setCurrentGame] = useState(0);
@@ -56,7 +57,8 @@ const Game: React.FC = () => {
     {
       name: "analogueClockGame",
       component: <AnalogueClockGame questions={gameConfig.analogueClockGame} />
-    }
+    },
+    { name: "dogCanvasGame", component: <DogCanvasGame /> }
   ];
 
   const noNextGame = () => {

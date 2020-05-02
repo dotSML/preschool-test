@@ -1,24 +1,73 @@
 export const gameConfig = {
   audioToTextGame: [
     {
-      question: "Mis lasteaias lapsed käisid?",
+      question: "Mis aastaajal käisid lapsed matkamas?",
       options: [
-        { label: "Karu", correct: false },
-        { label: "Vikerkaare", correct: true }
+        { label: "Kevadel", correct: true },
+        { label: "Sügisel", correct: false }
       ]
     },
     {
-      question: "Mis aastaajal tegevus toimus?",
+      question: "Milline oli ilm?",
       options: [
-        { label: "Talv", correct: false },
-        { label: "Kevad", correct: true }
+        { label: "Vihmane", correct: false },
+        { label: "Päikseline", correct: true }
       ]
     },
     {
-      question: "Mis oli mingi lapse nimi?",
+      question: "Mis oli lasteaia nimi?",
       options: [
-        { label: "Madis", correct: false },
-        { label: "Mart", correct: true }
+        { label: "Vikerkaare", correct: true },
+        { label: "Päikese", correct: false }
+      ]
+    },
+    {
+      question: "Mis värvi oli buss?",
+      options: [
+        { label: "Punane", correct: false },
+        { label: "Kollane", correct: true }
+      ]
+    },
+    {
+      question: "Mis oli bussijuhi nimi?",
+      options: [
+        { label: "Peeter", correct: false },
+        { label: "Mati", correct: true }
+      ]
+    },
+    {
+      question: "Mis laulu laulsid lapsed bussis?",
+      options: [
+        { label: "Rongisõitu", correct: false },
+        { label: "Juba linnukesed", correct: true }
+      ]
+    },
+    {
+      question: "Kuhu lapsed matkama läksid?",
+      options: [
+        { label: "Rabasse", correct: true },
+        { label: "Mereranda", correct: false }
+      ]
+    },
+    {
+      question: "Mis värvi olid Mari kummikud?",
+      options: [
+        { label: "Rohelised", correct: false },
+        { label: "Kollased", correct: true }
+      ]
+    },
+    {
+      question: "Mitu korrust oli linnuvaatlustornil?",
+      options: [
+        { label: "2", correct: false },
+        { label: "3", correct: true }
+      ]
+    },
+    {
+      question: "Mida lapsed piknikul sõid?",
+      options: [
+        { label: "Pirukaid", correct: false },
+        { label: "Vorsti", correct: true }
       ]
     }
   ],

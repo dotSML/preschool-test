@@ -8,9 +8,8 @@ import { SET_AUDIO_TO_TEXT_GAME_STATE } from "./actions/audioToTextGameActions";
 import { AppState } from "../../store/store";
 import { Button } from "reactstrap";
 import StartGameBtn from "../common/startGameBtn";
-import GameCompleted from "../common/gameCompleted";
 import { POST_GAME_RESULTS } from "../game/actions/gameActions";
-import { AudioToTextGameReducerStateType } from "./reducers/audioToTextGameReducer";
+import AudioBtn from "../common/audioBtn";
 
 export type AudioToTextGameProps = Array<{
   question: string;
@@ -24,11 +23,13 @@ export type AudioToTextGameProps = Array<{
 const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
   questions
 }) => {
-  const [audioToTextGameResults, setAudioToTextGameResults] = useState<any>();
   const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [gameCompleted, setGameCompleted] = useState<boolean>(false);
   const gameState = useSelector<AppState, Array<any>>(
     state => state.audioToTextGame.gameState
+  );
+  const task1StoryAudio = new Audio(
+    process.env.PUBLIC_URL + "/audio/task1/task1-story.m4a"
   );
   const gameResults = useSelector<AppState>(state => state.game.results);
   const dispatch = useDispatch();
@@ -76,17 +77,44 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
     <React.Fragment>
       <GameHeading heading={"1. Teksti mõistmine"} />
       <GameDescription>
-        Selles mängus pead kuulama teksti ja vastama allolevatele küsimustele
+        Kuula tähelepanelikult juttu ja proovi meelde jätta mida jutus kuuled{" "}
+        <AudioBtn
+          style={{ marginLeft: "1rem" }}
+          audioFile="/task1/task1-tutorial.m4a"
+        />
       </GameDescription>
       <GameContent>
         {gameStarted ? (
           <React.Fragment>
-            <h3 style={{ margin: "0.5rem 0 1rem 0" }}>TEKST KUULAMISEKS</h3>
+            <div
+              style={{
+                marginBottom: "2rem",
+                display: "flex",
+                alignItems: "center"
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "2rem",
+                  marginRight: "1rem",
+                  fontWeight: "bold"
+                }}
+              >
+                JUTT KUULAMISEKS
+              </span>
+              <audio controls>
+                <source
+                  src={process.env.PUBLIC_URL + "/audio/task1/task1-story.mp3"}
+                  type="audio/mp3"
+                />
+              </audio>
+            </div>
             <div className="audio-to-text-questions">
               {gameState?.map((question, idx) => {
                 return (
                   <AudioToTextGameQuestion
                     key={idx}
+                    questionNo={idx}
                     questionProp={question}
                     selectedAnswer={question.answer}
                     handleQuestionAnswer={handleQuestionAnswer}
