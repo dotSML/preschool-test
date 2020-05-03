@@ -21,6 +21,7 @@ import {
 } from "./actions/monthsGameActions";
 import StartGameBtn from "../common/startGameBtn";
 import { POST_GAME_RESULTS } from "../game/actions/gameActions";
+import AudioBtn from "../common/audioBtn";
 
 const MonthsGame: React.FC<{ questions: Array<string> }> = ({ questions }) => {
   const gameState = useSelector<AppState, any>(state => state.monthsGame);
@@ -77,7 +78,11 @@ const MonthsGame: React.FC<{ questions: Array<string> }> = ({ questions }) => {
     <DndProvider backend={MultiBackend} options={HTML5toTouch}>
       <GameHeading heading={"4. KUUDE NIMETUSED"} />
       <GameDescription>
-        Selles mängus pead lohistama kuu õige aastaja peale.
+        Vali igale kuu nimetusele sobiv aastaaeg
+        <AudioBtn
+          style={{ marginLeft: "1rem" }}
+          audioFile="/task4/task4-tutorial.m4a"
+        />
       </GameDescription>
       <GameContent>
         {gameState.gameStarted ? (

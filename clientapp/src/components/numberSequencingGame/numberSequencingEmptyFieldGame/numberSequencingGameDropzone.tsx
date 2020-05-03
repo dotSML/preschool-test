@@ -41,6 +41,10 @@ const NumberSequencingGameDropzone: React.FC<{
         handleDrop(dropArr, optionArr);
       }
     },
+    canDrop: (item: any) => {
+      //TODO
+      return true;
+    },
     collect: monitor => ({
       isOver: !!monitor.isOver()
     })

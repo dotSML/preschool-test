@@ -19,6 +19,7 @@ import {
 } from "./actions/imageSequenceGameActions";
 import { POST_GAME_RESULTS } from "../game/actions/gameActions";
 import { ImageSequenceGameReducerStateType } from "./reducers/imageSequenceGameReducer";
+import AudioBtn from "../common/audioBtn";
 
 export type ImageSequenceGameQuestionType = { order: number; image: string };
 
@@ -94,7 +95,11 @@ const ImageSequenceGame: React.FC<{
     <DndProvider backend={MultiBackend} options={HTML5toTouch}>
       <GameHeading heading="3. Pildiseeria" />
       <GameDescription>
-        Selles mängus pead lohistama pildid õigesse järjekorda
+        Lohista pildid õigesse järjekorda
+        <AudioBtn
+          style={{ marginLeft: "1rem" }}
+          audioFile="/task3/task3-tutorial.m4a"
+        />
       </GameDescription>
       <GameContent>
         {imageSequenceGameState.gameStarted ? (

@@ -19,8 +19,12 @@ const AudioBtn: React.FC<{ style?: CSSProperties; audioFile: string }> = ({
     if (isPlaying) {
       audio.currentTime = 0;
       audio.play();
+      audio.onended = () => {
+        setPlaying(false);
+      };
     } else {
       audio.pause();
+      audio.currentTime = 0;
     }
   }, [isPlaying]);
 
@@ -29,7 +33,9 @@ const AudioBtn: React.FC<{ style?: CSSProperties; audioFile: string }> = ({
       alt="Play Audio"
       style={{
         ...style,
-        border: isPlaying ? "1px solid black" : "none"
+        border: isPlaying ? "1px solid black" : "none",
+        borderRadius: "8px",
+        padding: "0.2rem"
       }}
       onClick={handleClick}
       src={process.env.PUBLIC_URL + "/icons/audio.svg"}

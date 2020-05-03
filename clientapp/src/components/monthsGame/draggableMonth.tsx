@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDrag } from "react-dnd";
 // @ts-ignore
 import Preview from "react-dnd-preview";
@@ -12,6 +12,15 @@ const DraggableMonth: React.FC<{ month: string }> = ({ month }) => {
       position: monitor.getDifferenceFromInitialOffset()
     })
   });
+
+  useEffect(() => {
+    if (dragProps.isDragging) {
+      let audio = new Audio(
+        process.env.PUBLIC_URL + "/audio/task3/task3-tutorial.m4a"
+      );
+      audio.play();
+    }
+  }, [dragProps.isDragging]);
 
   const GeneratePreview = ({ itemType, item, style }: any) => {
     return (

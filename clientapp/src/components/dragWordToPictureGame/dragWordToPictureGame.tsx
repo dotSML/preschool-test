@@ -22,6 +22,7 @@ import { HTML5toTouch } from "../common/dnd";
 import MatchOppositeWordGame from "./matchOppositeWordGame/matchOppositeWordGame";
 import PickTheRightWordGame from "./pickTheRightWordGame/pickTheRightWordGame";
 import StartGameBtn from "../common/startGameBtn";
+import AudioBtn from "../common/audioBtn";
 
 export type DragWordToPictureGameQuestionType = {
   answer: string;
@@ -75,6 +76,7 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
       <GameHeading heading={"2. Sõnad"} />
       <GameDescription>
         Selles mängus pead lohistama sõna õige pildi peale.
+        <AudioBtn audioFile={"/task2/task2-assignment1-tutorial.m4a"} />
       </GameDescription>
       <GameContent>
         {gameStarted && !gameCompleted ? (
