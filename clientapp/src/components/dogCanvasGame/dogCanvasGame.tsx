@@ -3,14 +3,27 @@ import GameHeading from "../common/gameHeading";
 import GameDescription from "../common/gameDescription";
 import GameContent from "../common/gameContent";
 import { Button } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../store/store";
+import { DogCanvasGameReducerStateType } from "./reducers/dogCanvasGameReducer";
+import StartGameBtn from "../common/startGameBtn";
+import {
+  SET_DOG_CANVAS_GAME_COMPLETED,
+  SET_DOG_CANVAS_GAME_CURRENT_QUESTION,
+  SET_DOG_CANVAS_GAME_STARTED
+} from "./actions/dogCanvasGameActions";
 
-const DogCanvasGame = () => {
+const DogCanvasGame: React.FC<{ questions: string[] }> = ({ questions }) => {
   const canvasRef = useRef(null);
+  const [drawingComplete, setDrawingComplete] = useState<boolean>(false);
   const initialPosition = useMemo(() => ({ x: 200, y: 400 }), []);
-
+  const dispatch = useDispatch();
   const [position, setPosition] = useState<{ x: number; y: number }>({
     ...initialPosition
   });
+  const gameState = useSelector<AppState, DogCanvasGameReducerStateType>(
+    state => state.dogCanvasGame
+  );
 
   const drawGrid = (el: any, ctx: any) => {
     el.width = 600;
@@ -56,50 +69,83 @@ const DogCanvasGame = () => {
   };
 
   const draw = (direction: string) => {
-    let el: any = canvasRef.current;
-    let ctx = el.getContext("2d");
-    let drawDistance = 100;
-    let tempPosition = { ...position };
-    ctx?.beginPath();
-    ctx.strokeStyle = "#4c4c4c";
-    ctx?.moveTo(position.x, position.y);
-    switch (direction) {
-      case "up":
-        {
-          tempPosition = Object.assign(tempPosition, {
-            y: position.y - drawDistance
-          });
+    if (!drawingComplete) {
+      let el: any = canvasRef.current;
+      let ctx = el.getContext("2d");
+      let drawDistance = 100;
+      let tempPosition = { ...position };
+      const curQuestion = questions[gameState.currentQuestion];
+
+      ctx?.beginPath();
+      ctx.strokeStyle = "#4c4c4c";
+      ctx?.moveTo(position.x, position.y);
+      switch (direction) {
+        case "up":
+          {
+            if (curQuestion === "up") {
+              console.log("CORRECT");
+            } else {
+              console.log("FALSE");
+            }
+            tempPosition = Object.assign(tempPosition, {
+              y: position.y - drawDistance
+            });
+          }
+          break;
+        case "left":
+          {
+            if (curQuestion === "left") {
+              console.log("CORRECT");
+            } else {
+              console.log("FALSE");
+            }
+            tempPosition = Object.assign(tempPosition, {
+              x: position.x - drawDistance
+            });
+          }
+          break;
+        case "right":
+          {
+            if (curQuestion === "right") {
+              console.log("CORRECT");
+            } else {
+              console.log("false");
+            }
+            tempPosition = Object.assign(tempPosition, {
+              x: position.x + drawDistance
+            });
+          }
+          break;
+        case "down":
+          {
+            if (curQuestion === "down") {
+              console.log("CORRECT");
+            } else {
+              console.log("FALSE");
+            }
+            tempPosition = Object.assign(tempPosition, {
+              y: position.y + drawDistance
+            });
+          }
+          break;
+        default: {
+          tempPosition = position;
         }
-        break;
-      case "left":
-        {
-          tempPosition = Object.assign(tempPosition, {
-            x: position.x - drawDistance
-          });
-        }
-        break;
-      case "right":
-        {
-          tempPosition = Object.assign(tempPosition, {
-            x: position.x + drawDistance
-          });
-        }
-        break;
-      case "down":
-        {
-          tempPosition = Object.assign(tempPosition, {
-            y: position.y + drawDistance
-          });
-        }
-        break;
-      default: {
-        tempPosition = position;
       }
+      setPosition(tempPosition);
+      ctx?.lineTo(tempPosition.x, tempPosition.y);
+      ctx.lineWidth = 5;
+      ctx?.stroke();
+      if (gameState.currentQuestion + 1 < questions.length) {
+        dispatch(
+          SET_DOG_CANVAS_GAME_CURRENT_QUESTION(gameState.currentQuestion + 1)
+        );
+      } else {
+        setDrawingComplete(true);
+      }
+    } else {
+      console.log("NO MO' DRAWING");
     }
-    setPosition(tempPosition);
-    ctx?.lineTo(tempPosition.x, tempPosition.y);
-    ctx.lineWidth = 5;
-    ctx?.stroke();
   };
 
   const drawStart = (ctx: any) => {
@@ -120,6 +166,8 @@ const DogCanvasGame = () => {
   };
 
   const initializeDrawing = () => {
+    dispatch(SET_DOG_CANVAS_GAME_CURRENT_QUESTION(0));
+    setDrawingComplete(false);
     setPosition(initialPosition);
     const el: any = canvasRef.current;
     const ctx = el.getContext("2d");
@@ -129,9 +177,16 @@ const DogCanvasGame = () => {
     drawStart(ctx);
   };
 
+  const handleGameStart = () => {
+    dispatch(SET_DOG_CANVAS_GAME_STARTED());
+  };
+
   useEffect(() => {
-    initializeDrawing();
-  }, []);
+    if (gameState.gameStarted) {
+      setDrawingComplete(false);
+      initializeDrawing();
+    }
+  }, [gameState.gameStarted]);
 
   return (
     <React.Fragment>
@@ -140,67 +195,96 @@ const DogCanvasGame = () => {
         Selles mängus tuleb sul kuulata heli ja vajutada õigete noolte peale
       </GameDescription>
       <GameContent>
-        <div className="dog-canvas-game-box-wrapper">
-          <canvas className="gridCanvas" ref={canvasRef} />
-          <div className="dog-canvas-game-buttons">
-            <div className="dog-canvas-game-button" onClick={() => draw("up")}>
-              <img
-                src={process.env.PUBLIC_URL + "/icons/arrow.svg"}
-                style={{ transform: "rotate(180deg)" }}
-                className="dog-canvas-game-button-icon"
-              />
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%"
-              }}
-            >
+        {gameState.gameStarted ? (
+          <div className="dog-canvas-game-box-wrapper">
+            <canvas
+              className="gridCanvas"
+              ref={canvasRef}
+              style={{ backgroundColor: "white" }}
+            />
+            <div className="dog-canvas-game-buttons">
               <div
                 className="dog-canvas-game-button"
-                onClick={() => draw("left")}
+                onClick={() => draw("up")}
               >
                 <img
                   src={process.env.PUBLIC_URL + "/icons/arrow.svg"}
-                  style={{ transform: "rotate(90deg)" }}
+                  style={{ transform: "rotate(180deg)" }}
                   className="dog-canvas-game-button-icon"
                 />
               </div>
               <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "100%"
+                }}
+              >
+                <div
+                  className="dog-canvas-game-button"
+                  onClick={() => draw("left")}
+                >
+                  <img
+                    src={process.env.PUBLIC_URL + "/icons/arrow.svg"}
+                    style={{ transform: "rotate(90deg)" }}
+                    className="dog-canvas-game-button-icon"
+                  />
+                </div>
+                <div
+                  className="dog-canvas-game-button"
+                  onClick={() => draw("right")}
+                >
+                  <img
+                    src={process.env.PUBLIC_URL + "/icons/arrow.svg"}
+                    style={{ transform: "rotate(270deg)" }}
+                    className="dog-canvas-game-button-icon"
+                  />
+                </div>
+              </div>
+              <div
                 className="dog-canvas-game-button"
-                onClick={() => draw("right")}
+                onClick={() => draw("down")}
               >
                 <img
                   src={process.env.PUBLIC_URL + "/icons/arrow.svg"}
-                  style={{ transform: "rotate(270deg)" }}
                   className="dog-canvas-game-button-icon"
                 />
               </div>
+              <Button
+                color="success"
+                size="lg"
+                disabled={!drawingComplete}
+                style={{
+                  fontSize: "2rem",
+                  marginTop: "8rem",
+                  fontWeight: "bold"
+                }}
+                onClick={() => {
+                  dispatch(SET_DOG_CANVAS_GAME_COMPLETED());
+                }}
+              >
+                LÕPETA MÄNG
+              </Button>
+              <Button
+                color="primary"
+                size="lg"
+                style={{
+                  fontSize: "1.5rem",
+                  marginTop: "8rem",
+                  fontWeight: "bold"
+                }}
+                onClick={() => initializeDrawing()}
+              >
+                ALUSTA UUESTI
+              </Button>
             </div>
-            <div
-              className="dog-canvas-game-button"
-              onClick={() => draw("down")}
-            >
-              <img
-                src={process.env.PUBLIC_URL + "/icons/arrow.svg"}
-                className="dog-canvas-game-button-icon"
-              />
-            </div>
-            <Button
-              color="primary"
-              size="lg"
-              style={{
-                fontSize: "2rem",
-                marginTop: "8rem",
-                fontWeight: "bold"
-              }}
-              onClick={() => initializeDrawing()}
-            >
-              ALUSTA UUESTI
-            </Button>
           </div>
-        </div>
+        ) : (
+          <StartGameBtn
+            handleGameStart={handleGameStart}
+            gameCompleted={gameState.gameCompleted}
+          />
+        )}
       </GameContent>
     </React.Fragment>
   );

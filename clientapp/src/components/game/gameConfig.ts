@@ -463,5 +463,43 @@ export const gameConfig = {
         { imgPath: "pool12.png", correct: true }
       ]
     }
+  ],
+  dogCanvasGame: [
+    "right",
+    "right",
+    "up",
+    "right",
+    "up",
+    "right",
+    "down",
+    "down",
+    "down",
+    "down",
+    "right",
+    "right",
+    "right",
+    "up",
+    "right",
+    "down",
+    "down",
+    "down",
+    "down",
+    "down",
+    "left",
+    "left",
+    "up",
+    "left",
+    "left",
+    "down",
+    "left",
+    "left",
+    "up",
+    "up",
+    "up",
+    "up",
+    "left",
+    "left",
+    "up",
+    "up"
   ]
 };

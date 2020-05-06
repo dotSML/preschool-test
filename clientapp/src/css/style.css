@@ -9,6 +9,22 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+.game-bg {
+    position: absolute;
+    z-index: -100000;
+    height: 100%;
+    width: auto;
+    opacity: 0.5;
+}
+
+.game-logo {
+    position: absolute;
+    right: 4rem;
+    top: 4rem;
+    height: 10rem;
+    width: auto;
+}
+
 .audio-btn {
     display: inline-block;
     vertical-align: middle;
@@ -162,6 +178,8 @@ body {
     width: 100%;
     height: 100%;
     flex-direction: column;
+    background-color: white;
+
 }
 
 .audio-to-text-question:not(:last-child){
@@ -218,6 +236,7 @@ body {
     border: 2px solid rgba(0,0,0,.2);
     padding: 1rem;
     border-radius: 5px;
+    background-color: white;
 }
 
 .drag-word-to-picture-game-question {
@@ -369,6 +388,7 @@ body {
     height: 30rem;
     width: 15rem;
     margin: 0 2rem;
+    background-color: white;
 }
 
 .months-game-draggable-month {
@@ -379,6 +399,7 @@ body {
     text-transform: uppercase;
     font-weight: bold;
     border: 2px solid rgba(0,0,0,.15);
+    background-color: white;
 }
 
 .months-game-draggable-month-container {
@@ -404,6 +425,7 @@ body {
 
 .weekday-game-dropzones-container {
     display: flex;
+    margin-top: 15rem;
     justify-content: space-between;
 }
 
@@ -470,6 +492,7 @@ body {
     border: 3px solid rgba(0,0,0,.2);
     border-radius: 8px;
     justify-content: center;
+    background-color: white;
 }
 
 .number-sequencing-game-draggable-number {
@@ -494,6 +517,7 @@ body {
     border-radius: 8px;
     font-weight: bold;
     padding: 1.5rem;
+    background-color: white;
     min-width: 10rem;
     min-height: 10rem;
     margin: 0 1rem;
@@ -507,7 +531,8 @@ body {
 }
 
 .number-sequencing-game-static-number {
-    background-color: rgba(0,0,0,.2);
+    background-color: rgb(233, 129, 21);
+    color: white;
 }
 
 /* Calculation Game */
@@ -524,6 +549,7 @@ body {
     font-weight: bold;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 .calculation-game-option-image {
@@ -556,6 +582,7 @@ body {
     justify-content: center;
     margin-top: 2rem;
     padding: 1rem;
+    background-color: white;
 }
 
 
@@ -635,6 +662,7 @@ body {
     align-items: center;
     height: 100%;
     width: 100%;
+    z-index: 1000000;
 }
 
 .dog-canvas-game-box {
@@ -655,6 +683,7 @@ body {
 .dog-canvas-game-button {
     padding: 1rem;
     cursor: pointer;
+    background-color: white;
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,.2);
     border: 2px solid rgba(0,0,0,.2);
     border-radius: 8px;

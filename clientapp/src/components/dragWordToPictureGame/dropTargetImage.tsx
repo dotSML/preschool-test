@@ -58,7 +58,7 @@ const DropTargetImage: React.FC<{
         opacity: dropProps.isOver ? 0.5 : 1,
         border: dropProps.isOver
           ? "2px dotted black"
-          : "2px dotted transparent",
+          : "2px dotted rgba(0,0,0,.2)",
         transition: "all .2s",
         justifyContent: "center"
       }}

@@ -10,6 +10,7 @@ import { numberSequencingGameReducer } from "../components/numberSequencingGame/
 import { calculationGameReducer } from "../components/calculationGame/reducers/calculationGameReducer";
 import { compareQuantitiesGameReducer } from "../components/compareQuantitiesGame/reducers/compareQuantitiesGameReducer";
 import { analogueClockGameReducer } from "../components/analogueClockGame/reducers/analogueClockGameReducer";
+import { dogCanvasGameReducer } from "../components/dogCanvasGame/reducers/dogCanvasGameReducer";
 
 const rootReducer = combineReducers({
   game: gameReducer,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   numberSequencingGame: numberSequencingGameReducer,
   calculationGame: calculationGameReducer,
   compareQuantitiesGame: compareQuantitiesGameReducer,
-  analogueClockGame: analogueClockGameReducer
+  analogueClockGame: analogueClockGameReducer,
+  dogCanvasGame: dogCanvasGameReducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;

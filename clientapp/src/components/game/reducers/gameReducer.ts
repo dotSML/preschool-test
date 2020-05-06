@@ -13,6 +13,7 @@ export type GameReducerStateType = {
     calculationGame: Array<any>;
     compareQuantitiesGame: Array<any>;
     analogueClockGame: Array<any>;
+    dogCanvasGame: Array<any>;
   };
 };
 
@@ -28,7 +29,8 @@ const initialState: GameReducerStateType = {
     numberSequencingGame: [],
     calculationGame: [],
     compareQuantitiesGame: [],
-    analogueClockGame: []
+    analogueClockGame: [],
+    dogCanvasGame: []
   }
 };
 

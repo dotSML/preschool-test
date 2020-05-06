@@ -58,7 +58,10 @@ const Game: React.FC = () => {
       name: "analogueClockGame",
       component: <AnalogueClockGame questions={gameConfig.analogueClockGame} />
     },
-    { name: "dogCanvasGame", component: <DogCanvasGame /> }
+    {
+      name: "dogCanvasGame",
+      component: <DogCanvasGame questions={gameConfig.dogCanvasGame} />
+    }
   ];
 
   const noNextGame = () => {
