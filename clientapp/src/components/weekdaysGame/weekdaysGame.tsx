@@ -17,6 +17,7 @@ import {
   SET_WEEKDAYS_GAME_STARTED
 } from "./actions/weekdaysGameActions";
 import { Button } from "reactstrap";
+import AudioBtn from "../common/audioBtn";
 
 type WeekdaysGameQuestionsType = Array<{
   label: string;
@@ -92,7 +93,8 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
     <DndProvider backend={MultiBackend} options={HTML5toTouch}>
       <GameHeading heading={"5. NÄDALAPÄEVAD"} />
       <GameDescription>
-        Selles mängus pead lohistama päevade nimetused õigesse järjekorda
+        Järjesta nädalapäevad, alustades esmaspäevast{" "}
+        <AudioBtn audioFile="/task5/task5-tutorial.m4a" />
       </GameDescription>
       <GameContent>
         {gameState.gameStarted ? (

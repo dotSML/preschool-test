@@ -15,6 +15,7 @@ import {
   SET_NUMBER_SEQUENCING_GAME_CURRENT_ASSIGNMENT,
   SET_NUMBER_SEQUENCING_GAME_STARTED
 } from "./actions/numberSequencingGameActions";
+import AudioBtn from "../common/audioBtn";
 
 const NumberSequencingGame: React.FC<{ questions: Array<any> }> = ({
   questions
@@ -60,8 +61,9 @@ const NumberSequencingGame: React.FC<{ questions: Array<any> }> = ({
     <DndProvider backend={MultiBackend} options={HTML5toTouch}>
       <GameHeading heading="6. Arvude Järjestamine" />
       <GameDescription>
-        Selles tuleb sul sisestada õige number õigesse lahtrisse, et tekiks kas
-        kasvav või kahanev jada.
+        Moodusta arvujada, kus numbrid on väiksemast suuremani või suuremast
+        väiksemani
+        <AudioBtn audioFile="/task6/task6-tutorial.m4a" />
       </GameDescription>
       <GameContent>
         {gameState.gameStarted ? (

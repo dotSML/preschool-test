@@ -77,7 +77,7 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
     <React.Fragment>
       <GameHeading heading={"1. Teksti mõistmine"} />
       <GameDescription>
-        Kuula tähelepanelikult juttu ja proovi meelde jätta mida jutus kuuled{" "}
+        Kuula tähelepanelikult juttu ja proovi meelde jätta mida jutus kuuled
         <AudioBtn
           style={{ marginLeft: "1rem" }}
           audioFile="/task1/task1-tutorial.m4a"
