@@ -51,17 +51,12 @@ const DropTargetImage: React.FC<{
     <div
       ref={drop}
       style={{
-        width: "100%",
-        height: "100%",
-        padding: "1rem",
-        display: "flex",
         opacity: dropProps.isOver ? 0.5 : 1,
         border: dropProps.isOver
           ? "2px dotted black"
-          : "2px dotted rgba(0,0,0,.2)",
-        transition: "all .2s",
-        justifyContent: "center"
+          : "2px dotted rgba(0,0,0,.2)"
       }}
+      className="drag-word-to-picture-game-drop-target-image"
     >
       <img
         style={{ opacity: dropProps.isOver ? 0.5 : 1 }}

@@ -13,14 +13,14 @@ const DraggableMonth: React.FC<{ month: string }> = ({ month }) => {
     })
   });
 
-  useEffect(() => {
-    if (dragProps.isDragging) {
-      let audio = new Audio(
-        process.env.PUBLIC_URL + "/audio/task3/task3-tutorial.m4a"
-      );
-      audio.play();
-    }
-  }, [dragProps.isDragging]);
+  // useEffect(() => {
+  //   if (dragProps.isDragging) {
+  //     let audio = new Audio(
+  //       process.env.PUBLIC_URL + "/audio/task3/task3-tutorial.m4a"
+  //     );
+  //     audio.play();
+  //   }
+  // }, [dragProps.isDragging]);
 
   const GeneratePreview = ({ itemType, item, style }: any) => {
     return (
@@ -32,7 +32,11 @@ const DraggableMonth: React.FC<{ month: string }> = ({ month }) => {
 
   return (
     <div>
-      <div className="months-game-draggable-month" ref={drag}>
+      <div
+        style={{ opacity: dragProps.isDragging ? 0 : 1, transition: "all .1s" }}
+        className="months-game-draggable-month"
+        ref={drag}
+      >
         {month}
       </div>
       <Preview generator={(props: any) => GeneratePreview(props)} />

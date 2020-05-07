@@ -28,13 +28,16 @@ const DraggableWeekday: React.FC<{
   return (
     <React.Fragment>
       <div
-        style={{ ...style, opacity: dragProps.isDragging ? 0.5 : 1 }}
+        style={{
+          opacity: dragProps.isDragging ? 0 : 1,
+          transition: "all .2s"
+        }}
         className="weekday-game-draggable-weekday"
         ref={drag}
       >
         {weekday.label}
+        <Preview generator={(props: any) => GeneratePreview(props)} />
       </div>
-      <Preview generator={(props: any) => GeneratePreview(props)} />
     </React.Fragment>
   );
 };

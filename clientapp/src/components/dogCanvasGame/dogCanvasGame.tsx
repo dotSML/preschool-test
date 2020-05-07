@@ -26,8 +26,8 @@ const DogCanvasGame: React.FC<{ questions: string[] }> = ({ questions }) => {
   );
 
   const drawGrid = (el: any, ctx: any) => {
-    el.width = 600;
-    el.height = 600;
+    el.width = 500;
+    el.height = 500;
     let dpi = window.devicePixelRatio;
     //get canvas
     //get context
