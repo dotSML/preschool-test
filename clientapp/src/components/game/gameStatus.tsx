@@ -24,7 +24,7 @@ useEffect(() => {
         <div className="game-status-bubbles">
         {bubbles.map(bubble => {
             // @ts-ignore
-            return <div key={bubble.no + bubble.name} style={{boxShadow: game.currentGame === bubble.no ? "none" : "0px 2px 5px 0px rgba(0,0,0,.2)", backgroundColor: state[bubble.name].gameCompleted ? "#208838" : "#FFCA94", transform: game.currentGame === bubble.no ? "scale(1.1)" : "scale(1)", transition: "all .2s ease"}} onClick={() => {dispatch(SET_GAME_CURRENT_GAME(bubble.no))}} className="game-status-bubble">{bubble.no + 1}
+            return <div key={bubble.no + bubble.name} style={{boxShadow: game.currentGame === bubble.no ? "none" : "0px 2px 5px 0px rgba(0,0,0,.2)", backgroundColor: state[bubble.name].gameCompleted ? "#208838" : "#FFCA94", transform: game.currentGame === bubble.no ? "scale(1.1)" : "scale(1)", transition: "all .2s ease"}}  className="game-status-bubble">{bubble.no + 1}
                 {game.currentGame === bubble.no ? <div className="game-status-bubble-indicator"/> : ""}
             </div>
         })}
