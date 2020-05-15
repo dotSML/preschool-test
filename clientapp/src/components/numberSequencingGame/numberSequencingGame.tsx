@@ -15,11 +15,16 @@ import {
   SET_NUMBER_SEQUENCING_GAME_STARTED
 } from "./actions/numberSequencingGameActions";
 import AudioBtn from "../common/audioBtn";
+import {SET_GAME_CURRENT_GAME} from "../game/actions/gameActions";
 
 const NumberSequencingGame: React.FC<{ questions: Array<any> }> = ({
   questions
 }) => {
   const dispatch = useDispatch();
+  const currentGame = useSelector<AppState, number>(state => state.game.currentGame);
+  useEffect(() => {
+    handleGameStart();
+  }, [])
   const gameState = useSelector<AppState, any>(
     state => state.numberSequencingGame
   );
@@ -37,6 +42,7 @@ const NumberSequencingGame: React.FC<{ questions: Array<any> }> = ({
       );
     } else {
       dispatch(SET_NUMBER_SEQUENCING_GAME_COMPLETED());
+      dispatch(SET_GAME_CURRENT_GAME(currentGame + 1));
     }
   };
 
@@ -70,10 +76,7 @@ const NumberSequencingGame: React.FC<{ questions: Array<any> }> = ({
             {gameAssignments[gameState.currentAssignment].component}
           </div>
         ) : (
-          <StartGameBtn
-            handleGameStart={handleGameStart}
-            gameCompleted={gameState.gameCompleted}
-          />
+          ""
         )}
       </GameContent>
     </DndProvider>

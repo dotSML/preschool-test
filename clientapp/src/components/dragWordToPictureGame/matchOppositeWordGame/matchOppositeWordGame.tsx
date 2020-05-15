@@ -99,7 +99,7 @@ const MatchOppositeWordGame: React.FC<{
               (question: MatchOppositeWordsGameQuestionType) => {
                 return (
                   <MatchOppositeWordDropZone
-                      key={question.word + Math.random()}
+                      key={question.word + question.match}
                     question={question}
                     handleDrop={handleOptionDrop}
                   />

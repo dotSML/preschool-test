@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import GameHeading from "../common/gameHeading";
 import GameDescription from "../common/gameDescription";
 import GameContent from "../common/gameContent";
@@ -13,9 +13,9 @@ import {
   SET_COMPARE_QUANTITIES_GAME_STARTED
 } from "./actions/compareQuantitiesGameActions";
 import GameQuestionCounter from "../common/gameQuestionCounter";
-import { EndGameBtn, NextQuestionBtn } from "../common/gameButtons";
+import {EndGameBtn, NextGameBtn, NextQuestionBtn} from "../common/gameButtons";
 import { GameReducerStateType } from "../game/reducers/gameReducer";
-import { POST_GAME_RESULTS } from "../game/actions/gameActions";
+import {POST_GAME_RESULTS, SET_GAME_CURRENT_GAME} from "../game/actions/gameActions";
 import { Button } from "reactstrap";
 
 const CompareQuantitiesGame: React.FC<{
@@ -25,6 +25,7 @@ const CompareQuantitiesGame: React.FC<{
   }>;
 }> = ({ questions }) => {
   const dispatch = useDispatch();
+  const currentGame = useSelector<AppState, number>(state => state.game.currentGame);
   const gameState = useSelector<
     AppState,
     CompareQuantitiesGameReducerStateType
@@ -40,6 +41,10 @@ const CompareQuantitiesGame: React.FC<{
     dispatch(SET_COMPARE_QUANTITIES_GAME_CURRENT_QUESTION(0));
     dispatch(SET_COMPARE_QUANTITIES_GAME_STARTED());
   };
+
+  useEffect(() => {
+    handleGameStart();
+  },[])
 
   const handleItemClick = (expectedAnswer: number, selectedAnswer: number) => {
     dispatch(SET_COMPARE_QUANTITIES_GAME_SELECTED_ANSWER(selectedAnswer));
@@ -63,6 +68,7 @@ const CompareQuantitiesGame: React.FC<{
 
   const handleGameCompletion = () => {
     dispatch(SET_COMPARE_QUANTITIES_GAME_COMPLETED());
+    dispatch(SET_GAME_CURRENT_GAME(currentGame + 1));
   };
 
   const renderItem = (option: { imgPath: string; amount: number }) => {
@@ -162,16 +168,16 @@ const CompareQuantitiesGame: React.FC<{
             )}
             {gameState.currentQuestion + 1 === questions.length &&
             gameState.selectedAnswer ? (
-              <EndGameBtn handleClick={handleGameCompletion} />
+                <div style={{display: "flex", width: "100%", justifyContent: "center"}}>
+                  <NextGameBtn handleNextGame={handleGameCompletion} />
+
+                </div>
             ) : (
               ""
             )}
           </React.Fragment>
         ) : (
-          <StartGameBtn
-            handleGameStart={handleGameStart}
-            gameCompleted={gameState.gameCompleted}
-          />
+          ""
         )}
       </GameContent>
     </React.Fragment>

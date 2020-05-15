@@ -62,7 +62,9 @@ export const gameReducer = (state = initialState, action: Action) => {
     case "COMPLETE_GAME": {
       return {
         ...state,
-        gameCompleted: true
+        gameCompleted: true,
+        gameInitiated: false,
+        currentGame: 0
       };
     }
 

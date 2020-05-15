@@ -3,126 +3,126 @@ export const resultsTemp = {
         audioToTextGame: [
             {
                 question: 'Mis aastaajal käisid lapsed matkamas?',
-                answer: 'Sügisel',
-                correctAns: 'Kevadel',
-                correct: false
+                answer: 'Kevadel',
+                expected: 'Kevadel',
+                correct: true
             },
             {
                 question: 'Milline oli ilm?',
                 answer: 'Päikseline',
-                correctAns: 'Päikseline',
+                expected: 'Päikseline',
                 correct: true
             },
             {
                 question: 'Mis oli lasteaia nimi?',
-                answer: 'Päikese',
-                correctAns: 'Vikerkaare',
-                correct: false
+                answer: 'Vikerkaare',
+                expected: 'Vikerkaare',
+                correct: true
             },
             {
                 question: 'Mis värvi oli buss?',
-                answer: 'Punane',
-                correctAns: 'Kollane',
-                correct: false
+                answer: 'Kollane',
+                expected: 'Kollane',
+                correct: true
             },
             {
                 question: 'Mis oli bussijuhi nimi?',
                 answer: 'Mati',
-                correctAns: 'Mati',
+                expected: 'Mati',
                 correct: true
             },
             {
                 question: 'Mis laulu laulsid lapsed bussis?',
-                answer: 'Rongisõitu',
-                correctAns: 'Juba linnukesed',
-                correct: false
+                answer: 'Juba linnukesed',
+                expected: 'Juba linnukesed',
+                correct: true
             },
             {
                 question: 'Kuhu lapsed matkama läksid?',
                 answer: 'Rabasse',
-                correctAns: 'Rabasse',
+                expected: 'Rabasse',
                 correct: true
             },
             {
                 question: 'Mis värvi olid Mari kummikud?',
-                answer: 'Rohelised',
-                correctAns: 'Kollased',
-                correct: false
+                answer: 'Kollased',
+                expected: 'Kollased',
+                correct: true
             },
             {
                 question: 'Mitu korrust oli linnuvaatlustornil?',
                 answer: '3',
-                correctAns: '3',
+                expected: '3',
                 correct: true
             },
             {
                 question: 'Mida lapsed piknikul sõid?',
-                answer: 'Vorsti',
-                correctAns: 'Vorsti',
-                correct: true
+                answer: 'Pirukaid',
+                expected: 'Vorsti',
+                correct: false
             }
         ],
-            matchWordsWithPictureGame: [
-                {
-                    correct: false,
-                    expected: 'Auto',
-                    answer: 'Karu'
-                },
-                {
-                    correct: false,
-                    expected: 'Rebane',
-                    answer: 'Hobune'
-                },
-                {
-                    correct: false,
-                    expected: 'Cabbage',
-                    answer: 'Kõrvits'
-                },
-                {
-                    correct: true,
-                    expected: 'Aken',
-                    answer: 'Aken'
-                },
-                {
-                    correct: false,
-                    expected: 'Karu',
-                    answer: 'Orav'
-                },
-                {
-                    correct: true,
-                    expected: 'Auto',
-                    answer: 'Auto'
-                },
-                {
-                    correct: false,
-                    expected: 'Lill',
-                    answer: 'Nukk'
-                },
-                {
-                    correct: true,
-                    expected: 'Kapsas',
-                    answer: 'Kapsas'
-                },
-                {
-                    correct: true,
-                    expected: 'Rebane',
-                    answer: 'Rebane'
-                },
-                {
-                    correct: false,
-                    expected: 'Kõrvits',
-                    answer: 'Lill'
-                }
-            ],
-            matchOppositeWordGame: [
+        matchWordsWithPictureGame: [
+            {
+                correct: false,
+                expected: 'Auto',
+                answer: 'Karu'
+            },
+            {
+                correct: true,
+                expected: 'Hobune',
+                answer: 'Hobune'
+            },
+            {
+                correct: true,
+                expected: 'Kõrvits',
+                answer: 'Kõrvits'
+            },
+            {
+                correct: true,
+                expected: 'Aken',
+                answer: 'Aken'
+            },
+            {
+                correct: true,
+                expected: 'Orav',
+                answer: 'Orav'
+            },
+            {
+                correct: true,
+                expected: 'Auto',
+                answer: 'Auto'
+            },
+            {
+                correct: false,
+                expected: 'Lill',
+                answer: 'Nukk'
+            },
+            {
+                correct: true,
+                expected: 'Kapsas',
+                answer: 'Kapsas'
+            },
+            {
+                correct: true,
+                expected: 'Rebane',
+                answer: 'Rebane'
+            },
+            {
+                correct: true,
+                expected: 'Lill',
+                answer: 'Lill'
+            }
+        ],
+        matchOppositeWordGame: [
+            {
+                expected: 'Tüdruk',
+                answer: 'Tüdruk',
+                correct: true
+            },
             {
                 expected: 'Soe',
                 answer: 'Aeglane',
-                correct: false
-            },
-            {
-                expected: 'Tüdruk',
-                answer: 'Soe',
                 correct: false
             },
             {
@@ -132,324 +132,368 @@ export const resultsTemp = {
             },
             {
                 expected: 'Aeglane',
-                answer: 'Tüdruk',
+                answer: 'Soe',
                 correct: false
             },
             {
                 expected: 'Vana',
-                answer: 'Rõõmus',
-                correct: false
+                answer: 'Vana',
+                correct: true
             },
             {
                 expected: 'Suur',
+                answer: 'Suur',
+                correct: true
+            },
+            {
+                expected: 'Rõõmus',
                 answer: 'Raske',
                 correct: false
             },
             {
-                expected: 'Rõõmus',
-                answer: 'Vana',
-                correct: false
-            },
-            {
                 expected: 'Raske',
-                answer: 'Suur',
+                answer: 'Rõõmus',
                 correct: false
             }
         ],
-            pickTheRightWordGame: [
-                {
-                    correct: true,
-                    answer: 'Pall',
-                    expected: 'Pall'
-                },
-                {
-                    correct: true,
-                    answer: 'Kuul',
-                    expected: 'Kuul'
-                },
-                {
-                    correct: true,
-                    answer: 'Loss',
-                    expected: 'Loss'
-                },
-                {
-                    correct: false,
-                    answer: 'Kool',
-                    expected: 'Koll'
-                },
-                {
-                    correct: false,
-                    answer: 'Sukk',
-                    expected: 'Nukk'
-                },
-                {
-                    correct: false,
-                    answer: 'Kali',
-                    expected: 'Nari'
-                }
-            ],
-            imageSequenceGame: [
-                [
-                    {
-                        expected: 0,
-                        answer: 0,
-                        correct: true
-                    },
-                    {
-                        expected: 1,
-                        answer: 1,
-                        correct: true
-                    },
-                    {
-                        expected: 2,
-                        answer: 2,
-                        correct: true
-                    },
-                    {
-                        expected: 3,
-                        answer: 3,
-                        correct: true
-                    }
-                ],
-                [
-                    {
-                        expected: 0,
-                        answer: 1,
-                        correct: false
-                    },
-                    {
-                        expected: 1,
-                        answer: 0,
-                        correct: false
-                    },
-                    {
-                        expected: 2,
-                        answer: 2,
-                        correct: true
-                    },
-                    {
-                        expected: 3,
-                        answer: 3,
-                        correct: true
-                    }
-                ]
-            ],
-            monthsGame: [
-            false,
-            true,
-            false,
-            false,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true,
-            true
+        pickTheRightWordGame: [
+            {
+                correct: true,
+                answer: 'Pall',
+                expected: 'Pall'
+            },
+            {
+                correct: true,
+                answer: 'Kuul',
+                expected: 'Kuul'
+            },
+            {
+                correct: true,
+                answer: 'Loss',
+                expected: 'Loss'
+            },
+            {
+                correct: true,
+                answer: 'Koll',
+                expected: 'Koll'
+            },
+            {
+                correct: false,
+                answer: 'Sukk',
+                expected: 'Nukk'
+            },
+            {
+                correct: true,
+                answer: 'Nari',
+                expected: 'Nari'
+            }
         ],
-            numberSequencingGame: [
+        imageSequenceGame: [
             [
                 {
-                    correct: true,
-                    expected: 2,
-                    answer: 2
+                    expected: 0,
+                    answer: 0,
+                    correct: true
                 },
                 {
-                    correct: true,
-                    expected: 3,
-                    answer: 3
-                },
-                {
-                    correct: true,
-                    expected: 4,
-                    answer: 4
-                },
-                {
-                    correct: true,
-                    expected: 5,
-                    answer: 5
-                },
-                {
-                    correct: true,
-                    expected: 6,
-                    answer: 6
-                },
-                {
-                    correct: true,
-                    expected: 7,
-                    answer: 7
-                },
-                {
-                    correct: true,
-                    expected: 8,
-                    answer: 8
-                }
-            ],
-            [
-                {
-                    correct: false,
-                    expected: 9,
-                    answer: 3
-                },
-                {
-                    correct: false,
-                    expected: 8,
-                    answer: 6
-                },
-                {
-                    correct: true,
-                    expected: 7,
-                    answer: 7
-                },
-                {
-                    correct: false,
-                    expected: 6,
-                    answer: 9
-                },
-                {
-                    correct: false,
-                    expected: 5,
-                    answer: 8
-                },
-                {
-                    correct: true,
-                    expected: 4,
-                    answer: 4
-                },
-                {
-                    correct: false,
-                    expected: 3,
-                    answer: 5
-                }
-            ],
-            [
-                {
-                    correct: false,
-                    expected: 4,
-                    answer: 9
-                },
-                {
-                    correct: true,
-                    expected: 5,
-                    answer: 5
-                },
-                {
-                    correct: false,
-                    expected: 6,
-                    answer: 8
-                },
-                {
-                    correct: true,
-                    expected: 7,
-                    answer: 7
-                },
-                {
-                    correct: false,
-                    expected: 8,
-                    answer: 6
-                },
-                {
-                    correct: false,
-                    expected: 9,
-                    answer: 4
-                },
-                {
-                    correct: true,
-                    expected: 10,
-                    answer: 10
-                }
-            ],
-            [
-                {
-                    correct: false,
-                    expected: 7,
-                    answer: 3
-                },
-                {
-                    correct: true,
-                    expected: 6,
-                    answer: 6
-                },
-                {
-                    correct: true,
-                    expected: 5,
-                    answer: 5
-                },
-                {
-                    correct: true,
-                    expected: 4,
-                    answer: 4
-                },
-                {
-                    correct: false,
-                    expected: 3,
-                    answer: 7
-                },
-                {
-                    correct: true,
-                    expected: 2,
-                    answer: 2
-                },
-                {
-                    correct: true,
                     expected: 1,
-                    answer: 1
+                    answer: 1,
+                    correct: true
+                },
+                {
+                    expected: 2,
+                    answer: 2,
+                    correct: true
+                },
+                {
+                    expected: 3,
+                    answer: 3,
+                    correct: true
+                }
+            ],
+            [
+                {
+                    expected: 0,
+                    answer: 1,
+                    correct: false
+                },
+                {
+                    expected: 1,
+                    answer: 0,
+                    correct: false
+                },
+                {
+                    expected: 2,
+                    answer: 3,
+                    correct: false
+                },
+                {
+                    expected: 3,
+                    answer: 2,
+                    correct: false
                 }
             ]
         ],
-            calculationGame: [
+        monthsGame: [
+            {
+                expected: 'sügis',
+                answer: 'suvi',
+                correct: false
+            },
+            {
+                expected: 'sügis',
+                answer: 'sügis',
+                correct: true
+            },
+            {
+                expected: 'talv',
+                answer: 'suvi',
+                correct: false
+            },
+            {
+                expected: 'talv',
+                answer: 'talv',
+                correct: true
+            },
+            {
+                expected: 'kevad',
+                answer: 'kevad',
+                correct: true
+            },
+            {
+                expected: 'kevad',
+                answer: 'kevad',
+                correct: true
+            },
+            {
+                expected: 'talv',
+                answer: 'talv',
+                correct: true
+            },
+            {
+                expected: 'suvi',
+                answer: 'suvi',
+                correct: true
+            },
+            {
+                expected: 'suvi',
+                answer: 'suvi',
+                correct: true
+            },
+            {
+                expected: 'kevad',
+                answer: 'kevad',
+                correct: true
+            },
+            {
+                expected: 'sügis',
+                answer: 'sügis',
+                correct: true
+            }
+        ],
+        numberSequencingGame: [
+            [
+                {
+                    correct: true,
+                    expected: 2,
+                    answer: 2
+                },
+                {
+                    correct: true,
+                    expected: 3,
+                    answer: 3
+                },
+                {
+                    correct: true,
+                    expected: 4,
+                    answer: 4
+                },
+                {
+                    correct: true,
+                    expected: 5,
+                    answer: 5
+                },
+                {
+                    correct: true,
+                    expected: 6,
+                    answer: 6
+                },
+                {
+                    correct: true,
+                    expected: 7,
+                    answer: 7
+                },
+                {
+                    correct: true,
+                    expected: 8,
+                    answer: 8
+                }
+            ],
+            [
+                {
+                    correct: true,
+                    expected: 9,
+                    answer: 9
+                },
+                {
+                    correct: true,
+                    expected: 8,
+                    answer: 8
+                },
+                {
+                    correct: true,
+                    expected: 7,
+                    answer: 7
+                },
+                {
+                    correct: true,
+                    expected: 6,
+                    answer: 6
+                },
+                {
+                    correct: true,
+                    expected: 5,
+                    answer: 5
+                },
+                {
+                    correct: true,
+                    expected: 4,
+                    answer: 4
+                },
+                {
+                    correct: true,
+                    expected: 3,
+                    answer: 3
+                }
+            ],
+            [
+                {
+                    correct: true,
+                    expected: 4,
+                    answer: 4
+                },
+                {
+                    correct: true,
+                    expected: 5,
+                    answer: 5
+                },
+                {
+                    correct: true,
+                    expected: 6,
+                    answer: 6
+                },
+                {
+                    correct: true,
+                    expected: 7,
+                    answer: 7
+                },
+                {
+                    correct: false,
+                    expected: 8,
+                    answer: 10
+                },
+                {
+                    correct: true,
+                    expected: 9,
+                    answer: 9
+                },
+                {
+                    correct: false,
+                    expected: 10,
+                    answer: 8
+                }
+            ],
+            [
+                {
+                    correct: false,
+                    expected: 7,
+                    answer: 5
+                },
+                {
+                    correct: false,
+                    expected: 6,
+                    answer: 1
+                },
+                {
+                    correct: false,
+                    expected: 5,
+                    answer: 3
+                },
+                {
+                    correct: true,
+                    expected: 4,
+                    answer: 4
+                },
+                {
+                    correct: false,
+                    expected: 3,
+                    answer: 6
+                },
+                {
+                    correct: true,
+                    expected: 2,
+                    answer: 2
+                },
+                {
+                    correct: false,
+                    expected: 1,
+                    answer: 7
+                }
+            ]
+        ],
+        calculationGame: [
             {
                 correct: false,
                 expected: 10,
-                selected: 6
+                answer: 3
             },
             {
-                correct: false,
+                correct: true,
                 expected: 7,
-                selected: 3
+                answer: 7
             },
             {
-                correct: false,
+                correct: true,
                 expected: 11,
-                selected: 7
+                answer: 11
             },
             {
                 correct: false,
                 expected: 12,
-                selected: 7
-            },
-            {
-                correct: false,
-                expected: 4,
-                selected: 10
+                answer: 10
             },
             {
                 correct: true,
                 expected: 4,
-                selected: 4
+                answer: 4
             },
             {
-                correct: false,
+                correct: true,
+                expected: 4,
+                answer: 4
+            },
+            {
+                correct: true,
                 expected: 9,
-                selected: 5
+                answer: 9
+            },
+            {
+                correct: false,
+                expected: 2,
+                answer: 7
+            },
+            {
+                correct: true,
+                expected: 8,
+                answer: 8
             },
             {
                 correct: true,
                 expected: 2,
-                selected: 2
-            },
-            {
-                correct: false,
-                expected: 8,
-                selected: 10
-            },
-            {
-                correct: false,
-                expected: 2,
-                selected: 12
+                answer: 2
             }
         ],
-            compareQuantitiesGame: [
+        compareQuantitiesGame: [
             {
                 correct: true,
                 expected: 8,
@@ -471,26 +515,207 @@ export const resultsTemp = {
                 answer: 3
             }
         ],
-            analogueClockGame: [
+        analogueClockGame: [
             {
                 correct: true
+            },
+            {
+                correct: false
+            },
+            {
+                correct: false
             },
             {
                 correct: true
             },
             {
-                correct: true
+                correct: false
             },
             {
-                correct: true
-            },
-            {
-                correct: true
-            },
-            {
-                correct: true
+                correct: false
             }
         ],
-            dogCanvasGame: []
+        dogCanvasGame: [
+            {
+                expected: 'right',
+                answer: 'left',
+                correct: false
+            },
+            {
+                expected: 'right',
+                answer: 'up',
+                correct: false
+            },
+            {
+                expected: 'up',
+                answer: 'up',
+                correct: true
+            },
+            {
+                expected: 'right',
+                answer: 'right',
+                correct: true
+            },
+            {
+                expected: 'up',
+                answer: 'right',
+                correct: false
+            },
+            {
+                expected: 'right',
+                answer: 'right',
+                correct: true
+            },
+            {
+                expected: 'down',
+                answer: 'right',
+                correct: false
+            },
+            {
+                expected: 'down',
+                answer: 'down',
+                correct: true
+            },
+            {
+                expected: 'down',
+                answer: 'down',
+                correct: true
+            },
+            {
+                expected: 'down',
+                answer: 'down',
+                correct: true
+            },
+            {
+                expected: 'right',
+                answer: 'down',
+                correct: false
+            },
+            {
+                expected: 'right',
+                answer: 'down',
+                correct: false
+            },
+            {
+                expected: 'right',
+                answer: 'down',
+                correct: false
+            },
+            {
+                expected: 'up',
+                answer: 'down',
+                correct: false
+            },
+            {
+                expected: 'right',
+                answer: 'right',
+                correct: true
+            },
+            {
+                expected: 'down',
+                answer: 'right',
+                correct: false
+            },
+            {
+                expected: 'down',
+                answer: 'up',
+                correct: false
+            },
+            {
+                expected: 'down',
+                answer: 'up',
+                correct: false
+            },
+            {
+                expected: 'down',
+                answer: 'up',
+                correct: false
+            },
+            {
+                expected: 'down',
+                answer: 'up',
+                correct: false
+            },
+            {
+                expected: 'left',
+                answer: 'up',
+                correct: false
+            },
+            {
+                expected: 'left',
+                answer: 'up',
+                correct: false
+            },
+            {
+                expected: 'up',
+                answer: 'up',
+                correct: true
+            },
+            {
+                expected: 'left',
+                answer: 'up',
+                correct: false
+            },
+            {
+                expected: 'left',
+                answer: 'right',
+                correct: false
+            },
+            {
+                expected: 'down',
+                answer: 'right',
+                correct: false
+            },
+            {
+                expected: 'left',
+                answer: 'down',
+                correct: false
+            },
+            {
+                expected: 'left',
+                answer: 'down',
+                correct: false
+            },
+            {
+                expected: 'up',
+                answer: 'down',
+                correct: false
+            },
+            {
+                expected: 'up',
+                answer: 'down',
+                correct: false
+            },
+            {
+                expected: 'up',
+                answer: 'down',
+                correct: false
+            },
+            {
+                expected: 'up',
+                answer: 'down',
+                correct: false
+            },
+            {
+                expected: 'left',
+                answer: 'down',
+                correct: false
+            },
+            {
+                expected: 'left',
+                answer: 'down',
+                correct: false
+            },
+            {
+                expected: 'up',
+                answer: 'left',
+                correct: false
+            },
+            {
+                expected: 'up',
+                answer: 'up',
+                correct: true
+            }
+        ]
     }
 }

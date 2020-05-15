@@ -12,7 +12,7 @@ import {
 import { AppState } from "../../store/store";
 import { Button } from "reactstrap";
 import StartGameBtn from "../common/startGameBtn";
-import { POST_GAME_RESULTS } from "../game/actions/gameActions";
+import {POST_GAME_RESULTS, SET_GAME_CURRENT_GAME} from "../game/actions/gameActions";
 import AudioBtn from "../common/audioBtn";
 import {AudioToTextGameReducerStateType} from "./reducers/audioToTextGameReducer";
 
@@ -29,7 +29,7 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
   questions
 }) => {
   const gameState = useSelector<AppState, AudioToTextGameReducerStateType>(state => state.audioToTextGame);
-
+  const currentGame = useSelector<AppState, number>(state => state.game.currentGame);
 
   const task1StoryAudio = new Audio(
     process.env.PUBLIC_URL + "/audio/task1/task1-story.m4a"
@@ -46,6 +46,10 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
     dispatch(SET_AUDIO_TO_TEXT_GAME_STARTED());
   };
 
+  useEffect(() => {
+    handleSetGameStart();
+  }, []);
+
   const handleGameEnd = () => {
     let results: any = gameResults;
     results.audioToTextGame = [];
@@ -54,12 +58,13 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
       result.question = question.question;
       result.answer = question.answer;
       let correctOption = question.options.filter((x: any) => x.correct);
-      result.correctAns = correctOption[0].label;
-      result.correct = result.answer === result.correctAns;
+      result.expected = correctOption[0].label;
+      result.correct = result.answer === result.expected;
       results.audioToTextGame.push(result);
     });
     dispatch(POST_GAME_RESULTS(results));
     dispatch(SET_AUDIO_TO_TEXT_GAME_COMPLETED());
+    dispatch(SET_GAME_CURRENT_GAME(currentGame + 1))
   };
 
   const handleQuestionAnswer = (answer: any, question: any) => {
@@ -125,7 +130,7 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
             </div>
             <div className="audio-to-text-complete-game">
               <Button
-                color="primary"
+                color="success"
                 size="lg"
                 style={{
                   fontSize: "2rem",
@@ -134,7 +139,7 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
                 }}
                 onClick={handleGameEnd}
               >
-                LÕPETA MÄNG
+                EDASI!
               </Button>
             </div>
           </React.Fragment>

@@ -43,3 +43,10 @@ export const EndGameBtn: React.FC<{
     </Button>
   );
 };
+
+export const NextGameBtn:React.FC<{handleNextGame: any}> = ({handleNextGame}) => {
+
+  return <Button size="lg" onClick={handleNextGame} color="success" style={{fontWeight: "bold", fontSize: "2rem"}} className="game-next-game-btn">
+    EDASI!
+  </Button>
+}

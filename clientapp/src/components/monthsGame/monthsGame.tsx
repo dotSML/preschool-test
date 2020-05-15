@@ -5,10 +5,8 @@ import GameHeading from "../common/gameHeading";
 import GameDescription from "../common/gameDescription";
 import GameContent from "../common/gameContent";
 import { DndProvider } from "react-dnd";
-import MonthsDropContainer from "./monthsDropContainer";
 import { Months, Seasons } from "./months";
 import SeasonDropContainer from "./seasonDropContainer";
-import DraggableWord from "../dragWordToPictureGame/draggableWord";
 import DraggableMonth from "./draggableMonth";
 import { shuffleArray } from "../common/helpers/arrayHelpers";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,17 +18,21 @@ import {
   SET_MONTHS_GAME_STARTED
 } from "./actions/monthsGameActions";
 import StartGameBtn from "../common/startGameBtn";
-import { POST_GAME_RESULTS } from "../game/actions/gameActions";
+import {POST_GAME_RESULTS, SET_GAME_CURRENT_GAME} from "../game/actions/gameActions";
 import AudioBtn from "../common/audioBtn";
 
 const MonthsGame: React.FC<{ questions: Array<string> }> = ({ questions }) => {
   const gameState = useSelector<AppState, any>(state => state.monthsGame);
+  const currentGame = useSelector<AppState, any>(state => state.game.currentGame);
   const gameResults = useSelector<AppState, any>(state => state.game.results);
   const dispatch = useDispatch();
-  const [dropCount, setDropCount] = useState<number>(0); //11 max
   const [months, setMonths] = useState<Array<string>>([]);
   const [results, setResults] = useState<Array<any>>([]);
-
+  const handleGameStart = () => {
+    dispatch(SET_MONTHS_GAME_NO_MONTHS(false));
+    dispatch(SET_MONTHS_GAME_CURRENT_MONTH(0));
+    dispatch(SET_MONTHS_GAME_STARTED());
+  };
   useEffect(() => {
     let monthsArr = shuffleArray([
       ...Months.winter,
@@ -39,7 +41,9 @@ const MonthsGame: React.FC<{ questions: Array<string> }> = ({ questions }) => {
       ...Months.spring
     ]);
     setMonths(monthsArr);
+    handleGameStart();
   }, []);
+
 
   const getNextMonth = () => {
     if (gameState.currentMonth + 1 < months.length) {
@@ -52,6 +56,7 @@ const MonthsGame: React.FC<{ questions: Array<string> }> = ({ questions }) => {
         )
       );
       dispatch(SET_MONTHS_GAME_COMPLETED());
+      dispatch(SET_GAME_CURRENT_GAME(currentGame + 1));
     }
   };
 
@@ -63,16 +68,11 @@ const MonthsGame: React.FC<{ questions: Array<string> }> = ({ questions }) => {
         expectedSeason = s.label
       }
     });
-    console.log(expectedSeason);
       tempResultsArr.push({expected: expectedSeason, answer: season.label, correct: expectedSeason === season.label});
       setResults(tempResultsArr);
     };
 
-  const handleGameStart = () => {
-    dispatch(SET_MONTHS_GAME_NO_MONTHS(false));
-    dispatch(SET_MONTHS_GAME_CURRENT_MONTH(0));
-    dispatch(SET_MONTHS_GAME_STARTED());
-  };
+
 
   return (
     <DndProvider backend={MultiBackend} options={HTML5toTouch}>

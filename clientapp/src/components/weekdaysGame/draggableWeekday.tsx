@@ -8,7 +8,8 @@ import Preview from "react-dnd-preview";
 const DraggableWeekday: React.FC<{
   weekday: WeekdaysGameWeekdayType;
   style?: any;
-}> = ({ weekday, style }) => {
+  dropped?: boolean
+}> = ({ weekday, style, dropped }) => {
   const [dragProps, drag] = useDrag({
     item: { type: DraggableWordType.WEEKDAY, weekday: weekday },
     collect: monitor => ({
@@ -30,9 +31,9 @@ const DraggableWeekday: React.FC<{
       <div
         style={{
           opacity: dragProps.isDragging ? 0 : 1,
-          transition: "all .2s"
+          transition: "all .2s", ...style
         }}
-        className="weekday-game-draggable-weekday"
+        className={!dropped ? "weekday-game-draggable-weekday" : "weekday-game-draggable-weekday-dropped"}
         ref={drag}
       >
         {weekday.label}

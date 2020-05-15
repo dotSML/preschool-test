@@ -17,7 +17,7 @@ import {
   SET_IMAGE_SEQUENCE_GAME_CURRENT_QUESTION,
   SET_IMAGE_SEQUENCE_GAME_STARTED
 } from "./actions/imageSequenceGameActions";
-import { POST_GAME_RESULTS } from "../game/actions/gameActions";
+import {POST_GAME_RESULTS, SET_GAME_CURRENT_GAME} from "../game/actions/gameActions";
 import { ImageSequenceGameReducerStateType } from "./reducers/imageSequenceGameReducer";
 import AudioBtn from "../common/audioBtn";
 import {GameReducerStateType} from "../game/reducers/gameReducer";
@@ -44,6 +44,17 @@ const ImageSequenceGame: React.FC<{
     Array<ImageSequenceGameQuestionType>
   >([]);
 
+  const currentGame = useSelector<AppState, number>(state => state.game.currentGame);
+
+  const handleGameStart = () => {
+    dispatch(SET_IMAGE_SEQUENCE_GAME_CURRENT_QUESTION(0));
+    dispatch(SET_IMAGE_SEQUENCE_GAME_STARTED());
+  };
+
+  useEffect(() => {
+    handleGameStart();
+  }, []);
+
   useEffect(() => {
     if (!imageSlots.length) {
       setImageSlots([...questions[imageSequenceGameState.currentQuestion]]);
@@ -54,18 +65,7 @@ const ImageSequenceGame: React.FC<{
     setImageSlots([...questions[imageSequenceGameState.currentQuestion]]);
   }, [imageSequenceGameState.currentQuestion]);
 
-  const handleGameStart = () => {
-    dispatch(SET_IMAGE_SEQUENCE_GAME_CURRENT_QUESTION(0));
-    dispatch(SET_IMAGE_SEQUENCE_GAME_STARTED());
-  };
 
-  // const isAscending = (array: Array<any>, key:number) => {
-  //   for (let i = 1; i < array.length; i++) {
-  //     if (array[i - 1][key] - array[i][key] > 0)
-  //       return false;
-  //   }
-  //   return true;
-  // }
 
   const reArrangeSlots = (dragItemIdx: number, switchWithIdx: number) => {
     //a, b
@@ -99,6 +99,7 @@ const ImageSequenceGame: React.FC<{
     } else {
       postResults(tempResultArr);
       dispatch(SET_IMAGE_SEQUENCE_GAME_COMPLETED());
+      dispatch(SET_GAME_CURRENT_GAME(currentGame + 1));
     }
   };
 
@@ -143,10 +144,10 @@ const ImageSequenceGame: React.FC<{
                 <Button
                   size="lg"
                   color="success"
-                  style={{ fontSize: "2rem" }}
+                  style={{ fontSize: "2rem", fontWeight: "bold" }}
                   onClick={nextQuestion}
                 >
-                  Olen oma vastuses kindel!
+                  EDASI!
                 </Button>
               ) : (
                 ""
@@ -154,10 +155,7 @@ const ImageSequenceGame: React.FC<{
             </div>
           </div>
         ) : (
-          <StartGameBtn
-            handleGameStart={handleGameStart}
-            gameCompleted={imageSequenceGameState.gameCompleted}
-          />
+          ""
         )}
       </GameContent>
     </DndProvider>

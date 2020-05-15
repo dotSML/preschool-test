@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import GameHeading from "../common/gameHeading";
 import { Button } from "reactstrap";
 import GameDescription from "../common/gameDescription";
@@ -23,6 +23,8 @@ import MatchOppositeWordGame from "./matchOppositeWordGame/matchOppositeWordGame
 import PickTheRightWordGame from "./pickTheRightWordGame/pickTheRightWordGame";
 import StartGameBtn from "../common/startGameBtn";
 import AudioBtn from "../common/audioBtn";
+import {NextGameBtn} from "../common/gameButtons";
+import {SET_GAME_CURRENT_GAME} from "../game/actions/gameActions";
 
 export type DragWordToPictureGameQuestionType = {
   answer: string;
@@ -40,6 +42,8 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
   const gameCompleted = useSelector<AppState, boolean>(
     state => state.dragWordToPictureGame.gameCompleted
   );
+
+  const currentGame = useSelector<AppState, number>(state => state.game.currentGame);
   const [gameStarted, setGameStarted] = useState<boolean>(false);
 
   const handleGameStart = () => {
@@ -49,9 +53,14 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
     setGameStarted(c => !c);
   };
 
+  useEffect(() => {
+    handleGameStart();
+  },[])
+
   const handleGameEnd = () => {
     dispatch(SET_DRAG_WORD_TO_PICTURE_GAME_SET_GAME_COMPLETED(true));
     setGameStarted(false);
+    dispatch(SET_GAME_CURRENT_GAME(currentGame + 1));
   };
 
   const gameFlow = [
@@ -82,10 +91,7 @@ const DragWordToPictureGame: React.FC<{ gameConfig: any }> = ({
         {gameStarted && !gameCompleted ? (
           gameFlow[currentAssignment].gameComponent
         ) : (
-          <StartGameBtn
-            handleGameStart={handleGameStart}
-            gameCompleted={gameCompleted}
-          />
+          <NextGameBtn handleNextGame={handleGameEnd}/>
         )}
       </GameContent>
     </DndProvider>

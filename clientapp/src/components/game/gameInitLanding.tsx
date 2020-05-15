@@ -12,15 +12,15 @@ const GameInitLanding = () => {
     <div className="game-init-layout">
         <div className="game-init__body">
       <h1 className="game-init-welcome-heading">
-        Suitsupääsupesa Lasteaia testmäng
+        SUITSUPÄÄSU PESA LASTEAIA TESTMÄNG
       </h1>
             <div className="game-init-form">
       <FormGroup>
-        <Label className="game-init-form__label">NIMI</Label>
+        <Label className="game-init-form__label">LAPSE NIMI</Label>
         <Input style={{color: 'black'}} value={name} onChange={(e) => setName(e.target.value)} type="text" />
       </FormGroup>
                 <FormGroup>
-                    <Label className="game-init-form__label">KASVATAJA</Label>
+                    <Label className="game-init-form__label">ÕPETAJA</Label>
                     <select onChange={e => setTeacher(e.target.value)}>
                         <option/>
                         <option value="email1">Kasvataja 1</option>

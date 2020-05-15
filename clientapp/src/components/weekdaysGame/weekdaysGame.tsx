@@ -18,6 +18,7 @@ import {
 } from "./actions/weekdaysGameActions";
 import { Button } from "reactstrap";
 import AudioBtn from "../common/audioBtn";
+import {SET_GAME_CURRENT_GAME} from "../game/actions/gameActions";
 
 type WeekdaysGameQuestionsType = Array<{
   label: string;
@@ -40,6 +41,13 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
   const dispatch = useDispatch();
   const gameState = useSelector<AppState, any>(state => state.weekdaysGame);
   const [dropSlots, setDropSlots] = useState<Array<any>>([]);
+  const currentGame = useSelector<AppState, number>(state => state.game.currentGame);
+  const handleGameStart = () => {
+    dispatch(SET_WEEKDAYS_GAME_CURRENT_QUESTION(0));
+    dispatch(SET_WEEKDAYS_GAME_STARTED());
+  };
+
+
   useEffect(() => {
     if (questions.length !== 0) {
       let questionsTempArr = [...questions];
@@ -51,6 +59,7 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
         });
         setDropSlots(dropArrTemp);
       }
+      handleGameStart();
     }
   }, [questions]);
 
@@ -68,10 +77,7 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
     setQuestionsArr(newQuestionArr);
   };
 
-  const handleGameStart = () => {
-    dispatch(SET_WEEKDAYS_GAME_CURRENT_QUESTION(0));
-    dispatch(SET_WEEKDAYS_GAME_STARTED());
-  };
+
 
   const handleSlotArrChange = (value: Array<any>, droppedItem: any) => {
     setDropSlots(value);
@@ -87,6 +93,7 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
 
   const handleGameCompletion = () => {
     dispatch(SET_WEEKDAYS_GAME_COMPLETED());
+    dispatch(SET_GAME_CURRENT_GAME(currentGame + 1));
   };
 
   return (
@@ -127,10 +134,10 @@ const WeekdaysGame: React.FC<{ questions: WeekdaysGameQuestionsType }> = ({
                 <Button
                   color="success"
                   size="lg"
-                  style={{ fontSize: "2rem" }}
+                  style={{ fontSize: "2rem", fontWeight: "bold" }}
                   onClick={handleGameCompletion}
                 >
-                  Olen oma vastuses kindel!
+                  EDASI!
                 </Button>
               )}
             </div>

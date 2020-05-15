@@ -96,14 +96,8 @@ const WeekdayDropZone: React.FC<{
       </span>
       {!_.isEmpty(dropzone.droppedItem) ? (
         <DraggableWeekday
-          style={{
-            border: "none",
-            borderRadius: "8px",
-            padding: "0.5rem",
-            backgroundColor: "#0275d8",
-            fontSize: "1.2rem",
-            color: "white"
-          }}
+            dropped={true}
+
           weekday={dropzone.droppedItem.weekday}
         />
       ) : (

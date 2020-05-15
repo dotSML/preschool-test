@@ -45,7 +45,7 @@ const SeasonDropContainer: React.FC<{
         {droppedMonths?.map(month => {
           return (
             <div
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{ display: "flex", justifyContent: "center", textTransform: "uppercase" }}
               key={month}
             >
               {month}

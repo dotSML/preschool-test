@@ -16,7 +16,7 @@ import {
   SET_CALCULATION_GAME_STARTED
 } from "./actions/calculationGameActions";
 import { Button } from "reactstrap";
-import { POST_GAME_RESULTS } from "../game/actions/gameActions";
+import {POST_GAME_RESULTS, SET_GAME_CURRENT_GAME} from "../game/actions/gameActions";
 
 const CalculationGame: React.FC<{
   questions: Array<{ task: string; answer: number }>;
@@ -25,8 +25,18 @@ const CalculationGame: React.FC<{
     state => state.calculationGame
   );
   const gameResults = useSelector<AppState, any>(state => state.game.results);
+  const currentGame = useSelector<AppState, number>(state => state.game.currentGame);
   const dispatch = useDispatch();
   const [questionOptions, setOptions] = useState<Array<number>>([]);
+
+  const handleStartGame = () => {
+    dispatch(SET_CALCULATION_GAME_CURRENT_QUESTION(0));
+    dispatch(SET_CALCULATION_GAME_STARTED());
+  };
+
+  useEffect(() => {
+    handleStartGame();
+  }, []);
 
   const getRandomOptionsWithCorrect = (
     correctAns: number,
@@ -47,7 +57,7 @@ const CalculationGame: React.FC<{
     resultsArr.push({
       correct: expected === selectedOption,
       expected: expected,
-      selected: selectedOption
+      answer: selectedOption
     });
     dispatch(
       POST_GAME_RESULTS(
@@ -68,6 +78,7 @@ const CalculationGame: React.FC<{
       );
     } else {
       dispatch(SET_CALCULATION_GAME_COMPLETED());
+      dispatch(SET_GAME_CURRENT_GAME(currentGame + 1))
     }
   };
 
@@ -84,10 +95,7 @@ const CalculationGame: React.FC<{
     dispatch(SET_CALCULATION_GAME_CHOSEN_ANSWER(optionVal));
   };
 
-  const handleStartGame = () => {
-    dispatch(SET_CALCULATION_GAME_CURRENT_QUESTION(0));
-    dispatch(SET_CALCULATION_GAME_STARTED());
-  };
+
 
   useEffect(() => {
     setOptions(
@@ -111,6 +119,13 @@ const CalculationGame: React.FC<{
               totalAmountOfQuestions={questions.length}
               currentQuestion={gameState.currentQuestion + 1}
             />
+            <div className="calculation-game-task-wrapper">
+              <div className="calculation-game-task">
+                {questions[gameState.currentQuestion].task +
+                " = " +
+                (gameState.chosenAnswer !== 0 ? gameState.chosenAnswer : "?")}
+              </div>
+            </div>
             <div className="calculation-game-options">
               {questionOptions.map(opt => {
                 return (
@@ -119,19 +134,12 @@ const CalculationGame: React.FC<{
                     className="calculation-game-option"
                     onClick={() => handleOptionClick(opt)}
                   >
-                    <div className="calculation-game-option-image">IMG</div>
                     {opt}
                   </div>
                 );
               })}
             </div>
-            <div className="calculation-game-task-wrapper">
-              <div className="calculation-game-task">
-                {questions[gameState.currentQuestion].task +
-                  " = " +
-                  (gameState.chosenAnswer !== 0 ? gameState.chosenAnswer : "?")}
-              </div>
-            </div>
+
             {gameState.chosenAnswer !== 0 &&
             gameState.currentQuestion + 1 < questions.length ? (
               <div
@@ -154,7 +162,7 @@ const CalculationGame: React.FC<{
                 style={{ fontSize: "2rem" }}
                 onClick={nextQuestion}
               >
-                LÕPETA ÜLESANNE
+                EDASI!
               </Button>
             ) : (
               ""

@@ -6,12 +6,12 @@ import { Button } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import { DogCanvasGameReducerStateType } from "./reducers/dogCanvasGameReducer";
-import StartGameBtn from "../common/startGameBtn";
 import {
   SET_DOG_CANVAS_GAME_COMPLETED,
   SET_DOG_CANVAS_GAME_CURRENT_QUESTION,
   SET_DOG_CANVAS_GAME_STARTED
 } from "./actions/dogCanvasGameActions";
+import {COMPLETE_GAME, POST_GAME_RESULTS} from "../game/actions/gameActions";
 
 const DogCanvasGame: React.FC<{ questions: string[] }> = ({ questions }) => {
   const canvasRef = useRef(null);
@@ -24,6 +24,10 @@ const DogCanvasGame: React.FC<{ questions: string[] }> = ({ questions }) => {
   const gameState = useSelector<AppState, DogCanvasGameReducerStateType>(
     state => state.dogCanvasGame
   );
+
+  const gameResults = useSelector<AppState, any>(state => state.game.results);
+
+  const [results, setResults] = useState<any[]>([]);
 
   const drawGrid = (el: any, ctx: any) => {
     el.width = 500;
@@ -79,14 +83,12 @@ const DogCanvasGame: React.FC<{ questions: string[] }> = ({ questions }) => {
       ctx?.beginPath();
       ctx.strokeStyle = "#4c4c4c";
       ctx?.moveTo(position.x, position.y);
+      let tempResults = [...results];
       switch (direction) {
         case "up":
           {
-            if (curQuestion === "up") {
-              console.log("CORRECT");
-            } else {
-              console.log("FALSE");
-            }
+
+            tempResults.push({expected: curQuestion, answer: direction, correct: curQuestion === direction})
             tempPosition = Object.assign(tempPosition, {
               y: position.y - drawDistance
             });
@@ -94,11 +96,7 @@ const DogCanvasGame: React.FC<{ questions: string[] }> = ({ questions }) => {
           break;
         case "left":
           {
-            if (curQuestion === "left") {
-              console.log("CORRECT");
-            } else {
-              console.log("FALSE");
-            }
+            tempResults.push({expected: curQuestion, answer: direction, correct: curQuestion === direction})
             tempPosition = Object.assign(tempPosition, {
               x: position.x - drawDistance
             });
@@ -106,11 +104,7 @@ const DogCanvasGame: React.FC<{ questions: string[] }> = ({ questions }) => {
           break;
         case "right":
           {
-            if (curQuestion === "right") {
-              console.log("CORRECT");
-            } else {
-              console.log("false");
-            }
+            tempResults.push({expected: curQuestion, answer: direction, correct: curQuestion === direction})
             tempPosition = Object.assign(tempPosition, {
               x: position.x + drawDistance
             });
@@ -118,11 +112,7 @@ const DogCanvasGame: React.FC<{ questions: string[] }> = ({ questions }) => {
           break;
         case "down":
           {
-            if (curQuestion === "down") {
-              console.log("CORRECT");
-            } else {
-              console.log("FALSE");
-            }
+            tempResults.push({expected: curQuestion, answer: direction, correct: curQuestion === direction})
             tempPosition = Object.assign(tempPosition, {
               y: position.y + drawDistance
             });
@@ -132,6 +122,7 @@ const DogCanvasGame: React.FC<{ questions: string[] }> = ({ questions }) => {
           tempPosition = position;
         }
       }
+      setResults(tempResults);
       setPosition(tempPosition);
       ctx?.lineTo(tempPosition.x, tempPosition.y);
       ctx.lineWidth = 5;
@@ -182,11 +173,21 @@ const DogCanvasGame: React.FC<{ questions: string[] }> = ({ questions }) => {
   };
 
   useEffect(() => {
+    handleGameStart();
+  }, []);
+
+  useEffect(() => {
     if (gameState.gameStarted) {
       setDrawingComplete(false);
       initializeDrawing();
     }
   }, [gameState.gameStarted]);
+
+  const handleGameCompletion = () => {
+    dispatch(POST_GAME_RESULTS(Object.assign({...gameResults}, {dogCanvasGame: results})))
+    dispatch(SET_DOG_CANVAS_GAME_COMPLETED());
+    dispatch(COMPLETE_GAME());
+  }
 
   return (
     <React.Fragment>
@@ -259,9 +260,7 @@ const DogCanvasGame: React.FC<{ questions: string[] }> = ({ questions }) => {
                   marginTop: "8rem",
                   fontWeight: "bold"
                 }}
-                onClick={() => {
-                  dispatch(SET_DOG_CANVAS_GAME_COMPLETED());
-                }}
+                onClick={handleGameCompletion}
               >
                 LÕPETA MÄNG
               </Button>
@@ -280,10 +279,7 @@ const DogCanvasGame: React.FC<{ questions: string[] }> = ({ questions }) => {
             </div>
           </div>
         ) : (
-          <StartGameBtn
-            handleGameStart={handleGameStart}
-            gameCompleted={gameState.gameCompleted}
-          />
+          ""
         )}
       </GameContent>
     </React.Fragment>

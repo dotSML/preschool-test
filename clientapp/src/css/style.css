@@ -150,6 +150,7 @@ body {
 
 .game-init-welcome-heading {
     font-size: 4rem;
+    white-space: nowrap;
 }
 
 .game-init-secondary-heading {
@@ -214,13 +215,14 @@ body {
 .game-heading {
     font-size: 2.5rem;
     font-weight: bold;
+    width: 100%;
     text-transform: uppercase;
 }
 
 .game-description {
     display: flex;
     align-items: center;
-
+    text-transform: uppercase;
     font-size: 1.8rem;
     font-weight: 600;
 }
@@ -255,8 +257,25 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
     justify-content: center;
-    border: 1px solid black;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.game-end-dev-game-results {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.game-end-dev-game-result {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0rem;
+    border: 2px solid rgba(0,0,0,.2);
+    padding: 1rem;
+    font-size: 1.5rem;
 }
 
 
@@ -509,12 +528,14 @@ body {
     width: 100%;
     position: relative;
     justify-content: center;
+    user-select: none;
 }
 
 .months-game-seasons-container {
     display: flex;
     width: 100%;
     justify-content: space-around;
+    user-select: none;
 }
 
 .months-game-season-drop-container {
@@ -571,10 +592,14 @@ body {
     display: flex;
     padding: 1rem;
     justify-content: center;
+    align-items: center;
     border-radius: 8px;
     color: white;
     background-color: #0275d8;
     font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    min-width: 8rem;
 }
 
 .weekday-game-draggable-weekday:not(:last-child){
@@ -589,12 +614,31 @@ body {
     width: 100%;
 }
 
+.weekday-game-draggable-weekday-dropped {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    padding: 0.7rem;
+    background-color: #0275d8;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    min-width: 6rem;
+    width: 100%;
+    color: white;
+}
+
+
+
+
 .weekday-game-dropzone {
     display: flex;
     width: 10rem;
     height: 5rem;
     align-items: center;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1rem;
     border-radius: 8px;
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,.15);
     background-color: #53d7bc;
@@ -630,7 +674,7 @@ body {
     border: 3px solid rgba(0,0,0,.2);
     border-radius: 8px;
     justify-content: center;
-    background-color: white;
+    background-color: #3cd7e5;
 }
 
 .number-sequencing-game-draggable-number {
@@ -678,9 +722,9 @@ body {
 .calculation-game-option {
     display: flex;
     flex-direction: column;
-    height: 13rem;
-    width: 11rem;
     margin: 0 2rem 1rem 2rem;
+    min-width: 10rem;
+    min-height: 10rem;
     border-radius: 8px;
     border: 1px solid rgba(0,0,0,.15);
     font-size: 4rem;
@@ -708,6 +752,7 @@ body {
 
 .calculation-game-task-wrapper {
     display: flex;
+    margin-bottom: 2rem;
     justify-content: center;
 }
 

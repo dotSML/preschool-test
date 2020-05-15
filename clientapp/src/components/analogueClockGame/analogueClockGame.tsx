@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import GameHeading from "../common/gameHeading";
 import GameDescription from "../common/gameDescription";
 import GameContent from "../common/gameContent";
-import StartGameBtn from "../common/startGameBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import {
@@ -11,10 +10,9 @@ import {
   SET_ANALOGUE_CLOCK_GAME_SELECTED_ANSWER,
   SET_ANALOGUE_CLOCK_GAME_STARTED
 } from "./actions/analogueClockGameActions";
-import { EndGameBtn, NextQuestionBtn } from "../common/gameButtons";
+import { NextGameBtn, NextQuestionBtn} from "../common/gameButtons";
 import GameQuestionCounter from "../common/gameQuestionCounter";
-import { GameReducerStateType } from "../game/reducers/gameReducer";
-import { POST_GAME_RESULTS } from "../game/actions/gameActions";
+import {POST_GAME_RESULTS, SET_GAME_CURRENT_GAME} from "../game/actions/gameActions";
 
 const AnalogueClockGame: React.FC<{
   questions: Array<{
@@ -23,6 +21,7 @@ const AnalogueClockGame: React.FC<{
   }>;
 }> = ({ questions }) => {
   const dispatch = useDispatch();
+  const currentGame = useSelector<AppState, number>(state => state.game.currentGame);
   const gameState = useSelector<AppState, any>(
     state => state.analogueClockGame
   );
@@ -37,6 +36,10 @@ const AnalogueClockGame: React.FC<{
     dispatch(SET_ANALOGUE_CLOCK_GAME_CURRENT_QUESTION(0));
     dispatch(SET_ANALOGUE_CLOCK_GAME_STARTED());
   };
+
+  useEffect(() => {
+    handleGameStart();
+  }, []);
 
   const handleAnswerClick = (item: any) => {
     dispatch(SET_ANALOGUE_CLOCK_GAME_SELECTED_ANSWER(item));
@@ -68,6 +71,7 @@ const AnalogueClockGame: React.FC<{
     );
     dispatch(SET_ANALOGUE_CLOCK_GAME_SELECTED_ANSWER(null));
     dispatch(SET_ANALOGUE_CLOCK_GAME_COMPLETED());
+    dispatch(SET_GAME_CURRENT_GAME(currentGame + 1));
   };
 
   return (
@@ -138,17 +142,14 @@ const AnalogueClockGame: React.FC<{
                     marginTop: "3rem"
                   }}
                 >
-                  <EndGameBtn handleClick={handleGameEnd} />
+                  <NextGameBtn handleNextGame={handleGameEnd} />
                 </div>
               ) : (
                 ""
               )}
             </React.Fragment>
           ) : (
-            <StartGameBtn
-              handleGameStart={handleGameStart}
-              gameCompleted={gameState.gameCompleted}
-            />
+            ""
           )}
         </GameContent>
       </React.Fragment>
