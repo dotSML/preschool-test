@@ -9,6 +9,11 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+.root {
+    height: 100%;
+    width: 100%;
+}
+
 .game-bg {
     position: absolute;
     z-index: -100000;
@@ -229,6 +234,29 @@ body {
     font-size: 3rem;
     height: 100%;
     margin: 10rem auto;
+}
+
+
+.game-end-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10rem;
+}
+
+.game-end-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.game-end-dev-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
 }
 
 

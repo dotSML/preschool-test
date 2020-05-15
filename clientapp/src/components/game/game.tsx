@@ -95,27 +95,7 @@ const Game: React.FC = () => {
       {games[gameState.currentGame].component}
       <GameStatus games={games} currentGame={games[gameState.currentGame]}/>
 
-      {/*<div className="game-buttons">*/}
-      {/*  <Button*/}
-      {/*    size="lg"*/}
-      {/*    color="danger"*/}
-      {/*    style={{ marginRight: "1rem", fontWeight: 600 }}*/}
-      {/*    disabled={gameState.currentGame === 0}*/}
-      {/*    onClick={handlePreviousGameClick}*/}
-      {/*  >*/}
-      {/*    Eelmine mäng*/}
-      {/*  </Button>*/}
-      {/*  <Button*/}
-      {/*    size="lg"*/}
-      {/*    color="primary"*/}
-      {/*    style={{ fontWeight: 600 }}*/}
-      {/*    onClick={*/}
-      {/*      noNextGame() ? () => alert("GAME OVER") : handleNextGameClick*/}
-      {/*    }*/}
-      {/*  >*/}
-      {/*    {noNextGame() ? "Lõpeta test" : "Järgmine mäng"}*/}
-      {/*  </Button>*/}
-      {/*</div>*/}
+
     </GameBox>
   );
 };

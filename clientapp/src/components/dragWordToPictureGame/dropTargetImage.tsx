@@ -21,9 +21,9 @@ const DropTargetImage: React.FC<{
       const droppedItem: any = { ...item };
 
       if (imgProp.word === droppedItem.word) {
-        handleAnswer(true);
+        handleAnswer({correct: true, expected: imgProp.word, answer: droppedItem.word});
       } else {
-        handleAnswer(false);
+        handleAnswer({correct: false, expected: imgProp.word, answer: droppedItem.word});
       }
     },
     options: { word: imgProp.word },

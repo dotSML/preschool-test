@@ -46,10 +46,10 @@ const MatchWordWithPictureGame: React.FC<{
     }
   };
 
-  const handleAnswer = (correct: boolean) => {
+  const handleAnswer = (answerObj: {correct: boolean, expected: string, answer: string}) => {
     let tempThisGameResults = results;
     if (currentQuestion === questions.length - 1) {
-      tempThisGameResults.push(correct);
+      tempThisGameResults.push(answerObj);
       dispatch(
         POST_GAME_RESULTS(
           Object.assign(
@@ -59,7 +59,7 @@ const MatchWordWithPictureGame: React.FC<{
         )
       );
     } else {
-      tempThisGameResults.push(correct);
+      tempThisGameResults.push(answerObj);
       setResults(tempThisGameResults);
     }
   };

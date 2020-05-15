@@ -22,7 +22,8 @@ const PickTheRightWordGame: React.FC<{
   const [results, setResults] = useState<Array<any>>([]);
   const handleQuestionAnswer = (answer: string, expected: string) => {
     let tempResults = results;
-    tempResults.push(answer === expected);
+    tempResults.push({correct: answer === expected, answer: answer, expected: expected
+  });
     setResults(tempResults);
     nextQuestion();
   };

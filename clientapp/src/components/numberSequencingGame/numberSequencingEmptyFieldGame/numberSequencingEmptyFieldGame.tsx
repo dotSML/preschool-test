@@ -7,6 +7,7 @@ import { Button } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../../store/store";
 import { POST_GAME_RESULTS } from "../../game/actions/gameActions";
+import {shuffleArray} from "../../common/helpers/arrayHelpers";
 
 const NumberSequencingEmptyFieldGame: React.FC<{
   questions: Array<{ availableNumbers: number[]; originalSequence: number[] }>;
@@ -32,7 +33,8 @@ const NumberSequencingEmptyFieldGame: React.FC<{
       }
     });
 
-    setNumberOptions(options);
+    const shuffledOptions = shuffleArray(options);
+    setNumberOptions(shuffledOptions);
     setDropSlots(dropArr);
   }, [questions, currentQuestion]);
 
@@ -131,9 +133,10 @@ const NumberSequencingEmptyFieldGame: React.FC<{
       )}
       {currentQuestion + 1 === questions.length &&
       numberOptions.length === 0 ? (
-        <Button color="success" onClick={handleNextQuestion}>
+        <Button color="success" style={{fontWeight: "bold", fontSize: "2rem"}} size="lg" onClick={handleNextQuestion}>
           LÕPETA ÜLESANNE
         </Button>
+
       ) : (
         ""
       )}

@@ -7,6 +7,7 @@ import {useSelector} from "react-redux";
 import {AppState} from "./store/store";
 import {GameReducerStateType} from "./components/game/reducers/gameReducer";
 import GameStatus from "./components/game/gameStatus";
+import GameEnd from "./components/game/gameEnd";
 
 function App() {
   const game = useSelector<AppState, GameReducerStateType>(state => state.game);
@@ -23,7 +24,8 @@ function App() {
         className="game-logo"
       />
       <Layout>
-          {game.gameInitiated ? <Game/> : <GameInitLanding/>}
+          {game.gameInitiated && !game.gameCompleted ? <Game/> : <GameInitLanding/>}
+          {/*{!game.gameInitiated && !game.gameCompleted ? <GameEnd/> : ""}*/}
       </Layout>
     </div>
   );

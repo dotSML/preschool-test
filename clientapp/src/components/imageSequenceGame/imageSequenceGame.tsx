@@ -20,6 +20,7 @@ import {
 import { POST_GAME_RESULTS } from "../game/actions/gameActions";
 import { ImageSequenceGameReducerStateType } from "./reducers/imageSequenceGameReducer";
 import AudioBtn from "../common/audioBtn";
+import {GameReducerStateType} from "../game/reducers/gameReducer";
 
 export type ImageSequenceGameQuestionType = { order: number; image: string };
 
@@ -31,7 +32,7 @@ const ImageSequenceGame: React.FC<{
   questions: ImageSequenceGameQuestionsType;
 }> = ({ questions }) => {
   const dispatch = useDispatch();
-  const gameResults = useSelector<AppState, Array<any>>(
+  const gameResults = useSelector<AppState, any>(
     state => state.game.results
   );
   const [results, setResults] = useState<Array<any>>([]);
@@ -77,16 +78,26 @@ const ImageSequenceGame: React.FC<{
     setImageSlots(slotArr);
   };
 
-  const nextQuestion = () => {
-    if (questions.length > imageSequenceGameState.currentQuestion + 1) {
-      dispatch(
+  const postResults = (tempResultArr: any[]) => {
+    tempResultArr.push(imageSlots.map((slot: any, idx) => {
+      return {expected: idx, answer: slot.order, correct: idx === slot.order}
+    }));
+    dispatch(
         POST_GAME_RESULTS(
-          Object.assign({ ...gameResults }, { imageSequenceGame: imageSlots })
+            Object.assign({ ...gameResults }, { imageSequenceGame: tempResultArr })
         )
-      );
+    );
+  }
+
+  const nextQuestion = () => {
+    let tempResultArr = [...gameResults.imageSequenceGame];
+
+    if (questions.length > imageSequenceGameState.currentQuestion + 1) {
+      postResults(tempResultArr);
       let currQuestion = imageSequenceGameState.currentQuestion;
       dispatch(SET_IMAGE_SEQUENCE_GAME_CURRENT_QUESTION(currQuestion + 1));
     } else {
+      postResults(tempResultArr);
       dispatch(SET_IMAGE_SEQUENCE_GAME_COMPLETED());
     }
   };

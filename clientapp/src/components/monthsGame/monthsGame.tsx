@@ -29,7 +29,7 @@ const MonthsGame: React.FC<{ questions: Array<string> }> = ({ questions }) => {
   const dispatch = useDispatch();
   const [dropCount, setDropCount] = useState<number>(0); //11 max
   const [months, setMonths] = useState<Array<string>>([]);
-  const [results, setResults] = useState<Array<boolean>>([]);
+  const [results, setResults] = useState<Array<any>>([]);
 
   useEffect(() => {
     let monthsArr = shuffleArray([
@@ -57,16 +57,16 @@ const MonthsGame: React.FC<{ questions: Array<string> }> = ({ questions }) => {
 
   const handleDrop = (season: any, month: string) => {
     let tempResultsArr = [...results];
-    if (season.months.includes(month)) {
-      console.log("CORRECT");
-      tempResultsArr.push(true);
+    let expectedSeason = "";
+    Seasons.forEach(s => {
+      if(s.months.includes(month)){
+        expectedSeason = s.label
+      }
+    });
+    console.log(expectedSeason);
+      tempResultsArr.push({expected: expectedSeason, answer: season.label, correct: expectedSeason === season.label});
       setResults(tempResultsArr);
-    } else {
-      console.log("FALSE");
-      tempResultsArr.push(false);
-      setResults(tempResultsArr);
-    }
-  };
+    };
 
   const handleGameStart = () => {
     dispatch(SET_MONTHS_GAME_NO_MONTHS(false));
