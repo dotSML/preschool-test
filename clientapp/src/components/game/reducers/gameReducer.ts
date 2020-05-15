@@ -1,7 +1,11 @@
 import { Action } from "../../common/types/actionType";
 
 export type GameReducerStateType = {
-  currentGame: string;
+  currentGame: number;
+  gameInitiated: boolean;
+  gameCompleted: boolean;
+  player: string;
+  teacher: string;
   results: {
     audioToTextGame: Array<any>;
     matchWordsWithPictureGame: Array<any>;
@@ -18,7 +22,11 @@ export type GameReducerStateType = {
 };
 
 const initialState: GameReducerStateType = {
-  currentGame: "",
+  currentGame: 0,
+  gameInitiated: false,
+  gameCompleted: false,
+  player: "",
+  teacher: "",
   results: {
     audioToTextGame: [],
     matchWordsWithPictureGame: [],
@@ -40,6 +48,28 @@ export const gameReducer = (state = initialState, action: Action) => {
       return {
         ...state,
         results: action.payload
+      };
+    }
+    case "INITIALIZE_GAME": {
+      return {
+        ...state,
+        gameInitiated: true,
+        player: action.payload.name,
+        teacher: action.payload.teacher
+      };
+    }
+
+    case "COMPLETE_GAME": {
+      return {
+        ...state,
+        gameCompleted: true
+      };
+    }
+
+    case "SET_GAME_CURRENT_GAME": {
+      return {
+        ...state,
+        currentGame: action.payload
       };
     }
 

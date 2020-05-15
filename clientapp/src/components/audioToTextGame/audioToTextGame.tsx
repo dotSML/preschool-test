@@ -4,12 +4,17 @@ import GameContent from "../common/gameContent";
 import GameDescription from "../common/gameDescription";
 import AudioToTextGameQuestion from "./audioToTextGameQuestion";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_AUDIO_TO_TEXT_GAME_STATE } from "./actions/audioToTextGameActions";
+import {
+  SET_AUDIO_TO_TEXT_GAME_COMPLETED,
+  SET_AUDIO_TO_TEXT_GAME_STARTED,
+  SET_AUDIO_TO_TEXT_GAME_STATE
+} from "./actions/audioToTextGameActions";
 import { AppState } from "../../store/store";
 import { Button } from "reactstrap";
 import StartGameBtn from "../common/startGameBtn";
 import { POST_GAME_RESULTS } from "../game/actions/gameActions";
 import AudioBtn from "../common/audioBtn";
+import {AudioToTextGameReducerStateType} from "./reducers/audioToTextGameReducer";
 
 export type AudioToTextGameProps = Array<{
   question: string;
@@ -23,31 +28,28 @@ export type AudioToTextGameProps = Array<{
 const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
   questions
 }) => {
-  const [gameStarted, setGameStarted] = useState<boolean>(false);
-  const [gameCompleted, setGameCompleted] = useState<boolean>(false);
-  const gameState = useSelector<AppState, Array<any>>(
-    state => state.audioToTextGame.gameState
-  );
+  const gameState = useSelector<AppState, AudioToTextGameReducerStateType>(state => state.audioToTextGame);
+
+
   const task1StoryAudio = new Audio(
     process.env.PUBLIC_URL + "/audio/task1/task1-story.m4a"
   );
   const gameResults = useSelector<AppState>(state => state.game.results);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!gameState.length) {
+    if (!gameState.questions.length) {
       dispatch(SET_AUDIO_TO_TEXT_GAME_STATE(questions));
     }
   }, [dispatch, questions]);
 
   const handleSetGameStart = () => {
-    setGameCompleted(false);
-    setGameStarted(true);
+    dispatch(SET_AUDIO_TO_TEXT_GAME_STARTED());
   };
 
   const handleGameEnd = () => {
     let results: any = gameResults;
     results.audioToTextGame = [];
-    gameState.forEach(question => {
+    gameState.questions.forEach(question => {
       let result: any = {};
       result.question = question.question;
       result.answer = question.answer;
@@ -57,12 +59,11 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
       results.audioToTextGame.push(result);
     });
     dispatch(POST_GAME_RESULTS(results));
-    setGameStarted(false);
-    setGameCompleted(true);
+    dispatch(SET_AUDIO_TO_TEXT_GAME_COMPLETED());
   };
 
   const handleQuestionAnswer = (answer: any, question: any) => {
-    let newArr = gameState.map(questionEl => {
+    let newArr = gameState.questions.map(questionEl => {
       if (questionEl.question === question) {
         return { ...questionEl, answer: answer };
       } else {
@@ -84,7 +85,7 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
         />
       </GameDescription>
       <GameContent>
-        {gameStarted ? (
+        {gameState.gameStarted ? (
           <React.Fragment>
             <div
               style={{
@@ -110,7 +111,7 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
               </audio>
             </div>
             <div className="audio-to-text-questions">
-              {gameState?.map((question, idx) => {
+              {gameState.questions.map((question, idx) => {
                 return (
                   <AudioToTextGameQuestion
                     key={idx}
@@ -140,7 +141,7 @@ const AudioToTextGame: React.FC<{ questions?: AudioToTextGameProps }> = ({
         ) : (
           <StartGameBtn
             handleGameStart={handleSetGameStart}
-            gameCompleted={gameCompleted}
+            gameCompleted={gameState.gameCompleted}
           />
         )}
       </GameContent>

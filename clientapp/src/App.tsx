@@ -3,9 +3,13 @@ import "./css/style.css";
 import Layout from "./components/layout/layout";
 import Game from "./components/game/game";
 import GameInitLanding from "./components/game/gameInitLanding";
+import {useSelector} from "react-redux";
+import {AppState} from "./store/store";
+import {GameReducerStateType} from "./components/game/reducers/gameReducer";
+import GameStatus from "./components/game/gameStatus";
 
 function App() {
-  const [gameStarted, setGameStarted] = useState<boolean>(false);
+  const game = useSelector<AppState, GameReducerStateType>(state => state.game);
   return (
     <div>
       <img
@@ -19,7 +23,7 @@ function App() {
         className="game-logo"
       />
       <Layout>
-        <Game />
+          {game.gameInitiated ? <Game/> : <GameInitLanding/>}
       </Layout>
     </div>
   );

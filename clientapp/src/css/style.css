@@ -34,8 +34,103 @@ body {
 
 .game-init-layout {
     display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 8rem 12rem;
     flex-direction: column;
 }
+
+.game-init-tertiary-heading {
+    font-size: 1.8rem;
+}
+
+.game-init__body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    flex-direction: column;
+}
+
+.game-init-form {
+    border: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,.2);
+    border-radius: 8px;
+    padding: 2rem 5rem;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40rem;
+    margin: 5rem auto 0 auto;
+}
+
+.game-init-form__label {
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.game-init-form .form-group {
+    width: 100%;
+}
+
+.game-init-form input, select {
+    border: 2px solid rgba(0,0,0,.8);
+    font-size: 1.8rem;
+    color: black;
+    font-weight: 600;
+    width: 100%;
+    align-self: stretch;
+}
+
+
+
+.game-init-form button {
+    width: 50%;
+    font-weight: bold;
+}
+
+.game-status {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.game-status-bubbles {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.game-status-bubble {
+    border-radius: 50%;
+    position: relative;
+    border: 1px solid rgba(0,0,0,.2);
+    height: 5rem;
+    width:5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: white;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0, .2);
+    user-select: none;
+    cursor: pointer;
+    background-color: #FFC092;
+}
+
+.game-status-bubble-indicator {
+    position: absolute;
+    background-color: #1461d6;
+    height: .5rem;
+    width: .5rem;
+    top: 0.5rem;
+    border-radius: 50%;
+}
+
+
 
 .game-completed {
     display: flex;
@@ -697,6 +792,7 @@ body {
 
 .dog-canvas-game-button {
     padding: 1rem;
+    user-select: none;
     cursor: pointer;
     background-color: white;
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,.2);

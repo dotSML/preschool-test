@@ -1,11 +1,15 @@
 import { Action } from "../../common/types/actionType";
 
 export type AudioToTextGameReducerStateType = {
-  gameState: Array<any>;
+  questions: Array<any>;
+  gameStarted: boolean,
+  gameCompleted: boolean
 };
 
 const initialState: AudioToTextGameReducerStateType = {
-  gameState: []
+  questions: [],
+  gameStarted: false,
+  gameCompleted: false
 };
 
 export const audioToTextGameReducer = (
@@ -16,8 +20,24 @@ export const audioToTextGameReducer = (
     case "SET_AUDIO_TO_TEXT_GAME_STATE": {
       return {
         ...state,
-        gameState: [...action.payload]
+        questions: [...action.payload]
       };
+    }
+
+    case "SET_AUDIO_TO_TEXT_GAME_STARTED": {
+      return {
+        ...state,
+        gameStarted: true,
+        gameCompleted: false
+      }
+    }
+
+    case "SET_AUDIO_TO_TEXT_GAME_COMPLETED": {
+      return {
+        ...state,
+        gameStarted: false,
+        gameCompleted: true
+      }
     }
 
     default:

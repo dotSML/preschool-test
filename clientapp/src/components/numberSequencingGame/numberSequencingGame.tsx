@@ -4,7 +4,6 @@ import GameDescription from "../common/gameDescription";
 import GameContent from "../common/gameContent";
 import StartGameBtn from "../common/startGameBtn";
 import NumberSequencingEmptyFieldGame from "./numberSequencingEmptyFieldGame/numberSequencingEmptyFieldGame";
-import GameStatus from "../common/gameStatus";
 import MultiBackend from "react-dnd-multi-backend";
 import { HTML5toTouch } from "../common/dnd";
 import { DndProvider } from "react-dnd";
@@ -68,10 +67,6 @@ const NumberSequencingGame: React.FC<{ questions: Array<any> }> = ({
       <GameContent>
         {gameState.gameStarted ? (
           <div>
-            {/*<GameStatus*/}
-            {/*  assignmentNo={gameState.currentAssignment + 1}*/}
-            {/*  totalNumberOfAssignments={gameAssignments.length}*/}
-            {/*/>*/}
             {gameAssignments[gameState.currentAssignment].component}
           </div>
         ) : (

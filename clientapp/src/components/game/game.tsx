@@ -12,44 +12,54 @@ import CalculationGame from "../calculationGame/calculationGame";
 import CompareQuantitiesGame from "../compareQuantitiesGame/compareQuantititiesGame";
 import AnalogueClockGame from "../analogueClockGame/analogueClockGame";
 import DogCanvasGame from "../dogCanvasGame/dogCanvasGame";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../store/store";
+import { GameReducerStateType } from "./reducers/gameReducer";
+import { SET_GAME_CURRENT_GAME } from "./actions/gameActions";
+import GameStatus from "./gameStatus";
+import Layout from "../layout/layout";
 
 const Game: React.FC = () => {
   const [currentGame, setCurrentGame] = useState(0);
+  const gameState = useSelector<AppState, GameReducerStateType>(
+    state => state.game
+  );
+  const dispatch = useDispatch();
   const games = [
     {
-      name: "Audio To Text",
+      name: "audioToTextGame",
       component: <AudioToTextGame questions={gameConfig.audioToTextGame} />
     },
     {
-      name: "Drag word to picture",
+      name: "dragWordToPictureGame",
       component: (
         <DragWordToPictureGame gameConfig={gameConfig.dragWordToPictureGame} />
       )
     },
     {
-      name: "Image sequence",
+      name: "imageSequenceGame",
       component: <ImageSequenceGame questions={gameConfig.imageSequence} />
     },
     {
-      name: "Months",
+      name: "monthsGame",
       component: <MonthsGame questions={gameConfig.monthsGame} />
     },
     {
-      name: "Weekdays Game",
+      name: "weekdaysGame",
       component: <WeekdaysGame questions={gameConfig.weekdayGame} />
     },
     {
-      name: "Number Sequencing Game",
+      name: "numberSequencingGame",
       component: (
         <NumberSequencingGame questions={gameConfig.numberSequencingGame} />
       )
     },
     {
-      name: "Calculation Game",
+      name: "calculationGame",
       component: <CalculationGame questions={gameConfig.calculationGame} />
     },
     {
-      name: "Quantities Comparison",
+      name: "compareQuantitiesGame",
       component: (
         <CompareQuantitiesGame questions={gameConfig.compareQuantitiesGame} />
       )
@@ -65,45 +75,47 @@ const Game: React.FC = () => {
   ];
 
   const noNextGame = () => {
-    return currentGame === games.length - 1;
+    return gameState.currentGame === games.length - 1;
   };
 
   const handleNextGameClick = () => {
-    if (currentGame + 1 < games.length) {
-      setCurrentGame(currentGame + 1);
+    if (gameState.currentGame + 1 < games.length) {
+      dispatch(SET_GAME_CURRENT_GAME(gameState.currentGame + 1));
     }
   };
 
   const handlePreviousGameClick = () => {
-    if (currentGame - 1 >= 0) {
-      setCurrentGame(currentGame - 1);
+    if (gameState.currentGame - 1 >= 0) {
+      dispatch(SET_GAME_CURRENT_GAME(gameState.currentGame - 1));
     }
   };
 
   return (
     <GameBox>
-      {games[currentGame].component}
-      <div className="game-buttons">
-        <Button
-          size="lg"
-          color="danger"
-          style={{ marginRight: "1rem", fontWeight: 600 }}
-          disabled={currentGame === 0}
-          onClick={handlePreviousGameClick}
-        >
-          Eelmine mäng
-        </Button>
-        <Button
-          size="lg"
-          color="primary"
-          style={{ fontWeight: 600 }}
-          onClick={
-            noNextGame() ? () => alert("GAME OVER") : handleNextGameClick
-          }
-        >
-          {noNextGame() ? "Lõpeta test" : "Järgmine mäng"}
-        </Button>
-      </div>
+      {games[gameState.currentGame].component}
+      <GameStatus games={games} currentGame={games[gameState.currentGame]}/>
+
+      {/*<div className="game-buttons">*/}
+      {/*  <Button*/}
+      {/*    size="lg"*/}
+      {/*    color="danger"*/}
+      {/*    style={{ marginRight: "1rem", fontWeight: 600 }}*/}
+      {/*    disabled={gameState.currentGame === 0}*/}
+      {/*    onClick={handlePreviousGameClick}*/}
+      {/*  >*/}
+      {/*    Eelmine mäng*/}
+      {/*  </Button>*/}
+      {/*  <Button*/}
+      {/*    size="lg"*/}
+      {/*    color="primary"*/}
+      {/*    style={{ fontWeight: 600 }}*/}
+      {/*    onClick={*/}
+      {/*      noNextGame() ? () => alert("GAME OVER") : handleNextGameClick*/}
+      {/*    }*/}
+      {/*  >*/}
+      {/*    {noNextGame() ? "Lõpeta test" : "Järgmine mäng"}*/}
+      {/*  </Button>*/}
+      {/*</div>*/}
     </GameBox>
   );
 };

@@ -1,22 +1,38 @@
-import React from "react";
+import React, {useState} from "react";
 import { Button, FormGroup, Input, Label } from "reactstrap";
+import {useDispatch} from "react-redux";
+import {INITIALIZE_GAME} from "./actions/gameActions";
 
 const GameInitLanding = () => {
-  return (
+    const dispatch = useDispatch();
+    const [name, setName] = useState<string>("");
+    const [teacher, setTeacher] = useState<string>("");
+
+    return (
     <div className="game-init-layout">
+        <div className="game-init__body">
       <h1 className="game-init-welcome-heading">
         Suitsupääsupesa Lasteaia testmäng
       </h1>
-      <h2 className="game-init-secondary-heading">
-        Palun sisesta all enda nimi, et mänguga alustada
-      </h2>
+            <div className="game-init-form">
       <FormGroup>
-        <Label style={{ fontSize: "2.5rem" }}>NIMI</Label>
-        <Input type="text" />
+        <Label className="game-init-form__label">NIMI</Label>
+        <Input style={{color: 'black'}} value={name} onChange={(e) => setName(e.target.value)} type="text" />
       </FormGroup>
-      <Button color="success" size="lg">
-        ALUSTA MÄNGUGA
+                <FormGroup>
+                    <Label className="game-init-form__label">KASVATAJA</Label>
+                    <select onChange={e => setTeacher(e.target.value)}>
+                        <option/>
+                        <option value="email1">Kasvataja 1</option>
+                        <option value="email2">Kasvataja 2</option>
+                    </select>
+                </FormGroup>
+      <Button style={{fontWeight: "bold"}} color="success" size="lg" disabled={!(name !== "" && teacher !== "") } onClick={() => dispatch(INITIALIZE_GAME({name: name, teacher: teacher}))}>
+        ALUSTA!
       </Button>
+            </div>
+
+        </div>
     </div>
   );
 };
